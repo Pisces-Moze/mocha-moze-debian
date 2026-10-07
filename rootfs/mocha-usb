@@ -1,0 +1,60 @@
+#!/bin/sh
+set -eu
+say() { echo "$*"; }
+mount -t configfs configfs /sys/kernel/config
+gadget=/sys/kernel/config/usb_gadget/mocha_debug
+mkdir -p "$gadget"
+cd "$gadget" || exit 1
+echo 0x1d6b > idVendor
+echo 0x0104 > idProduct
+echo 0x0200 > bcdUSB
+echo 0x0612 > bcdDevice
+echo 0xef > bDeviceClass
+echo 0x02 > bDeviceSubClass
+echo 0x01 > bDeviceProtocol
+mkdir -p strings/0x409
+echo Mocha-RAM-bringup > strings/0x409/serialnumber
+echo Xiaomi > strings/0x409/manufacturer
+echo 'Mocha Linux USB diagnostics' > strings/0x409/product
+mkdir -p functions/rndis.usb0 configs/c.1/strings/0x409
+echo 02:00:00:00:01:02 > functions/rndis.usb0/dev_addr
+echo 02:00:00:00:01:01 > functions/rndis.usb0/host_addr
+echo 500 > configs/c.1/MaxPower
+echo 'RAM diagnostics' > configs/c.1/strings/0x409/configuration
+echo 1 > os_desc/use
+echo 0xcd > os_desc/b_vendor_code
+echo MSFT100 > os_desc/qw_sign
+echo RNDIS > functions/rndis.usb0/os_desc/interface.rndis/compatible_id
+echo 5162001 > functions/rndis.usb0/os_desc/interface.rndis/sub_compatible_id
+ln -s "$gadget/functions/rndis.usb0" configs/c.1/rndis.usb0
+ln -s "$gadget/configs/c.1" os_desc/c.1
+controller=$(ls /sys/class/udc | head -n 1)
+say "USB controller=${controller:-none}"
+if [ -n "$controller" ]; then
+    # Diagnostic only: keep the gadget controller awake to isolate LPM effects.
+    if echo on > "/sys/class/udc/$controller/device/power/control" 2>/tmp/usb-power.log; then
+        say "USB keep-awake=ok control=$(cat /sys/class/udc/$controller/device/power/control)"
+    else
+        say "USB keep-awake=failed error=$(cat /tmp/usb-power.log)"
+    fi
+    if echo "$controller" > UDC 2>/tmp/udc-bind.log; then
+        say "USB bind=ok bound=$(cat UDC)"
+    else
+        say "USB bind=failed error=$(cat /tmp/udc-bind.log)"
+    fi
+    ip link set usb0 up 2>/tmp/usb-ip.log
+    say "USB interface-up result=$?"
+    ip addr add 172.31.124.2/30 dev usb0 2>>/tmp/usb-ip.log
+    say "USB address result=$? errors=$(cat /tmp/usb-ip.log)"
+    cat > /etc/udhcpd.conf <<'EOF'
+start 172.31.124.1
+end 172.31.124.1
+interface usb0
+max_leases 1
+lease_file /run/udhcpd.leases
+pidfile /run/udhcpd.pid
+option subnet 255.255.255.252
+option lease 600
+EOF
+    /usr/bin/busybox udhcpd -f /etc/udhcpd.conf > /tmp/udhcpd.log 2>&1 &
+fi

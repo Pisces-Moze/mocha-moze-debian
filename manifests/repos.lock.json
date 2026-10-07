@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "snapshot_date": "2026-10-07",
+  "publication_date": "2026-10-08",
+  "kernel_name": "mocha moze linux 6.12.111-moze.1",
+  "kernelrelease": "6.12.111-moze.1",
+  "native_kernelrelease": "6.12.111-moze.1-native",
+  "architecture": "armhf",
+  "new_brand_end_to_end_tested": false,
+  "repositories": [
+    {
+      "name": "mocha-moze-boot",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-boot.git",
+      "commit": "7163a222b93ed05ba97e6f0d725bbec348f48938"
+    },
+    {
+      "name": "mocha-moze-linux",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-linux.git",
+      "commit": "a86530c19fbda5d7b70b6cc22d1f8f429cd9ae59"
+    },
+    {
+      "name": "mocha-moze-drivers",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-drivers.git",
+      "commit": "2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc"
+    },
+    {
+      "name": "mocha-moze-desktop",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-desktop.git",
+      "commit": "45a1c7360adea09e4ed91cb729a6af891d339e68"
+    }
+  ]
+}

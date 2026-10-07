@@ -1,0 +1,10 @@
+[Unit]
+Description=Mocha RNDIS management network
+After=systemd-udev-trigger.service
+Before=ssh.service
+[Service]
+Type=oneshot
+ExecStart=/usr/local/libexec/mocha-usb
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target

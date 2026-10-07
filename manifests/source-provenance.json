@@ -1,0 +1,74 @@
+{
+  "snapshot_date": "2026-10-07",
+  "publication_date": "2026-10-08",
+  "kernel": {
+    "base": "Debian linux-source-6.12 6.12.111",
+    "source_sha256": "dcb52c568b7f906ec831feeadabb1d60435040bf0f1f3976be371c9a5c12582a",
+    "changed_paths": [
+      "Documentation/devicetree/bindings/power/supply/bq24190.yaml",
+      "arch/arm/kernel/head-common.S",
+      "arch/arm/kernel/head.S",
+      "arch/arm/kernel/setup.c",
+      "arch/arm/kernel/time.c",
+      "arch/arm/mach-tegra/io.c",
+      "arch/arm/mach-tegra/reset.c",
+      "arch/arm/mm/mmu.c",
+      "drivers/bluetooth/btbcm.c",
+      "drivers/clk/tegra/clk-tegra124.c",
+      "drivers/gpu/drm/panel/Kconfig",
+      "drivers/gpu/drm/panel/Makefile",
+      "drivers/gpu/drm/tegra/dsi.c",
+      "drivers/power/supply/bq24190_charger.c",
+      "drivers/regulator/palmas-regulator.c",
+      "drivers/tty/serial/earlycon.c",
+      "drivers/usb/chipidea/ci_hdrc_tegra.c",
+      "drivers/usb/chipidea/otg.c",
+      "drivers/usb/chipidea/udc.c",
+      "drivers/usb/phy/phy-tegra-usb.c",
+      "init/main.c",
+      "drivers/gpu/drm/panel/panel-sharp-lq079l1sx01.c",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-touchscreens.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-bluetooth.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-fixed.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-pmic.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha.dts",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-sdhci.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-i2c.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-power.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-identity.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-display.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-mipi.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-pinmux.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-usb.dtsi",
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-keys.dtsi"
+    ]
+  },
+  "uboot": {
+    "upstream": "https://source.denx.de/u-boot/u-boot",
+    "tag": "v2026.07"
+  },
+  "micode": {
+    "upstream": "https://github.com/MiCode/Xiaomi_Kernel_OpenSource",
+    "commit": "79b4898e25fe3b506ff902e182b47068598c838a"
+  },
+  "niri": {
+    "upstream": "https://github.com/niri-wm/niri",
+    "tag": "v26.04",
+    "smithay": "ff5fa7df392cecfba049ffed55cdaa4e98a8e7ef"
+  },
+  "noctalia": {
+    "upstream": "https://github.com/noctalia-dev/noctalia",
+    "tag": "v5.2.1"
+  },
+  "brand": "mocha moze linux 6.12.111-moze.1",
+  "new_brand_end_to_end_tested": false,
+  "excluded": [
+    "device backups",
+    "credentials",
+    "private keys",
+    "proprietary firmware",
+    "CUDA debs",
+    "compiled images",
+    "VM disks"
+  ]
+}

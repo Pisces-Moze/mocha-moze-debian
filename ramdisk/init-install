@@ -1,0 +1,136 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+# Experimental RAM bring-up only. Does not mount or write any eMMC partition.
+export PATH=/bin:/sbin
+mount -t devtmpfs devtmpfs /dev
+mkdir -p /proc /sys /run /tmp
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+printf '<6>MOCHA_RAM: PID=%s entered /init\n' "$$" > /dev/kmsg
+exec </dev/console >/dev/console 2>&1
+say() {
+    echo "$*"
+    printf '<6>MOCHA_RAM: %s\n' "$*" > /dev/kmsg
+}
+say 'Mocha Linux RAM bring-up; no storage partition is mounted.'
+say "PID=$$ kernel=$(busybox uname -r)"
+busybox uname -a
+# Expose the eMMC for inspection only. No partition is mounted.
+say 'STORAGE_RO: waiting for eMMC before starting SSH'
+storage_wait=0
+while [ ! -b /dev/mmcblk0 ] && [ "$storage_wait" -lt 30 ]; do
+    sleep 1
+    storage_wait=$((storage_wait + 1))
+done
+if [ -b /dev/mmcblk0 ]; then
+    if busybox blockdev --setro /dev/mmcblk0 && \
+        [ "$(busybox blockdev --getro /dev/mmcblk0)" = 1 ]; then
+        say "STORAGE_RO: mmcblk0 locked read-only size=$(cat /sys/class/block/mmcblk0/size)"
+    else
+        say 'STORAGE_RO_FAILED: refusing remote access to an unlocked disk'
+        while :; do sleep 30; done
+    fi
+else
+    say 'STORAGE_RO: no eMMC block device appeared; inspect deferred probes'
+fi
+mount -t configfs configfs /sys/kernel/config
+gadget=/sys/kernel/config/usb_gadget/mocha_debug
+mkdir -p "$gadget"
+cd "$gadget" || exec /bin/sh
+echo 0x1d6b > idVendor
+echo 0x0104 > idProduct
+echo 0x0200 > bcdUSB
+echo 0x0612 > bcdDevice
+echo 0xef > bDeviceClass
+echo 0x02 > bDeviceSubClass
+echo 0x01 > bDeviceProtocol
+mkdir -p strings/0x409
+echo Mocha-RAM-bringup > strings/0x409/serialnumber
+echo Xiaomi > strings/0x409/manufacturer
+echo 'Mocha Linux USB diagnostics' > strings/0x409/product
+mkdir -p functions/rndis.usb0 configs/c.1/strings/0x409
+echo 02:00:00:00:01:02 > functions/rndis.usb0/dev_addr
+echo 02:00:00:00:01:01 > functions/rndis.usb0/host_addr
+echo 500 > configs/c.1/MaxPower
+echo 'RAM diagnostics' > configs/c.1/strings/0x409/configuration
+echo 1 > os_desc/use
+echo 0xcd > os_desc/b_vendor_code
+echo MSFT100 > os_desc/qw_sign
+echo RNDIS > functions/rndis.usb0/os_desc/interface.rndis/compatible_id
+echo 5162001 > functions/rndis.usb0/os_desc/interface.rndis/sub_compatible_id
+ln -s "$gadget/functions/rndis.usb0" configs/c.1/rndis.usb0
+ln -s "$gadget/configs/c.1" os_desc/c.1
+controller=$(ls /sys/class/udc | head -n 1)
+say "USB controller=${controller:-none}"
+if [ -n "$controller" ]; then
+    # Diagnostic only: keep the gadget controller awake to isolate LPM effects.
+    if echo on > "/sys/class/udc/$controller/device/power/control" 2>/tmp/usb-power.log; then
+        say "USB keep-awake=ok control=$(cat /sys/class/udc/$controller/device/power/control)"
+    else
+        say "USB keep-awake=failed error=$(cat /tmp/usb-power.log)"
+    fi
+    if echo "$controller" > UDC 2>/tmp/udc-bind.log; then
+        say "USB bind=ok bound=$(cat UDC)"
+    else
+        say "USB bind=failed error=$(cat /tmp/udc-bind.log)"
+    fi
+    ip link set usb0 up 2>/tmp/usb-ip.log
+    say "USB interface-up result=$?"
+    ip addr add 172.31.124.2/30 dev usb0 2>>/tmp/usb-ip.log
+    say "USB address result=$? errors=$(cat /tmp/usb-ip.log)"
+    cat > /etc/udhcpd.conf <<'EOF'
+start 172.31.124.1
+end 172.31.124.1
+interface usb0
+max_leases 1
+lease_file /run/udhcpd.leases
+pidfile /run/udhcpd.pid
+option subnet 255.255.255.252
+option lease 600
+EOF
+    udhcpd -f /etc/udhcpd.conf > /tmp/udhcpd.log 2>&1 &
+    /sbin/dropbear -F -E -s -g -j -k -p 172.31.124.2:22 \
+        -r /etc/dropbear/dropbear_ecdsa_host_key -P /run/dropbear.pid \
+        > /tmp/dropbear.log 2>&1 &
+    dropbear_pid=$!
+    sleep 1
+    if kill -0 "$dropbear_pid" 2>/dev/null; then
+        say 'Dropbear process is running; key-only SSH configured at 172.31.124.2.'
+    else
+        say "Dropbear failed: $(head -n 5 /tmp/dropbear.log)"
+    fi
+    say 'USB DHCP supplies no default route.'
+else
+    say 'USB controller not registered; inspect kernel log through the display.'
+    mkdir -p /sys/kernel/debug
+    mount -t debugfs debugfs /sys/kernel/debug
+    if [ -r /sys/kernel/debug/devices_deferred ]; then
+        head -n 20 /sys/kernel/debug/devices_deferred | while IFS= read -r line; do
+            say "DEFERRED: $line"
+        done
+    fi
+fi
+cd /
+dmesg > /tmp/boot-dmesg.txt
+say 'RAM init is running; storage partitions remain unmounted.'
+grep 'MOCHA_USB_' /tmp/boot-dmesg.txt | tail -n 8 | while IFS= read -r line; do
+    say "USB KERNEL: $line"
+done
+mkdir -p /sys/kernel/debug
+mount -t debugfs debugfs /sys/kernel/debug 2>/dev/null
+report_usb_state() {
+    if [ -n "$controller" ]; then
+        say "UDC state=$(cat /sys/class/udc/$controller/state) speed=$(cat /sys/class/udc/$controller/current_speed)"
+        say "USB runtime child=$(cat /sys/class/udc/$controller/device/power/runtime_status 2>/dev/null) parent=$(cat /sys/bus/platform/devices/7d000000.usb/power/runtime_status 2>/dev/null)"
+        if [ -r /sys/kernel/debug/usb/$controller/device ]; then
+            head -n 12 /sys/kernel/debug/usb/$controller/device | while IFS= read -r line; do
+                say "CI: $line"
+            done
+        fi
+    fi
+}
+report_usb_state
+sleep 20
+report_usb_state
+
+while :; do sleep 30; done

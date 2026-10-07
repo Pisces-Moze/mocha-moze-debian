@@ -1,0 +1,25 @@
+#!/bin/sh
+# Boot the verified Debian APP filesystem; do not mount any other partition.
+export PATH=/bin:/sbin
+mount -t devtmpfs devtmpfs /dev
+mkdir -p /proc /sys /run /newroot
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+exec </dev/console >/dev/console 2>&1
+say() { printf '<6>MOCHA_DEBIAN: %s\n' "$*" > /dev/kmsg; }
+fail() { say "$*"; while :; do sleep 30; done; }
+say 'Loading Debian from internal eMMC APP partition.'
+count=0
+while [ ! -b /dev/mmcblk0p26 ] && [ "$count" -lt 30 ]; do sleep 1; count=$((count+1)); done
+test -b /dev/mmcblk0p26 || fail 'eMMC APP partition missing.'
+test "$(cat /sys/class/block/mmcblk0/device/name)" = 016GE2 || fail 'Unexpected eMMC identity.'
+test "$(cat /sys/class/block/mmcblk0p26/start)" = 524288 || fail 'Unexpected APP start.'
+test "$(cat /sys/class/block/mmcblk0p26/size)" = 2612431 || fail 'Unexpected APP size.'
+mount -t ext4 -o rw /dev/mmcblk0p26 /newroot || fail 'Cannot mount Debian APP filesystem.'
+test -f /newroot/etc/mocha-internal-debian || fail 'Debian installation marker missing.'
+test -x /newroot/usr/lib/systemd/systemd || fail 'Debian systemd missing.'
+mkdir -p /newroot/dev /newroot/proc /newroot/sys /newroot/run
+mount --move /dev /newroot/dev || fail 'Cannot move devtmpfs.'
+mount --move /sys /newroot/sys || fail 'Cannot move sysfs.'
+mount --move /proc /newroot/proc || fail 'Cannot move procfs.'
+exec /bin/busybox switch_root /newroot /sbin/init
