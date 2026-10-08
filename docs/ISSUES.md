@@ -31,6 +31,12 @@ Mesa 25.0.7-2+deb13u1 Build ID fd7dcad10de8c89211ebe69ae8c8dda302f047d0，返回
 CONFIG_COREDUMP=y但CONFIG_ELF_CORE关闭，第一次core捕获没有生成文件；改用ARM gdbserver抓栈。
 后续需要修复缺失的驱动回调/缓冲区协作、验证真实native桌面，再测DMA-BUF、CPU_PREP和copy；当前不能标注Niri zero-copy完成。
 
+2026-10-09 已对照 Mesa `mesa-25.0.7` 的固定源码，确认 Tegra 无条件注册 `fence_server_sync` 包装回调，但 Nouveau 没有实现底层回调；`create_fence_fd` / `fence_get_fd` 也存在同类转发问题。desktop 仓库的 `0004` 补丁仅在底层回调存在时注册包装层，原始源码回归失败、修复后八种回调组合通过。原型机原有 Nouveau 路径另通过 32 轮 EGL fence 测试；此时没有运行候选 Mesa，也没有进入 native Tegra 路径。完整交叉构建与 native Niri/面板验收仍待完成，见 [Mesa fence 验收步骤](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/MESA-FENCE.md)。
+
+同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已手工启用 stable/native 两套配置中的该选项，并增加构建检查；新内核的 `olddefconfig`、编译与临时启动尚待完成。
+
+随后在当前 simpledrm 系统上，仅为无 modeset 的独立 EGL probe 设置 `MESA_LOADER_DRIVER_OVERRIDE=tegra`，实机在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 捕获 `PC=0`、`R3=0`，调用指令为 Thumb `BLX R3`，LR 规范化后为 libgallium `+0xd645bc`；运行库 Build ID 与历史 Niri 的 `fd7dcad10de8c89211ebe69ae8c8dda302f047d0` 相同，空回调来源得到运行时确认。当前桌面没有中断，仍未运行修复后的候选 Mesa。
+
 ## 扬声器/麦克风：未解决
 RT5671 0x1c在官方1.2V ldoen、PMIC32k门控、GPIO5mux、12.288MHz MCLK下NACK。
 分离I2C读写与100kHz速率测试仍NACK，两颗TFA9890同总线revision0080可读。MTP0000并不证明校准缺失，因为完整DSP时序未运行。

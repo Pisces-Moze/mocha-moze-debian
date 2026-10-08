@@ -16,7 +16,7 @@
     {
       "name": "mocha-moze-linux",
       "url": "https://github.com/Pisces-Moze/mocha-moze-linux.git",
-      "commit": "a86530c19fbda5d7b70b6cc22d1f8f429cd9ae59"
+      "commit": "6f1e595e0237e6691437640048d4524909f33094"
     },
     {
       "name": "mocha-moze-drivers",
@@ -26,7 +26,7 @@
     {
       "name": "mocha-moze-desktop",
       "url": "https://github.com/Pisces-Moze/mocha-moze-desktop.git",
-      "commit": "45a1c7360adea09e4ed91cb729a6af891d339e68"
+      "commit": "afafcc4d890169bafa09b7b7db288821da6bdbba"
     }
   ]
 }

@@ -1,4 +1,6 @@
-# 当前状态：2026-10-07
+# 当前状态：2026-10-09
+
+2026-10-09 已恢复 USB SSH 诊断。当前原型机运行旧 release `6.12.111-mocha-experimental-fbdiag`，DRM 是 simpledrm + Nouveau，四核在线，Niri/Noctalia 进程运行，没有失败的 systemd 服务。此次没有重启、写 APP/LNX 或更改默认引导；不能据此宣称改名后的安装通过。只读状态与 fence 原始输出见 [诊断记录](DIAGNOSTICS-2026-10-09.md)。下面既有的性能和面板结论仍来自之前的实机记录。
 
 | 子系统 | 实机状态 | 限制 |
 |---|---|---|
@@ -18,5 +20,5 @@
 | CUDA | Gdev 实验 Driver API 的有限计算通过 | libcudart 6.5 error 35；完整 CUDA Runtime 未完成 |
 | 摄像头 / OTG / 休眠 | 未完成 | 控制器、传感器、VBUS 与恢复链路待适配 |
 
-最近一轮暂停时平板运行临时 native6-order 内核。此次整理只发布源码和文档，不继续实机调试，也不把实验默认化。
+2026-10-07 暂停时曾运行临时 native6-order；2026-10-09 实测当前已回到 simpledrm 路径。Mesa 空回调修复候选的主机回归通过，原有 Nouveau 的 32 轮 EGL fence 对照通过，候选 Mesa 的完整编译和 native 桌面验收待完成。音频仍无 ALSA 卡，蓝牙无 HCI 且 UART 节点被禁用。新内核 core 配置尚未编译/启动验证。
 历史日志存在时间顺序冲突时，以本状态表和后期可复核证据为准。

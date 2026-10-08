@@ -55,9 +55,10 @@ mocha-workspace/
 | `tools/workspace.py` | 读 `manifests/repos.lock.json`，克隆缺失仓库并检出锁定 commit；工作区有未提交改动时中止 |
 | `tools/build-rootfs.sh`、`tools/build-initramfs.sh` | 前者 debootstrap 生成 trixie/armhf 核心 rootfs 并装入内核产物、SSH 授权与 USB 服务；后者生成 busybox initramfs，`install` 模式带 Dropbear 与 `ramdisk/init-install`，`emmc` 模式用 `ramdisk/init-emmc` |
 | `tools/make-app-image.sh`、`tools/storage.sh` | 前者按 APP 精确字节数生成 ext4 镜像并算哈希；后者在 RAM 安装器里读计划、写 APP/LNX 并回读校验 |
+| `tools/collect-status.py` | 只读采集 CPU、DRM、ALSA、蓝牙、供电、空间、core 配置与 Mesa 库哈希/Build ID；2026-10-09 实机记录见 [诊断记录](docs/DIAGNOSTICS-2026-10-09.md) |
 | `ramdisk/init-install`、`ramdisk/init-emmc` 与 `rootfs/mocha-usb`、`rootfs/mocha-usb.service`、`manifests/*.json` | RAM 安装环境先把 eMMC 锁成只读再起 RNDIS 与 key-only SSH；emmc 模式核对 APP 分区身份后挂载并 switch_root 到 Debian；装进目标系统的 RNDIS 管理网络（`Before=ssh.service`）；源码版本锁与来源记录 |
 
-版本锁和产物哈希是两件事：`repos.lock.json` 固定四个仓库的 commit，`SHA256SUMS` 固定某一次具体构建，前者代替不了后者。本快照锁定的是 boot `7163a222b93ed05ba97e6f0d725bbec348f48938`、linux `a86530c19fbda5d7b70b6cc22d1f8f429cd9ae59`、drivers `2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc`、desktop `45a1c7360adea09e4ed91cb729a6af891d339e68`。
+版本锁和产物哈希是两件事：`repos.lock.json` 固定四个仓库的 commit，`SHA256SUMS` 固定某一次具体构建，前者代替不了后者。本快照锁定的是 boot `7163a222b93ed05ba97e6f0d725bbec348f48938`、linux `6f1e595e0237e6691437640048d4524909f33094`、drivers `2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc`、desktop `afafcc4d890169bafa09b7b7db288821da6bdbba`。
 
 ## 部署过程
 
@@ -163,7 +164,7 @@ ssh -i artifacts/developer-key root@172.31.124.2 'sh /tmp/storage.sh write LNX /
 | 蓝牙、摄像头 / OTG / 休眠 | 旧内核 HCI 初始化通过；现代内核完整功能未验证；摄像头、OTG 与休眠未完成 | UART/固件/GPIO 及配对、音频待完成；控制器、传感器、VBUS 与恢复链路待适配 |
 | 视频播放与壁纸预览 | FFmpeg H.264 72 帧解码、Firefox HTML5 播放通过；缩略图与专用壁纸目录修复通过 | 软件解码可用，Tegra124 硬件编解码未完成；壁纸需正确安装 Noctalia 数据文件 |
 
-最近一轮暂停时，平板上跑的是临时 native6-order 内核。此次整理只发布源码和文档，不继续实机调试，也不把实验配置改成默认。
+2026-10-09 已恢复 USB SSH 诊断，当前原型机实际运行旧 `6.12.111-mocha-experimental-fbdiag` 的 simpledrm 桌面，四核与 Niri/Noctalia 进程正常。独立 EGL probe 在原有 Nouveau 上通过 32 轮 fence 检查，强制 Tegra 包装层后在 `eglWaitSyncKHR` 重现 PC/R3=0、libgallium LR `+0xd645bc` 的空回调崩溃，Build ID 与历史 Niri 证据吻合。desktop 的修复候选已通过八种回调组合的主机 C 回归；linux 的两套 profile 已补 ELF_CORE。完整交叉构建与候选原生桌面/面板验收仍待完成，音频仍无 ALSA 卡，蓝牙 UART 仍禁用；详见 [诊断记录](docs/DIAGNOSTICS-2026-10-09.md)。本轮没有重启、写 APP/LNX 或更改默认引导，`new_brand_end_to_end_tested` 继续为 false。
 
 ## 未实现与计划
 

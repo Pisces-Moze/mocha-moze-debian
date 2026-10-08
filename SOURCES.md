@@ -8,7 +8,7 @@
 | 社区 Mocha | https://github.com/Insei/linux ，`1e3857d7a1ea87cd2cc15eca2d36f57cb591c4bf` | 早期板级/面板参考，后续逐项对照官方与实机 |
 | Niri | https://github.com/niri-wm/niri ，v26.04 | ARMv7 构建，Smithay `ff5fa7df392cecfba049ffed55cdaa4e98a8e7ef` 旋转损伤补丁 |
 | Noctalia | https://github.com/noctalia-dev/noctalia ，v5.2.1 | 此版本为 C++/Meson 项目；不混用旧 QML shell 的安装方式 |
-| Mesa | Debian 25.0.7-2+deb13u1 | 默认渲染与 native 崩溃证据；不发布 NVIDIA 用户态库 |
+| Mesa | Debian 25.0.7-2+deb13u1；上游 mesa-25.0.7 / `742a20f48c59e8649533c84c4d49dd95b403f5da`，https://gitlab.freedesktop.org/mesa/mesa | 默认渲染与 native 崩溃证据；desktop 中的可选 fence 回调补丁保留被修改文件的 MIT 许可；不发布 NVIDIA 用户态库 |
 | CUDA/Gdev | 原厂 CUDA 6.5 包和实验 Gdev 兼容层 | 示例/接口检查；完整运行时未通过 |
 
 官方 MIUI V9.2.4.0 固件包与原设备固件只用于对照和私有提取，不随仓库分发。
