@@ -58,7 +58,7 @@ mocha-workspace/
 | `tools/collect-status.py` | 只读采集 CPU、DRM、ALSA、蓝牙、供电、空间、core 配置与 Mesa 库哈希/Build ID；2026-10-09 实机记录见 [诊断记录](docs/DIAGNOSTICS-2026-10-09.md) |
 | `ramdisk/init-install`、`ramdisk/init-emmc` 与 `rootfs/mocha-usb`、`rootfs/mocha-usb.service`、`manifests/*.json` | RAM 安装环境先把 eMMC 锁成只读再起 RNDIS 与 key-only SSH；emmc 模式核对 APP 分区身份后挂载并 switch_root 到 Debian；装进目标系统的 RNDIS 管理网络（`Before=ssh.service`）；源码版本锁与来源记录 |
 
-版本锁和产物哈希是两件事：`repos.lock.json` 固定四个仓库的 commit，`SHA256SUMS` 固定某一次具体构建，前者代替不了后者。本快照锁定的是 boot `7163a222b93ed05ba97e6f0d725bbec348f48938`、linux `6f1e595e0237e6691437640048d4524909f33094`、drivers `2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc`、desktop `afafcc4d890169bafa09b7b7db288821da6bdbba`。
+版本锁和产物哈希是两件事：`repos.lock.json` 固定四个仓库的 commit，`SHA256SUMS` 固定某一次具体构建，前者代替不了后者。本快照锁定的是 boot `7163a222b93ed05ba97e6f0d725bbec348f48938`、linux `d1086e104a5efbfff4d87664f2ace59df4a5d062`、drivers `2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc`、desktop `e727295f7c534078f4233fabdbc5d952549b1a72`。
 
 ## 部署过程
 
@@ -164,14 +164,14 @@ ssh -i artifacts/developer-key root@172.31.124.2 'sh /tmp/storage.sh write LNX /
 | 蓝牙、摄像头 / OTG / 休眠 | 旧内核 HCI 初始化通过；现代内核完整功能未验证；摄像头、OTG 与休眠未完成 | UART/固件/GPIO 及配对、音频待完成；控制器、传感器、VBUS 与恢复链路待适配 |
 | 视频播放与壁纸预览 | FFmpeg H.264 72 帧解码、Firefox HTML5 播放通过；缩略图与专用壁纸目录修复通过 | 软件解码可用，Tegra124 硬件编解码未完成；壁纸需正确安装 Noctalia 数据文件 |
 
-2026-10-09 已恢复 USB SSH 诊断，当前原型机实际运行旧 `6.12.111-mocha-experimental-fbdiag` 的 simpledrm 桌面，四核与 Niri/Noctalia 进程正常。独立 EGL probe 在原有 Nouveau 上通过 32 轮 fence 检查，强制 Tegra 包装层后在 `eglWaitSyncKHR` 重现 PC/R3=0、libgallium LR `+0xd645bc` 的空回调崩溃，Build ID 与历史 Niri 证据吻合。desktop 的修复候选已通过八种回调组合的主机 C 回归；linux 的两套 profile 已补 ELF_CORE。完整交叉构建与候选原生桌面/面板验收仍待完成，音频仍无 ALSA 卡，蓝牙 UART 仍禁用；详见 [诊断记录](docs/DIAGNOSTICS-2026-10-09.md)。本轮没有重启、写 APP/LNX 或更改默认引导，`new_brand_end_to_end_tested` 继续为 false。
+2026-10-09 已恢复 USB SSH 诊断，当前原型机实际运行旧 `6.12.111-mocha-experimental-fbdiag` 的 simpledrm 桌面，四核与 Niri/Noctalia 进程正常。独立 EGL probe 在原有 Nouveau 上通过 32 轮 fence 检查，强制 Tegra 包装层后在 `eglWaitSyncKHR` 重现 PC/R3=0、libgallium LR `+0xd645bc` 的空回调崩溃，Build ID 与历史 Niri 证据吻合。desktop 修复已通过八组合 C 回归与完整 ARMhf 构建；候选库实机 Nouveau/Tegra 均通过 32 轮 fence 和像素检查，Tegra 不再崩溃。linux 两套 profile 的 ELF_CORE 已通过 olddefconfig，stable 完整构建通过。native 内核构建与原生桌面/面板验收仍待完成，音频仍无 ALSA 卡，蓝牙 UART 仍禁用；详见 [诊断记录](docs/DIAGNOSTICS-2026-10-09.md)。本轮没有重启、写 APP/LNX 或更改默认引导，`new_brand_end_to_end_tested` 继续为 false。
 
 ## 未实现与计划
 
 | 条目 | 说明 | 出处 |
 |---|---|---|
 | RT5671 音频 | 0x1c 在官方 1.2 V ldoen、PMIC 32k 门控、GPIO5 mux、12.288 MHz MCLK 下仍 NACK；分离 I2C 读写与 100 kHz 速率测试仍 NACK；TFA9890 两颗 revision 0080 可读，MTP0000 不证明校准缺失，因为完整 DSP 时序未运行；官方 TFA 驱动与 machine（I2S0→AIF1，AIF2→左右 TFA，48k/16bit/stereo）已编译但声卡不可用，没有写 MTP 或绕过扬声器保护；旧 MIUI 内核的 RAM 实验白屏且无 USB，保留日志也没有得到成功的音频参考，用户反馈官方 MIUI 曾正常发声 | docs/STATUS.md、docs/ISSUES.md、docs/INSTALL.md |
-| 原生显示路径：双 DSI 最终画面与 Niri native 崩溃 | 寄存器读数正确，但用户仍报告日志从屏幕中间开始、右侧内容绕回左边和位置错误，画面坐标、stride、格式与控制台都未验证完。block-linear framebuffer 的 atomic TEST_ONLY 返回 EINVAL，随后 fallback 启动，Mesa/Gallium 内部跳到 PC=0，实测用 GDB 捕获 LR 并匹配库 Build ID。Mesa 25.0.7-2+deb13u1（Build ID `fd7dcad10de8c89211ebe69ae8c8dda302f047d0`）返回偏移 0xd645bc，匹配 Debian 调试符号 `tegra_fence_server_sync`、`src/gallium/drivers/tegra/tegra_context.c:834`，空函数指针来源待确认，不能把定位称为修复；`CONFIG_COREDUMP=y` 但 `CONFIG_ELF_CORE` 关闭，第一次 core 捕获没有生成文件，改用 ARM gdbserver 抓栈；缺失的驱动回调与缓冲协作待修，DMA-BUF、CPU_PREP 和 copy 未测完，不能标注 zero-copy 完成 | docs/STATUS.md、docs/ISSUES.md |
+| 原生显示路径：双 DSI 最终画面与 Niri native 崩溃 | 寄存器读数正确，但用户仍报告日志从屏幕中间开始、右侧内容绕回左边和位置错误，画面坐标、stride、格式与控制台都未验证完。block-linear framebuffer 的 atomic TEST_ONLY 返回 EINVAL，随后 fallback 启动，Mesa/Gallium 内部跳到 PC=0，实测用 GDB 捕获 LR 并匹配库 Build ID。Mesa 25.0.7-2+deb13u1（Build ID `fd7dcad10de8c89211ebe69ae8c8dda302f047d0`）返回偏移 0xd645bc，匹配 Debian 调试符号 `tegra_fence_server_sync`、`src/gallium/drivers/tegra/tegra_context.c:834`，本轮已确认空回调来源，候选库在同一设备通过 Tegra 包装层 fence 回归；native KMS/Niri/面板仍待验收；`CONFIG_COREDUMP=y` 但 `CONFIG_ELF_CORE` 关闭，第一次 core 捕获没有生成文件，改用 ARM gdbserver 抓栈；可选 fence 回调已按 Nouveau 约定修复，原生缓冲协作仍待验证，DMA-BUF、CPU_PREP 和 copy 未测完，不能标注 zero-copy 完成 | docs/STATUS.md、docs/ISSUES.md |
 | Tegra124 硬件编解码与完整 CUDA Runtime | VDE 非标准 tile 布局没有完整格式；libcudart 6.5 error 35（驱动版本不足），真实 NVIDIA 库依赖旧驱动 ABI | docs/STATUS.md、docs/ISSUES.md、SOURCES.md |
 | 蓝牙、摄像头 / OTG / 休眠 | 现代内核的 UART/固件/GPIO、配对与音频待完成；控制器、传感器、VBUS 与恢复链路待适配 | docs/STATUS.md |
 | 调频、热管理与挂起 | 四核上线不代表 CPU DVFS、热管理或 suspend 可用；CPU/GPU 调频与超频保持未启用，当前先处理原生显示和音频发现 | docs/STATUS.md、docs/ISSUES.md、CONTRIBUTING.md |

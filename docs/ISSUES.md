@@ -25,17 +25,19 @@ Tegra DCS short write返回4字节线头，不是payload长度；修正误判。
 初始化前停掉继承的视频并使用LP命令。原先 LP68MHz下 pageflip/CRC变化仍黑屏；改为已验证U-Boot命令阶段的12MHz后用户看到4个GPU色块，约29.8FPS，不含CPU像素copy/readback。
 54300000链路必须start0，54400000必须start768。live改寄存器被modeset覆盖；native6设备树把543作为primary、544作为secondary，桌面modeset后读数仍正确。但用户仍报告日志从屏幕中间开始、右侧内容绕回左边和位置错误；寄存器正确不代表最终画面坐标、stride、格式和控制台均已验证，暂停前尚未完成修复。
 
-## Niri native SIGSEGV：未解决
+## Niri native SIGSEGV：fence 回归通过，桌面待验收
 block-linear framebuffer的atomic TEST_ONLY返回EINVAL，随后fallback启动，但Mesa/Gallium内部跳到PC=0；实际GDB捕获LR并匹配库Build ID。不是凭“黑屏”猜测。
-Mesa 25.0.7-2+deb13u1 Build ID fd7dcad10de8c89211ebe69ae8c8dda302f047d0，返回偏移0xd645bc，匹配 Debian 调试符号为 `tegra_fence_server_sync`，`src/gallium/drivers/tegra/tegra_context.c:834`。目前只定位到调用点，仍需确认空函数指针的来源，不能把定位称为修复。
+先前 Mesa 25.0.7-2+deb13u1 Build ID fd7dcad10de8c89211ebe69ae8c8dda302f047d0，返回偏移0xd645bc，匹配 Debian 调试符号为 `tegra_fence_server_sync`，`src/gallium/drivers/tegra/tegra_context.c:834`。当时只定位到调用点；下文记录本轮的源码确认与候选实机回归。
 CONFIG_COREDUMP=y但CONFIG_ELF_CORE关闭，第一次core捕获没有生成文件；改用ARM gdbserver抓栈。
-后续需要修复缺失的驱动回调/缓冲区协作、验证真实native桌面，再测DMA-BUF、CPU_PREP和copy；当前不能标注Niri zero-copy完成。
+后续仍需验证真实 native 桌面及缓冲区协作，再测 DMA-BUF、CPU_PREP 和 copy；当前不能标注 Niri zero-copy 完成。
 
-2026-10-09 已对照 Mesa `mesa-25.0.7` 的固定源码，确认 Tegra 无条件注册 `fence_server_sync` 包装回调，但 Nouveau 没有实现底层回调；`create_fence_fd` / `fence_get_fd` 也存在同类转发问题。desktop 仓库的 `0004` 补丁仅在底层回调存在时注册包装层，原始源码回归失败、修复后八种回调组合通过。原型机原有 Nouveau 路径另通过 32 轮 EGL fence 测试；此时没有运行候选 Mesa，也没有进入 native Tegra 路径。完整交叉构建与 native Niri/面板验收仍待完成，见 [Mesa fence 验收步骤](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/MESA-FENCE.md)。
+2026-10-09 已对照 Mesa `mesa-25.0.7` 的固定源码，确认 Tegra 无条件注册 `fence_server_sync` 包装回调，但 Nouveau 没有实现底层回调；`create_fence_fd` / `fence_get_fd` 也存在同类转发问题。desktop 仓库的 `0004` 补丁仅在底层回调存在时注册包装层，原始源码回归失败、修复后八种回调组合通过。原型机原有 Nouveau 路径另通过 32 轮 EGL fence 测试，作为系统库对照。
 
-同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已手工启用 stable/native 两套配置中的该选项，并增加构建检查；新内核的 `olddefconfig`、编译与临时启动尚待完成。
+同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已启用 stable/native 两套配置中的该选项，并增加构建检查；两套配置均通过 `olddefconfig`，stable 完整构建已通过。native 完整编译、临时启动与实际 core 捕获尚待完成。
 
-随后在当前 simpledrm 系统上，仅为无 modeset 的独立 EGL probe 设置 `MESA_LOADER_DRIVER_OVERRIDE=tegra`，实机在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 捕获 `PC=0`、`R3=0`，调用指令为 Thumb `BLX R3`，LR 规范化后为 libgallium `+0xd645bc`；运行库 Build ID 与历史 Niri 的 `fd7dcad10de8c89211ebe69ae8c8dda302f047d0` 相同，空回调来源得到运行时确认。当前桌面没有中断，仍未运行修复后的候选 Mesa。
+随后在当前 simpledrm 系统上，仅为无 modeset 的独立 EGL probe 设置 `MESA_LOADER_DRIVER_OVERRIDE=tegra`，实机在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 捕获 `PC=0`、`R3=0`，调用指令为 Thumb `BLX R3`，LR 规范化后为 libgallium `+0xd645bc`；运行库 Build ID 与历史 Niri 的 `fd7dcad10de8c89211ebe69ae8c8dda302f047d0` 相同，空回调来源得到运行时确认。
+
+完整交叉构建后，候选库在同一设备上通过 Nouveau 与进程级 Tegra 的 32 轮 fence / 共享像素回归，`eglWaitSyncKHR` 不再崩溃；探针确认实际库路径与候选 SHA256，Gallium Build ID 为 `9655e407b21f062859570f90c2acd6e3a5c7b7a0`。原桌面继续运行。该测试使用 Nouveau render node 与 Tegra 包装层，不覆盖 native KMS 或物理面板；native Niri 验收仍未完成。见 [候选实机记录](diagnostics/2026-10-09-mesa-candidate-egl.json) 和 [Mesa fence 验收步骤](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/codex/tegra-fence-regression/docs/MESA-FENCE.md)。
 
 ## 扬声器/麦克风：未解决
 RT5671 0x1c在官方1.2V ldoen、PMIC32k门控、GPIO5mux、12.288MHz MCLK下NACK。
