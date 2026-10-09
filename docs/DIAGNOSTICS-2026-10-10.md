@@ -1,6 +1,6 @@
 # 2026-10-10 RAM 引导与原生显示诊断
 
-本轮从原厂 Fastboot 临时加载新 RAM U-Boot，再分别启动新 stable/native 内核。没有写 APP/LNX 或更改默认引导；eMMC 全盘保持只读。**两套内核实际 ELF core 捕获通过；native 首轮黑屏，恢复面板控制主机并单独校正扫描起点后，用户确认 CPU 色块位置正常。原始内核配合手动校正的 GPU 色块和 Niri＋终端已由用户确认正常；两版新驱动自动方案仍失败，不能据此默认化。**
+本轮从原厂 Fastboot 临时加载新 RAM U-Boot，再分别启动新 stable/native 内核。没有写 APP/LNX 或更改默认引导；eMMC 全盘保持只读。**两套内核实际 ELF core 捕获通过；native 首轮黑屏，恢复面板控制主机并单独校正扫描起点后，用户确认 CPU 色块位置正常。原始内核配合手动校正的 GPU 色块和 Niri＋终端已由用户确认正常；两版旧自动方案失败；主动模块复位候选后续通过自动 CPU/GPU/Niri 及第二次冷 RAM CPU/控制台验收，仍未默认化。**
 
 | 实机检查 | 结果 | 证据与范围 |
 |---|---|---|
@@ -34,4 +34,6 @@ GPU 测试使用 `native-dmabuf-scanout-v2.c` 的私有 RAM 诊断变体，仅�
 
 原始 DSI 源码在已有 native 输出目录重建后，首次 CPU/GPU 色块仍黑屏。逐字节对照两个 23715220 字节内核 payload，只有 34 字节不同，分别属于 `linux_banner`、`init_uts_ns` 的构建号/时间字符串和 GNU Build ID；机器指令相同。保持这次启动与原始 A=768/B=0 分段不变，通过 DRM DPMS OFF→ON 执行既有的关闭/开启路径，两次调用均返回 0，用户确认四色恢复但左右交换。随后仅手动设置 A=0/B=768，GPU 测试完成 1801 帧／60.001 秒／30.02 FPS，程序内 CPU 像素复制调用为 0，用户确认位置正确。这次重建基线上，候选 Mesa 下的 Niri＋更新终端也由用户确认正常，180 秒限时结束时收到 SIGTERM，未见新的 SIGSEGV/core；实际进程映射的三类候选库与 SHA256 已核对。Niri modeset 后仍需手动校正分段，干净退出码未确认。详见 [重建基线与 DPMS 对照](diagnostics/2026-10-10-native-baseline-dpms.json)。该结果支持首次初始化状态/时序的排查方向，不能归因于编译器生成不同机器指令，也没有单独证明 DSI 复位就是根因。当前候选仅在 Mocha 的 DSI runtime resume 中，于主/低功耗时钟就绪后主动 assert reset，再沿用原有等待与 deassert；实机验收待完成。
 
-完整改名后安装、自动分段、控制台布局、音频、蓝牙完整功能、DVFS 和休眠仍未完成。`new_brand_end_to_end_tested` 继续为 false。
+随后完整构建主动复位候选 `126a3cd1`，内核、模块与 DTB 校验通过。一轮检查在连接器仍 disabled 时过早尝试读取 DSI 寄存器，随后 USB SSH 丢失；该轮仅 core 捕获有效，没有开始色块，不能作为候选的显示成败结论。改为等待 tegradrmfb 注册、连接器 enabled、两路 runtime active 后才读取寄存器，候选首次初始化自动 A=0/B=768，CPU 四色、GPU 1801 帧／60.018 秒／30.01 FPS、候选 Mesa 下的 Niri＋持续更新终端均由用户确认正常。没有手动改起点或额外 DPMS 恢复循环。Niri modeset 后起点仍正确，180 秒限时结束收到预期 SIGTERM，未见新 SIGSEGV/core；实际三类候选库的进程映射与 SHA256 已核对，干净退出码和 Niri 源码 commit 未确认。第二次有效手动冷启动后，同一内核/DTB 的四色及测试结束恢复的 Linux 控制台也由用户确认正常；第二次没有重复 GPU/Niri/core 测试。详见 [主动复位运行记录](diagnostics/2026-10-10-native-reset-runtime.json) 与 [构建记录](diagnostics/2026-10-10-native-reset-build.json)。自动分段通过本轮有限 RAM 验收；block-linear TEST_ONLY 的 EINVAL 仍用现有线性回退，Noctalia、触控、长期运行、默认原生引导与完整改名后安装仍未验收。
+
+默认引导下的原生桌面与完整改名后安装、音频、蓝牙完整功能、DVFS 和休眠仍未完成。`new_brand_end_to_end_tested` 继续为 false。

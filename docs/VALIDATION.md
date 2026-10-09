@@ -31,6 +31,6 @@
 
 ## 2026-10-10 RAM 验收
 
-2026-10-10 RAM 实机验证：新 U-Boot USB、stable/native 内核启动与实际 ELF core 捕获通过；stable 日志画面正常。真实 Tegra 节点的候选 Mesa fence 回归通过；native 首轮 CPU/GPU 色块黑屏；原始内核恢复 native5 控制归属并手动校正后，CPU/GPU 色块与候选 Mesa 下的 Niri＋终端已由用户确认正常。两版自动校正仍未通过。原始驱动重建基线首次启动也黑屏，但 DRM 关闭再开启面板后恢复；手动校正后的 GPU/Niri 画面正常。与此前成功内核相比只有 34 字节构建元数据不同，机器指令相同；首次初始化状态/时序仍待定位，主动 DSI 复位候选尚待实测。自动分段、Noctalia 全会话、触控与改名后完整安装仍未通过，默认引导及 APP/LNX 未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
+2026-10-10 RAM 实机验证：U-Boot USB、stable/native 启动与实际 ELF core 捕获通过。native 首轮 CPU/GPU 黑屏，原始驱动重建基线的 DRM 关闭再开启后可恢复图像；与此前成功内核只有 34 字节构建元数据不同，机器指令相同。保留 DSI-B 控制归属与延后分段，补上 Mocha runtime resume 的主动模块复位后，候选首次 CPU 色块、GPU DMA-BUF 色块及候选 Mesa 下的 Niri＋终端均由用户确认正常，没有手动校正或额外 DPMS 恢复。GPU 1801 帧／60.018 秒／30.01 FPS，180 秒 Niri 限时结束未见新 SIGSEGV/core；第二次有效冷启动的四色及恢复后的控制台也正常。两版旧自动候选的失败与一次过早 MMIO 访问干扰的检查仍保留。这只覆盖有限 RAM 验收；默认原生引导、Noctalia 全会话、触控、长期运行与改名后安装仍待完成，APP/LNX 和默认引导未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
 
 捕获 core 时未挂载 eMMC，之后 Mesa/GPU 测试只以 ro,noload 挂载 APP/数据；原始 core、固件与编译镜像未发布。KMS 翻页成功与约 30 FPS 不代表面板输出成功。

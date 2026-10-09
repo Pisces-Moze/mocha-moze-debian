@@ -8,7 +8,7 @@
   "full_native_target_build_exit_code": 0,
   "clean_output_tree_rebuild": false,
   "backlight_rebuild_pass": true,
-  "runtime_acceptance": "pending",
+  "runtime_acceptance": "bounded RAM automatic CPU/GPU/Niri passed; second cold RAM CPU/console pass",
   "artifacts": {
     "uImage": {
       "bytes": 23715284,
@@ -39,5 +39,6 @@
   "uimage_crc_addresses_verified": true,
   "compiled_dsi_matches_committed_source": true,
   "boot_mode_planned": "RAM",
-  "default_boot_change": false
+  "default_boot_change": false,
+  "runtime_evidence": "2026-10-10-native-reset-runtime.json"
 }
