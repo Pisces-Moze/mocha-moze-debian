@@ -31,6 +31,6 @@
 
 ## 2026-10-10 RAM 验收
 
-2026-10-10 RAM 实机验证：新 U-Boot USB、stable/native 内核启动与实际 ELF core 捕获通过；stable 日志画面正常。真实 Tegra 节点的候选 Mesa fence 回归通过，但 native CPU/GPU 色块均背光亮、黑屏。原生 Niri、物理输出和改名后完整安装仍未通过，默认引导及 APP/LNX 未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
+2026-10-10 RAM 实机验证：新 U-Boot USB、stable/native 内核启动与实际 ELF core 捕获通过；stable 日志画面正常。真实 Tegra 节点的候选 Mesa fence 回归通过；native 首轮 CPU/GPU 色块黑屏；原始内核恢复 native5 控制归属并手动校正后，CPU/GPU 色块与候选 Mesa 下的 Niri＋终端已由用户确认正常。两版新驱动自动校正均黑屏，同一个新内核关闭自动校正也黑屏，原因仍待排查。自动分段、Noctalia 全会话、触控与改名后完整安装仍未通过，默认引导及 APP/LNX 未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
 
 捕获 core 时未挂载 eMMC，之后 Mesa/GPU 测试只以 ro,noload 挂载 APP/数据；原始 core、固件与编译镜像未发布。KMS 翻页成功与约 30 FPS 不代表面板输出成功。

@@ -1,0 +1,35 @@
+{
+  "collection_date": "2026-10-10",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "uimage_sha256": "926c6f3bee3ff2a5071b4168ce547080d1775161f4c21431985d8d15d7a7440e",
+  "initrd_sha256": "eb2f38b1ab6538017b7712fec4e01c7b082053cdc4c847122bdfebb0bde1ac5f",
+  "scope": "same kernel/initrd, cold RAM reboot with native5 control ownership, then reversible scanout start comparison",
+  "native5_control_owner": "54400000.dsi",
+  "native5_dtb_sha256": "4654f8b681e5035e913a0bc9433d09e4bfe9f32d0751959647bdacce435456fc",
+  "native5_live_fdt_sha256": "5a9ca6e6b042b512a0f6a140c2a53d407e7ac8c29a2a09eff199efe837ce7b82",
+  "lp_clock_hz": 12000000,
+  "before_start_correction": {
+    "dsi_a_start": 768,
+    "dsi_b_start": 0,
+    "user_observation": "colors visible, left/right swapped; console begins at screen middle"
+  },
+  "corrected_starts": {
+    "dsi_a_start": 0,
+    "dsi_b_start": 768,
+    "user_observation": "normal",
+    "color_pattern": "top-left red, top-right green, bottom-left blue, bottom-right white"
+  },
+  "start_register_addresses": {
+    "dsi_a": "0x54300150",
+    "dsi_b": "0x54400150"
+  },
+  "register_scope": "DSI_GANGED_MODE_START only; no clock, power, host control, firmware or storage write",
+  "cpu_test_restored_framebuffer": true,
+  "comparison_script_restored_start_registers": true,
+  "emmc_read_only": true,
+  "persistent_storage_write": false,
+  "gpu_corrected_layout_tested": false,
+  "new_kernel_automatic_layout_tested": false,
+  "niri_tested": false,
+  "source_fix": "retain DSI-B control ownership; nvidia,ganged-mode-swap-links assigns physical halves independently of control master"
+}

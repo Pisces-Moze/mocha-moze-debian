@@ -28,6 +28,8 @@
 
 面板为 1536×2048 双 DSI；默认桌面横屏 `transform 90`、scale 1.5，充电动画独立竖屏。历史帧缓冲取证程序固定读取 `0xf1700000`、1536×2048×2 字节，只适用于其原始布局，不代表所有启动候选的地址/格式。
 
+native 修复候选保持 DSI-B 的面板控制归属，DSI LP 为 12 MHz；本地设备树属性 `nvidia,ganged-mode-swap-links` 只交换横向像素半屏，目标起点为 DSI-A=0、DSI-B=768。不能以交换 DSI 控制主从来替代扫描位置校正。驱动、绑定和 `moze/dts/native-experimental.dts` 必须配套；历史 `native-link-order.patch` 记录的是 native6 对照，不要再次应用到当前候选。实机范围见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
+
 充电策略区分 **输入电流上限** 和 **电池充电电流**。公开脚本对识别出的 DCP 使用 2,000,000 µA 输入上限，CDP 1,500,000 µA，电脑/未知来源 500,000 µA；温度低于 0°C 或达到 45°C、health 非 Good 时收紧策略。以 `charging/mocha-charge-policy.py` 和实际 power_supply 属性为准，2 A 充电器铭牌不证明电池始终净流入 2 A。驱动寄存器编码、终止电压和电池电流设置在驱动/DTS 中，不能把输入上限用于替换它们。
 
 未公开个人凭据和设备独有校准值不是隐藏驱动参数；它们的来源与安装输入见 [OPEN-SOURCE.md](OPEN-SOURCE.md)。本工程未启用 CPU/GPU 超频。
