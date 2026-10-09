@@ -6,6 +6,8 @@
 
 ## 简介
 
+项目源码、参数和第三方固件的边界见 [开源审计](docs/OPEN-SOURCE.md)，各组件配置入口见 [参数索引](docs/PARAMETERS.md)。项目自行编写或修改的驱动、引导与运行配置均公开；专有微码及 NVIDIA CUDA 库不冒称开源。
+
 小米平板 1 出厂运行 Android，厂商没有为它提供 Linux 桌面发行版。这个工程整理出一条可复现的安装路线：源码从哪里来、按什么顺序构建、怎样先在内存里临时启动验证，确认无误后再写入内置存储，以及每一级失败之后怎么退回去。
 
 工程拆成五个仓库，本仓库是总入口，负责版本锁定、根文件系统、RAM 引导安装器、分区核对和全部文档，内核、U-Boot 与驱动的源码放在另外四个仓库。当前发布是 2026-10-07 的源码开发快照，不是所有外设都能用的成品安装盘；默认显示与原生显示实验是两条分开的路径。内核人类名称是 mocha moze linux 6.12.111-moze.1，`UTS_RELEASE` 与模块目录用 `6.12.111-moze.1`（空格只出现在项目名称里，不进入 uname），native 实验内核的 release 是 `6.12.111-moze.1-native`。`manifests/repos.lock.json` 里的 `new_brand_end_to_end_tested` 为 `false`：改名之后的完整安装还没有端到端实机验收过。2026-10-10 新 stable/native RAM 启动及 ELF core 已通过，native CPU/GPU 色块仍黑屏；详见 [RAM 实机诊断](docs/DIAGNOSTICS-2026-10-10.md)。完整安装路线见 [INSTALL.md](docs/INSTALL.md)，首次阅读请同时看 [状态表](docs/STATUS.md) 和 [回退](docs/RECOVERY.md)。
@@ -58,7 +60,7 @@ mocha-workspace/
 | `tools/collect-status.py` | 只读采集 CPU、DRM、ALSA、蓝牙、供电、空间、core 配置与 Mesa 库哈希/Build ID；2026-10-09 实机记录见 [诊断记录](docs/DIAGNOSTICS-2026-10-09.md) |
 | `ramdisk/init-install`、`ramdisk/init-emmc` 与 `rootfs/mocha-usb`、`rootfs/mocha-usb.service`、`manifests/*.json` | RAM 安装环境先把 eMMC 锁成只读再起 RNDIS 与 key-only SSH；emmc 模式核对 APP 分区身份后挂载并 switch_root 到 Debian；装进目标系统的 RNDIS 管理网络（`Before=ssh.service`）；源码版本锁与来源记录 |
 
-版本锁和产物哈希是两件事：`repos.lock.json` 固定四个仓库的 commit，`SHA256SUMS` 固定某一次具体构建，前者代替不了后者。本快照锁定的是 boot `d0440f200574d2b8136afad84af894ae664b93f9`、linux `f4366bee68f9cfc7224600b3c7d7722dca3faeca`、drivers `e3a272b11d0d7f676634fc0c27479bb7c102df09`、desktop `e727295f7c534078f4233fabdbc5d952549b1a72`。
+版本锁和产物哈希是两件事：`repos.lock.json` 固定四个仓库的 commit，`SHA256SUMS` 固定某一次具体构建，前者代替不了后者。本次锁定的精确 commit 以 manifests/repos.lock.json 为准；不要用文档中曾记录的旧哈希代替版本锁。
 
 ## 部署过程
 

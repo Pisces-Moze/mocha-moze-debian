@@ -1,0 +1,798 @@
+{
+  "schema": 1,
+  "audit_date": "2026-10-10",
+  "scope": "Published project source, configuration and documentation; upstream Linux is tracked in full",
+  "kernel_overlay_matches_full_tree": true,
+  "files": [
+    {
+      "repository": "mocha-moze-boot",
+      "path": ".gitattributes",
+      "sha256": "93699a1108fd9da226b06f84ee12e317f4ea4d2f18a8fd05260443fd1bf2faef"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": ".gitignore",
+      "sha256": "c2256aed4deb99ad33d09a1fa1df60b2a8beb065b2bb754fb716807ad920d22f"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "CONTRIBUTING.md",
+      "sha256": "5a9908e616a33f387115466767639357015d0a27ad5695a0905d7e8b8be0d95a"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "LICENSE",
+      "sha256": "f6b78c087c3ebdf0f3c13415070dd480a3f35d8fc76f3d02180a407c1c812f79"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "LICENSE-NOTES.md",
+      "sha256": "0b5c54dc073ec9c53aa8940ea2605da0cd45934c112d29b6c33313dc3dbd29b9"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "README.md",
+      "sha256": "e7cd1122812f1a39447d26241aaeeb7f8b21d7af74e1a7cc7742786207aea87e"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "configs/mocha_defconfig.full",
+      "sha256": "cef2d6a27ab82cb3706faae08a4f8b3bbaafb357d18ff2aeec5fdceb438de705"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "overlay/arch/arm/dts/tegra124-xiaomi-mocha.dts",
+      "sha256": "4c4611b11495c564eb8ff5f444440077fc6def3ec1164a4d03e7106bc727b8c6"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "overlay/board/xiaomi/mocha/mocha_emmc_boot.env",
+      "sha256": "18b0035fec13c87e964fcc5a35b6e4d1edde94f59994960d1e17ffd86098b384"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "overlay/board/xiaomi/mocha/mocha_ram_debug.env",
+      "sha256": "7638b871cad2aac8785733abe213adfbb7ca98b3c27b2b972335bb7131a20492"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "overlay/drivers/video/sharp-lq079l1sx01.c",
+      "sha256": "684ce1f3f6ae6d0c5a92096ac9124dcf71c67748e802d8c731af90639f465c96"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "overlay/drivers/video/tegra/dsi.c",
+      "sha256": "4480fa41f3eb830f988f549672df9030a1a01d5757d137fff891fa3ccbd96a1c"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "tools/build.sh",
+      "sha256": "d071ea746cb86d575c652fef9b291b3c8451479611f3c42a31e6b0570927afbc"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "tools/load-ram.py",
+      "sha256": "73d055f3e32e8462a3609142e6e83c90d1e70a7019ae54eb5a934e86799f0460"
+    },
+    {
+      "repository": "mocha-moze-boot",
+      "path": "tools/pack-android.py",
+      "sha256": "8271f8fdf38e428ce004868c9261ab933204b32f039cfaeafc03e88c09314938"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/OPEN-SOURCE.md",
+      "sha256": "9c2bc230e26f58b007011e2c0132a524490f47a462c4c352e515f5ac6fc8c428"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/PARAMETERS.md",
+      "sha256": "47f78ecd029a26d6b69b7a4d84ec5aa13d079c52d8aee71ea0c2e8a381b90ff9"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/verify-source-inventory.py",
+      "sha256": "a6a71e44e3080b75e325b0ffb92ad936514eb70305e25cf16b371e55d41f0bb7"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": ".gitattributes",
+      "sha256": "93699a1108fd9da226b06f84ee12e317f4ea4d2f18a8fd05260443fd1bf2faef"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": ".gitignore",
+      "sha256": "c2256aed4deb99ad33d09a1fa1df60b2a8beb065b2bb754fb716807ad920d22f"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "CONTRIBUTING.md",
+      "sha256": "8145a218ae2f4004abf681d0a3f67b1b6f76b80fce2692cb2082561aa7844f5b"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "LICENSE",
+      "sha256": "f6b78c087c3ebdf0f3c13415070dd480a3f35d8fc76f3d02180a407c1c812f79"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "LICENSE-NOTES.md",
+      "sha256": "0b5c54dc073ec9c53aa8940ea2605da0cd45934c112d29b6c33313dc3dbd29b9"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "README.md",
+      "sha256": "f5d9eb54f77bcca425aabfda66a87358efdddf66287559cde8f39e2397d2158b"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "SOURCES.md",
+      "sha256": "035c4523e32623ded48124fcd1e6879d0e95400e1cb377e9cb6e50b542d98e82"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "fb113e98f06e23d0d13d71ef9189900146b3d51b76d69bb2ac63bcdb2bfceac5"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/FILE-ORGANIZATION.md",
+      "sha256": "b5e68bb89f8dbde928154dda13b981f8ea48bd73e6627c7bb4547fddc88bc691"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/HARDWARE.md",
+      "sha256": "4e4d72c22c1e5b668c76af88f46e455109da72f64a3ab98689d0df723376b99a"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/INSTALL.md",
+      "sha256": "1a5c6a41891f8dfbfc89d5e31c2801bc5694d58da0a348931229f4cf428d701d"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/ISSUES.md",
+      "sha256": "45e7532160de861ed088fce1326c3ec68b4f79f84a478f7f83da951b30921967"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/RECOVERY.md",
+      "sha256": "18e1c6d58c4a46bae736b22a3fe4ca35d02eb5d00af95e8b202b3a2f310e3cac"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/RELEASES.md",
+      "sha256": "72aceb33e65307d824b8eb5d036c17c8a00bece80a8fa4f58b591b798392181a"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/STATUS.md",
+      "sha256": "47b312146fa38499d6cd8c066e4fa66fd7982f53f7bf8b8ecf8691b74ea2f57e"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/VALIDATION.md",
+      "sha256": "cf8ed06f79e11350038c62e565904f709c968559cf5db334f41b4983025d6298"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "manifests/repos.lock.json",
+      "sha256": "f770d3f72a8090aaa902abb354becbb283e9d515a5bae8e899d271825a43cb34"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "manifests/source-provenance.json",
+      "sha256": "a2a874a2b72ce05adc6a60d207b15fde9e8c2257167a2f93096bcbeb549083d4"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "ramdisk/init-emmc",
+      "sha256": "d0dff03fd8e261528ae93bce2b1b8f3b3bba812ba8120c5bed386c4bd9f3bb45"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "ramdisk/init-install",
+      "sha256": "4f14f5e53bdab2330f9c5864d993ee155446141577b59c1e7de72624af3f68dd"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "rootfs/mocha-usb",
+      "sha256": "77108c5f526fe1d74b34097c6bf03d683a37545a189fc7689564842d7a6b095d"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "rootfs/mocha-usb.service",
+      "sha256": "5b3496639c56d9c73513de1b9dfaf1b61d40391d12ad238642686c18f5ade6b9"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/build-initramfs.sh",
+      "sha256": "9d094673a110dfeed346536df7cc5a9fd1218aab51c735e3e1c976c0702b4958"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/build-rootfs.sh",
+      "sha256": "3c24971d04bf173460b9b1c1c1512eca72738d80863bdcd00e72c062ac7e7f97"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/make-app-image.sh",
+      "sha256": "96c2f3d6f61700a0e4c3ff4a661e0307a1d5609db848b42854d4d8c4283c0e35"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/storage.sh",
+      "sha256": "506f031b116dee031f9ff1662983ac64d5598a7826cf0d1d1f47f003494fa42d"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/workspace.py",
+      "sha256": "dd1697520d5b7445a7ec9ba8a6afe61b46de542425983e27372ac9d425afd975"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": ".gitattributes",
+      "sha256": "93699a1108fd9da226b06f84ee12e317f4ea4d2f18a8fd05260443fd1bf2faef"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": ".gitignore",
+      "sha256": "c2256aed4deb99ad33d09a1fa1df60b2a8beb065b2bb754fb716807ad920d22f"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "CONTRIBUTING.md",
+      "sha256": "d68e12a61745eba227b05e557a2c579724145bc5a1ebee1ef6521d79388fd5d7"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "Cargo.lock",
+      "sha256": "e71d9d5b104d297bc1185cebb4d7eb203f374c668c5739e41927e15a0b1e668c"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "LICENSE",
+      "sha256": "f6b78c087c3ebdf0f3c13415070dd480a3f35d8fc76f3d02180a407c1c812f79"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "LICENSE-NOTES.md",
+      "sha256": "0b5c54dc073ec9c53aa8940ea2605da0cd45934c112d29b6c33313dc3dbd29b9"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "README.md",
+      "sha256": "f75877e291b3608d0294565b146875a9b3ac15e3d393339234f2155d54e736fa"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charge-detect.py",
+      "sha256": "39e16ce5a1a26e2f9225f997bd0cabfbcee1c65e7a96b6d16835dbfcf1acc491"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charge-policy.py",
+      "sha256": "fa5f12edae6e5d89ee953c9cea3b8e99f62a7a0ae142d2c7432c51460a9be8e5"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charge-policy.service",
+      "sha256": "e204f678f9afead75f756262e78025a020a44667873a349761b966f2b59df820"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charger-generator",
+      "sha256": "e1006783eab04eb990365f69ec731282a7bf242410945e67e1f02ef222396927"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charger-session",
+      "sha256": "53bbfdc7a3b928ac8024847917f2e63b6ed082d15cadee3df812c89f775fd7c5"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charger-ui.c",
+      "sha256": "cdf32284d3b7612461e1285cbc59a0ebb188857bd8847c3904e40c6026187ae6"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charger.service",
+      "sha256": "a9dc138ba844a134ae552e6fd57b74c284f0d238adbd17223156f3786128b9c5"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charger.target",
+      "sha256": "7cdad2d89ad78b90cb0e16a764a99615041ab6fe1b8065d51a134434f5111753"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "config/cargo-armhf.toml",
+      "sha256": "10634ad62f67f0c1e81ddb029b42b1b72f73b5e6bbcdc4527f82ac318362bed5"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "config/niri.kdl",
+      "sha256": "6663860d422d36daa3ce3e4b611c2756ff7c2c8312afc50ed1798f3c9f340d47"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "config/noctalia.toml",
+      "sha256": "9bdad8967bf2cced48b5784c20f4f30c0e317c087ec49e89deb11991b6854be5"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "noctalia-armhf-cross.ini",
+      "sha256": "b135ebf22be0bddae25dfbfbd260f8084049e65776838668170281116cfc46b2"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0002-smithay-primary-rotated-damage.patch",
+      "sha256": "765a8e4bcbf28697b9b2da047b01e0b0d9cd3e25cbcd5a52cf759e9ecdfd7cf8"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0003-smithay-complete-rotated-damage.patch",
+      "sha256": "b12b29727caa825394e937dce3e4077f6997c645e9b577cdd10587df355b92eb"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "services/README.md",
+      "sha256": "1dd9faeb8768dea831681650c2bd2b7b02292baad3742b1e68367d96867b7ab0"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "services/mocha-active-seat.c",
+      "sha256": "6fb2f6241c64f1fb1799b7c0e8fc71892381d6d0024f1c68f3d0027ad4e87284"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/build-charger.sh",
+      "sha256": "e4ae911c315f0afd8caf3fc1e344f3d8f6b563ac05ee485ffb487c9f8ec99868"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/build-niri.sh",
+      "sha256": "93fd4e520927db4c1b1b68f5678b5e906da0e6a61b4f29db901af3d82271c2f1"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/build-noctalia.sh",
+      "sha256": "0f251415c2a57e97445d7078c03575d8ab84a43888ae4f155082e954b4334cb2"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-build-deps.sh",
+      "sha256": "0ada0a726725c05f0c306dfac279381108a9ce5ffaf382200c8d9e3fe3213488"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-charger.sh",
+      "sha256": "a74d201a186cc42799bfab60f66da678a25f361a8f4a0fe90f5fcffc904a2920"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-session.sh",
+      "sha256": "db1027802d279d9ef7d7c9bca8fa826bee0bad1dd0163df7f75f0977a9b622a5"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": ".gitattributes",
+      "sha256": "93699a1108fd9da226b06f84ee12e317f4ea4d2f18a8fd05260443fd1bf2faef"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": ".gitignore",
+      "sha256": "c2256aed4deb99ad33d09a1fa1df60b2a8beb065b2bb754fb716807ad920d22f"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "CONTRIBUTING.md",
+      "sha256": "8fb2996e2dcf7a0f85f56cd63f76ad12c4c2b24fa275baf73f03929c7f053cb1"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "LICENSE",
+      "sha256": "f6b78c087c3ebdf0f3c13415070dd480a3f35d8fc76f3d02180a407c1c812f79"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "LICENSE-NOTES.md",
+      "sha256": "0b5c54dc073ec9c53aa8940ea2605da0cd45934c112d29b6c33313dc3dbd29b9"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "README.md",
+      "sha256": "a75adc4f3e613bcc973a7182a355f909c3cdd339b04d26cd8b1f6bf93a893639"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/Makefile",
+      "sha256": "0bf89f16fa6e674e889795de93365a6b4529d70e918897d279436156d542eba1"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/miui-tfa98xx-linux612.patch",
+      "sha256": "c38fafdae4b3fe4419048cb27cd8300942403ef0d32ca5e674e23af484fb421b"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/mocha_audio_clock_probe.c",
+      "sha256": "fd424008d71a5a01f757b8c29552810cad76d3358a9faba9fd3b5a44ef90b2d3"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/mocha_audio_power_probe.c",
+      "sha256": "746b9212a6b16b164567f866d4c3952d1deae966cabaeae2583c09a4fe63cc49"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/mocha_miui_speaker_machine.c",
+      "sha256": "ac5a0751f67c63eae84ba14b970f0dc99667c2d43e3b7523d33e60cf32c271ae"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/mocha_miui_tfa98xx.c",
+      "sha256": "f8ef8ba204c11512a101a54070be8dd2150857785224da19fbcb19829ec42745"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/mocha_rt5671_machine.c",
+      "sha256": "64376e4e5dfb5457ef4e4933a44e75e8db99a05b28415d48fbf7d68e06d203ac"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "audio/tfa98xx.h",
+      "sha256": "37dbaeef5e4952f5800ae31daa6210bc75776910ad61cc76e7377fc97a0feb8f"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "backlight/Makefile",
+      "sha256": "d926bbf2a7c88bea9f3ba8c89766d29ff37fc316557f776e866ef766e120bb63"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "backlight/mocha_miui_backlight.c",
+      "sha256": "5959c7d192b325410bbf7708b1c2f1ab0f9850dc3dca8d986e822b7a0330ffa0"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/GDEV-LICENSE.txt",
+      "sha256": "e6f73f408a2f82a74e120ef1dac11e6a79801c0457946be558f2c30e27910a87"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/README.md",
+      "sha256": "dd0f288abc2f13bec016cee1a84348d865fd6615402f8aac15d8e714dd53363e"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/gdev-add-seven.ptx",
+      "sha256": "0030581d6ff338aa9dd0b41cd964976e5baf97de39907ca79439c564700e1b05"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/gdev-mocha.patch",
+      "sha256": "0384725adb7cece1759c6217036588341e96883d3d01f5aec66545f87c8e7d68"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/probe-gdev-cuda.c",
+      "sha256": "fdb03a194e7a6d8506738264c3fa5ad2e4e0bf17821f95e60343a475481aa735"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/probe-gdev-kernel.c",
+      "sha256": "577106d96ac7bd095e178ce302ae51af915755ecbaddf035baa72b957b861d52"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "cuda/probe-legacy-cuda.c",
+      "sha256": "532b84c8e6eba67ade07cdce9b77073c5c85d0e8fcb69715659c2f75452d8544"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/AUXILIARY.md",
+      "sha256": "d12777537da01e8248afe68326926c4e330cc0e3e120d5e75d926a2c85acd108"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/charger-id-probe.c",
+      "sha256": "d14b2f4fa927b08a9da75a73d36651fc41d71f3b25d7fd59d5ddc0e81af9a9e4"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/frame-bench.c",
+      "sha256": "4e63cc9045a12c9efaa5ba34d988df7782178f8bce8bdab960ca53a182cc176a"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/native-dmabuf-scanout-v2.c",
+      "sha256": "84206fdcea42fae649b2bb547d091296e7f386b25b53bbf36dc6e7f64d030460"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/probe-egl-render.c",
+      "sha256": "ad2a3175ebecc657ac5d4a3edb987daaf43e25866d103b7f1d9a3f21790f663d"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/read-atmel-config.c",
+      "sha256": "7d98c86c3c17eef6c1f9ca9e45635bac35a4b41d15be0337c505a51b108b120a"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/read-drm-scanout.c",
+      "sha256": "be7ef6f297a02b883648d7d73833385811d1fc297f15e23d1244fe0ed70e4f7b"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "diagnostics/read-framebuffer.c",
+      "sha256": "2d5052db00f883374ff71aded0b6fe11f3f7ef2f0405a5bedd69d88ea0012a31"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "firmware/README.md",
+      "sha256": "d0349f396e0ea08a06bc973076d8ea18ba7a678e3a0e0fa3e395fcd5644dd5df"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "tools/build-backlight.sh",
+      "sha256": "bdf801e275e0ecbdb88ba85accdc95a824e240ed77ed26f297d27211bf637811"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "touch/README.md",
+      "sha256": "0cfc795bf963dfbe15b7396f68e368806e3957c76b5df84533d7091af9120546"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "touch/experimental-synaptics/Makefile",
+      "sha256": "89944e201324784b18fee29e00f463a05d7a96a411b2f5bc581049cc566584b2"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "touch/experimental-synaptics/include/linux/input/synaptics_dsx.h",
+      "sha256": "4ac2db4ffd7142d3238f0b13f3275877f056654999e14cd35b5d0eb2c5784ef6"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "touch/experimental-synaptics/synaptics_dsx_core.c",
+      "sha256": "1802506a00154ab811ca5f3234b530c68e661660504f1edee5a80aa151d9aa48"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "touch/experimental-synaptics/synaptics_dsx_core.h",
+      "sha256": "b2516bd9dd601e43a7f4f70ad159fab86c66aeb8a620736d925f742f867a7589"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "touch/experimental-synaptics/synaptics_dsx_i2c.c",
+      "sha256": "3b657551d49e995f2d80388d08d6a2626aea816c07ee219cb3f8cbb4f557c99d"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/configs/native-experimental.config",
+      "sha256": "35eda4f22b9253a60ffd16ef3c1c2c60e36cbae0a4f8dd677dcbc65baedeb5cc"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/configs/smp-base.config",
+      "sha256": "4843636fcab29a48938f2f8bb563a39a62efe2d705f8833622b1d6c0728ad752"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/configs/stable-desktop.config",
+      "sha256": "7b36a6bf2bccd77d256ebffb07612f484a520fda3ad82d8a7fb486c903fc5c48"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/dts/native-experimental.dts",
+      "sha256": "8001503a2730a2b66eb3784ec6695db12818ca43f93913950c0298eb87fe33c1"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/dts/native-link-order.patch",
+      "sha256": "37539bf30d94c9c4a26ad32c4fd4fc832990c045410be4dec5cbdaa4f005aac7"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/dts/native-lp-clock.patch",
+      "sha256": "4f1ddace5284c198f6a9639b2c7da923188d73f9ba012c1867baba4653a6a8cc"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/dts/stable-desktop.dts",
+      "sha256": "91b85a2fa71c6b3f7635f7bc0ee6d2e76b8ece38672c20f901cc70d3b640ae03"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/Documentation/devicetree/bindings/power/supply/bq24190.yaml",
+      "sha256": "b39077c76c165788acff345225cd3ca52adf0a486da3586a66ca326fc65956ea"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-bluetooth.dtsi",
+      "sha256": "61f9f4bdf4e8f74c8a16746ec4f5ac33ccf347cd71cd89388540583bc7d741c5"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-display.dtsi",
+      "sha256": "98085af8cf4ff55138935567dcbb1310075452864e6c8731d0fd9540a5245625"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-fixed.dtsi",
+      "sha256": "5c9bd7fd9b3fa3b33c9858550c9bcfd2745626b7e7db2e3f36dd4712874c5345"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-i2c.dtsi",
+      "sha256": "1891651412bcb6a2f1ee749085af38adcf393cd7b60553e8bd05c65c9ce3b80f"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-identity.dtsi",
+      "sha256": "0297d2a48b0f4bdd5e99f17c022789cfd83f2f94983c8d65ed57de89399b2d48"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-keys.dtsi",
+      "sha256": "86cf419939d676a45fcea334e44ca48577ea01b1c926b8b8317b7cc7e9abc76b"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-mipi.dtsi",
+      "sha256": "a830b9df8d15eb84d9d295e3a3e2e7d17ff1b39e1396b95abf42cc0c2d161b3c"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-pinmux.dtsi",
+      "sha256": "3ec9308d5bd1d877aa4afc4b46e8ddda5e1c1ebbb52ff33da80e61d8ccfaed01"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-pmic.dtsi",
+      "sha256": "e57922bfa01d99b4a452ce9ac1a30f3a6bba837e1b3bc161babc67e9a34e794f"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-power.dtsi",
+      "sha256": "c35df094b8fcde4005eb5bfcbcd07b8f70c79819d96734e351f735f759155540"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-sdhci.dtsi",
+      "sha256": "d5710fb7cc970d22e674711a6f72ccef1bc7d1a776a608e598e7217e068e1365"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-touchscreens.dtsi",
+      "sha256": "4d26c850d20d43d0d921759f224fec9e298ea01b92ccabd6a1905974e29742de"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha-usb.dtsi",
+      "sha256": "76658212f8d3e85130b8a417a8cf28974c12375328aaa2daa1d307c09c6f7d48"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/boot/dts/nvidia/tegra124-mocha.dts",
+      "sha256": "b9c453eb11d0f9724263cdff78f3b3239e481463abdc3eb49372d3a6cb4f8b44"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/kernel/head-common.S",
+      "sha256": "5445e987e62bc23e02d13d167707dc4ac4806c5d285fef302d0f0da208c7a57d"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/kernel/head.S",
+      "sha256": "71a6d0109c9b578fd89ef85393dac394139bd8447a1dd9920acb80d2497189c1"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/kernel/setup.c",
+      "sha256": "8c9433a342a6697b0a4d03d8afac61b8a41ad09f9a4bfca38e70c8dcd4cbfa9f"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/kernel/time.c",
+      "sha256": "82c2acadcf42527c9d22e7b5309881f0f1329eaff155f89287e1356d0832acaa"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/mach-tegra/io.c",
+      "sha256": "48fe79626d94b826303875bfa6e0022fa12da9e2d36ce7b330a608c0218ccd07"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/mach-tegra/reset.c",
+      "sha256": "6b56303b6a94cd83d92a76b33a71d9357ec789950c47f4ddc5a725f5881f8181"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/arch/arm/mm/mmu.c",
+      "sha256": "9422645415e547d97ba367d52cd30d67797ca6294166a54a52c53a9ea38ba96a"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/bluetooth/btbcm.c",
+      "sha256": "fcf7fc3c6590b9d0ad25bdfab97c1e0b601d1f0f3b216426e519a47fbe5bbbeb"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/clk/tegra/clk-tegra124.c",
+      "sha256": "e658b2cfbc493bf0352785e6a3e1acab0b51464afda2c6f88b60658dceb6b28d"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/gpu/drm/panel/Kconfig",
+      "sha256": "6a228e61f6ed6df035458b5e83c5bc6bfb25912e76adefaa643b203f1e0cb500"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/gpu/drm/panel/Makefile",
+      "sha256": "2de7e7935feb5f9302755f0b373193bde7452ed8737183be63bd6ef830b06061"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/gpu/drm/panel/panel-sharp-lq079l1sx01.c",
+      "sha256": "9615e88d1c3f6bff41e70dc4ca1355389bea9dd29775018f431431f658e5e6de"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/gpu/drm/tegra/dsi.c",
+      "sha256": "cfd8ed8db239f3198aa8a893f6f7201ab670b98709717a9dca3468434dfdd413"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/power/supply/bq24190_charger.c",
+      "sha256": "6f539b4bdfb0726c67a9e7cb6973b3f3c7e832b020732ad30c5a46be37e5cddb"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/regulator/palmas-regulator.c",
+      "sha256": "85ac98d250b3a8cd6a42476db63f5d781ce54d6b715d34268da117f6772767f3"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/tty/serial/earlycon.c",
+      "sha256": "332b9364323972e62c2e9d68da448852f90678c7c0d7fb44bb9486c1add6f589"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/usb/chipidea/ci_hdrc_tegra.c",
+      "sha256": "1e3aadabbcf2230b89af6c4da85b9c578e89915e39bd9bcd38cc5003ccbd1128"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/usb/chipidea/otg.c",
+      "sha256": "a65b4f070d5c3e8056eee77f8a1c64b3ca684ac98335497171423ffa948f94ca"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/usb/chipidea/udc.c",
+      "sha256": "563194c5e8550c6fe9c3cf39033db2d177cfe3db130d986a784d31caf2475d66"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/usb/phy/phy-tegra-usb.c",
+      "sha256": "388716c55d5a547217fd01d5a459dc1900e2a539ecb77de963650e736060d3cb"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/init/main.c",
+      "sha256": "3887e421f310ee82b163a139fabe3845af4aa4781fd5f1009618d36ff3b719ba"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/source-provenance.json",
+      "sha256": "655fb305648d53c1754cf7a6cffaf48ad3050dcaf39bd3888f2c5a99821f7e03"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/tools/build.sh",
+      "sha256": "03be793f83e305c3dcc4871cb8f5727be924f446860e24fceed8b4c5646afc9e"
+    }
+  ]
+}
