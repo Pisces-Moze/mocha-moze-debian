@@ -1,0 +1,43 @@
+{
+  "collection_date": "2026-10-10",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "scope": "Mocha active reset assertion before DSI runtime resume; delayed automatic layout retained",
+  "candidate_code_commit": "126a3cd1eb7b30108e849f32f4ab1308e9d8ed2c",
+  "compiled_dsi_raw_sha256": "51539536e45dc3dc9b674991595b7f3aad043133c7c6159d0f190b7fd52dba6f",
+  "compiled_dsi_lf_sha256": "51539536e45dc3dc9b674991595b7f3aad043133c7c6159d0f190b7fd52dba6f",
+  "full_native_target_build_exit_code": 0,
+  "clean_output_tree_rebuild": false,
+  "backlight_rebuild_pass": true,
+  "runtime_acceptance": "pending",
+  "artifacts": {
+    "uImage": {
+      "bytes": 23715284,
+      "sha256": "d8bc8736b124aad1ccecf097cf480d9df5be4fb9aab55bafc486e94625367e81"
+    },
+    "Image": {
+      "bytes": 23715220,
+      "sha256": "34c2dff3f700e51faa685564c2b08fcb15dcd6da57d7fba6e130aeee2ac765bc"
+    },
+    "mocha.dtb": {
+      "bytes": 56448,
+      "sha256": "11e4916155e564fb2b884be6df191288997ecbad8d7863de681884718b3fab88"
+    },
+    ".config": {
+      "bytes": 197499,
+      "sha256": "b0111bd69c99133ef5674882a8d192353cc8bbefa494a94e2b3747a75aacea33"
+    },
+    "mocha_miui_backlight.ko": {
+      "bytes": 177108,
+      "sha256": "5cb1c425c994e60cb5cb38a82a6ed946179a3fd55fa3d254bba317a4f36e1f10"
+    },
+    "nouveau-native-reset-modules.tar.xz": {
+      "bytes": 640988,
+      "sha256": "144031f13dd58352ce86da2e968aa96805960fa220de23d7f4153cd1ea3821b2"
+    }
+  },
+  "local_download_hashes_verified": true,
+  "uimage_crc_addresses_verified": true,
+  "compiled_dsi_matches_committed_source": true,
+  "boot_mode_planned": "RAM",
+  "default_boot_change": false
+}

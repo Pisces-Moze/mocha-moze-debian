@@ -261,6 +261,11 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "docs/diagnostics/2026-10-10-native-reset-build.json",
+      "sha256": "16092b098c873c5547cb4e6217a233c9811840b214af365fd9e4db3d0579113b"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "docs/diagnostics/2026-10-10-native5-baseline-repeat.json",
       "sha256": "aa90a7549ed5afa0ea94e0a1b4131ed60cd348d0c4b9943968c214735bf5bd41"
     },
@@ -297,7 +302,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "manifests/repos.lock.json",
-      "sha256": "e8812b94feba75543cf71322fda9d50d87dad20c6453b3439da53238f34459f7"
+      "sha256": "fa44d915cc606fe0eed17b60966eb54504828f6b16f5015cf7c89d4401577029"
     },
     {
       "repository": "mocha-moze-debian",
