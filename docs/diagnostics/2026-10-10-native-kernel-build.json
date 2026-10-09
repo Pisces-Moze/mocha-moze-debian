@@ -1,0 +1,30 @@
+{
+  "collection_date": "2026-10-10",
+  "scope": "cross-build; prototype boot and core capture pending",
+  "source_commit": "6f1e595e0237e6691437640048d4524909f33094",
+  "compiler": "arm-linux-gnueabihf-gcc (Debian 14.2.0-19) 14.2.0",
+  "profile": "native",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "image_bytes": 23715220,
+  "sha256": {
+    "Image": "3ffd0053827de8707d491418ea93993113c32179106c88f25d547490a8fe252b",
+    "uImage": "926c6f3bee3ff2a5071b4168ce547080d1775161f4c21431985d8d15d7a7440e",
+    "mocha.dtb": "8572c7b5e4b08fbef81d7f6dfe5f70e35020b6608754256f18e9593945151ecb",
+    ".config": "b0111bd69c99133ef5674882a8d192353cc8bbefa494a94e2b3747a75aacea33"
+  },
+  "core_options": {
+    "BINFMT_ELF": true,
+    "COREDUMP": true,
+    "ELF_CORE": true
+  },
+  "linked_core_symbol": "c0358410 t elf_core_dump",
+  "existing_dtc_warnings_retained": true,
+  "external_backlight": {
+    "build_pass": true,
+    "sha256": "5cb1c425c994e60cb5cb38a82a6ed946179a3fd55fa3d254bba317a4f36e1f10",
+    "vermagic": "6.12.111-moze.1-native SMP preempt mod_unload ARMv7 p2v8",
+    "prototype_module_load": false,
+    "build_script_fix": "clean external objects before build; assert target kernelrelease",
+    "source_commit": "e3a272b11d0d7f676634fc0c27479bb7c102df09"
+  }
+}

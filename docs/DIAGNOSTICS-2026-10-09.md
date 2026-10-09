@@ -29,10 +29,10 @@
 | 仓库 | 工作 | 仍需完成 |
 |---|---|---|
 | desktop | Mesa 25.0.7 可选 fence 回调修复；八组合 C 回归；完整 ARMhf 构建；候选库实机 Nouveau/Tegra fence 与像素回归通过；补齐 GBM 后端路径与构建依赖 | 临时 native 引导，候选库的 Niri/面板验收 |
-| linux | stable/native 启用 ELF_CORE；两套配置的 olddefconfig 保留三个 core 前提选项；stable 内核、模块与 DTB 完整构建通过 | native 完整编译、临时引导并实际捕获 core |
+| linux | stable/native 启用 ELF_CORE；两套配置的 olddefconfig 保留三个 core 前提选项；stable/native 内核、模块与 DTB 完整构建通过，vmlinux 均含 elf_core_dump | 临时引导并实际捕获 core |
 | debian | 只读状态采集器、来源与验收记录、配套 commit 锁 | 改名后端到端安装验收仍为 false |
-| boot | 核对当前文档中的 RAM 引导和禁写边界，本次无改动 | 新内核临时启动、双侧画面及至少两次普通冷启动仍待验收 |
-| drivers | 核对音频/GPU 实验与当前 ALSA/DRM 状态，本次无改动 | RT5671 发现、音频、完整 CUDA、硬件编解码及电源管理仍未完成 |
+| boot | 接通 emmc/ram 环境选择；两种构建、六项禁写断言、SHA256 和 RAM Android 容器检查通过 | 新模式实机 USB、新内核临时启动和物理画面仍待验收 |
+| drivers | 重现 stable→native 时旧模块对象复用；构建脚本增加清理与目标 release 断言 | 模块实机加载；RT5671、音频、完整 CUDA、硬件编解码及电源管理仍未完成 |
 
 源码与上述寄存器诊断确认 Mesa Tegra 公开了 Nouveau 未实现的可选 fence 回调；修复候选保留底层可选回调约定，不补造 sync-file 支持。完整说明见 [desktop 的 Mesa fence 文档](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/MESA-FENCE.md)。不能把主机回归通过标成 native 桌面已修复。
 
@@ -42,4 +42,6 @@
 python3 /tmp/collect-status.py --collection-date YYYY-MM-DD
 ```
 
-构建机位于远端 Windows 宿主机里的 Debian 虚拟机，SSH 入口已连通。Mesa 和 stable 内核完整构建已完成，native 内核正在构建。候选 Mesa 的包装层回归已通过；下一步仍需准备临时 native 引导并验收 Niri、物理画面和实际 core。默认部署和系统库安装需以这些验收结果为依据。
+构建机位于远端 Windows 宿主机里的 Debian 虚拟机，SSH 入口已连通。Mesa 和 stable/native 内核完整构建已完成，U-Boot 两种模式构建与打包检查通过。候选 Mesa 的包装层回归已通过；下一步仍需准备临时 native 引导并验收 Niri、物理画面和实际 core。默认部署和系统库安装需以这些验收结果为依据。
+
+2026-10-10 补充核验：[stable 构建](diagnostics/2026-10-09-stable-kernel-build.json)、[native 构建](diagnostics/2026-10-10-native-kernel-build.json)、[U-Boot 双模式构建](diagnostics/2026-10-09-boot-build.json)、[背光模块 profile 切换回归](diagnostics/2026-10-10-backlight-build.json)。背光修复后 stable→native→stable 三次构建的 release 断言全部通过。RAM 测试包已下载校验；Windows Fastboot 的缺驱动错误 28 已通过签名 WinUSB 驱动解决，但官方工具 37.0.1／34.0.5 读取 product 均出现 USB 写超时。USB 标准控制读取正常，配置为 1，Fastboot 接口为 FF/42/03，bulk OUT 端点未 halt；64/512 字节 product 查询及先读 pending 回复仍超时。当前尚未发送 RAM 启动命令，实际 core 与 native 画面验收仍待通信恢复。

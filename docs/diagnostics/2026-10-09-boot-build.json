@@ -1,0 +1,59 @@
+{
+  "collection_date": "2026-10-09",
+  "scope": "cross-build only; RAM boot and physical display pending",
+  "upstream_tag": "v2026.07",
+  "upstream_commit": "ece349ade2973e220f524ce59e59711cc919263f",
+  "profiles": {
+    "emmc": {
+      "environment": "mocha_emmc_boot",
+      "six_write_guards_pass": true,
+      "files": {
+        "u-boot": {
+          "bytes": 5042684,
+          "sha256": "75d771c730fb03cc4065c290fea9a526e9b6e87a5e4ff22991642dff0e885455"
+        },
+        "u-boot-dtb.bin": {
+          "bytes": 567168,
+          "sha256": "feaf8366152fd8296a2bc726c019d82d291b65be305c7c50d38657c9965f345e"
+        },
+        ".config": {
+          "bytes": 55113,
+          "sha256": "cef2d6a27ab82cb3706faae08a4f8b3bbaafb357d18ff2aeec5fdceb438de705"
+        },
+        "profile.txt": {
+          "bytes": 60,
+          "sha256": "ffa5e539733066df797a74e6d73fb9dc040b6edebc96cee94310dca90a93be52"
+        }
+      }
+    },
+    "ram": {
+      "environment": "mocha_ram_debug",
+      "six_write_guards_pass": true,
+      "files": {
+        "u-boot": {
+          "bytes": 5042172,
+          "sha256": "0b789b554c6216424be662b1b0ebfde3de521bd138f65e0d1f9990a29a13ab63"
+        },
+        "u-boot-dtb.bin": {
+          "bytes": 566624,
+          "sha256": "c08707e90101f3bfdaf4a9c4819cbd8dc2e4105f11af96c6d961789e1f66427c"
+        },
+        ".config": {
+          "bytes": 55113,
+          "sha256": "fefa442e034397eb4e202e5a9578695b0051b218bd4adfa328bf42f04e7b3c0f"
+        },
+        "profile.txt": {
+          "bytes": 59,
+          "sha256": "10d9c5a4cf7bc43da055d19f1d062ae27c6462bf0f45be156b8203466fa5bec1"
+        }
+      }
+    }
+  },
+  "ram_android_image": {
+    "bytes": 569344,
+    "sha256": "a88a76c574a5f51cd5e4e3617b66f71a6a4278693c5df385b9db9a7c7b34d102",
+    "entry": "0x80a00000",
+    "page": 2048
+  },
+  "generated_ram_bootcmd": "bootcmd=echo Mocha RAM USB diagnostics - data cache disabled; echo MC-SMMU-config; md.l 70019010 1; fastboot usb 0"
+}

@@ -11,17 +11,17 @@
     {
       "name": "mocha-moze-boot",
       "url": "https://github.com/Pisces-Moze/mocha-moze-boot.git",
-      "commit": "7163a222b93ed05ba97e6f0d725bbec348f48938"
+      "commit": "292bd36af1b5ab8a8b1cd0bdd4bd54c234da2f3d"
     },
     {
       "name": "mocha-moze-linux",
       "url": "https://github.com/Pisces-Moze/mocha-moze-linux.git",
-      "commit": "d1086e104a5efbfff4d87664f2ace59df4a5d062"
+      "commit": "f4366bee68f9cfc7224600b3c7d7722dca3faeca"
     },
     {
       "name": "mocha-moze-drivers",
       "url": "https://github.com/Pisces-Moze/mocha-moze-drivers.git",
-      "commit": "2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc"
+      "commit": "e3a272b11d0d7f676634fc0c27479bb7c102df09"
     },
     {
       "name": "mocha-moze-desktop",

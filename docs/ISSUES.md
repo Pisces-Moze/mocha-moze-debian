@@ -33,7 +33,7 @@ CONFIG_COREDUMP=y但CONFIG_ELF_CORE关闭，第一次core捕获没有生成文�
 
 2026-10-09 已对照 Mesa `mesa-25.0.7` 的固定源码，确认 Tegra 无条件注册 `fence_server_sync` 包装回调，但 Nouveau 没有实现底层回调；`create_fence_fd` / `fence_get_fd` 也存在同类转发问题。desktop 仓库的 `0004` 补丁仅在底层回调存在时注册包装层，原始源码回归失败、修复后八种回调组合通过。原型机原有 Nouveau 路径另通过 32 轮 EGL fence 测试，作为系统库对照。
 
-同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已启用 stable/native 两套配置中的该选项，并增加构建检查；两套配置均通过 `olddefconfig`，stable 完整构建已通过。native 完整编译、临时启动与实际 core 捕获尚待完成。
+同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已启用 stable/native 两套配置中的该选项，并增加构建检查；两套配置均通过 `olddefconfig`，stable/native 完整构建均已通过，两个 vmlinux 都含 elf_core_dump。临时启动与实际 core 捕获尚待完成。
 
 随后在当前 simpledrm 系统上，仅为无 modeset 的独立 EGL probe 设置 `MESA_LOADER_DRIVER_OVERRIDE=tegra`，实机在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 捕获 `PC=0`、`R3=0`，调用指令为 Thumb `BLX R3`，LR 规范化后为 libgallium `+0xd645bc`；运行库 Build ID 与历史 Niri 的 `fd7dcad10de8c89211ebe69ae8c8dda302f047d0` 相同，空回调来源得到运行时确认。
 

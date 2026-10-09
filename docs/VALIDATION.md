@@ -24,7 +24,7 @@
 - Mesa 官方 25.0.7 归档 SHA256 校验、补丁 hunk 检查与主机 C 回归完成：原始源码失败，候选源码的八种回调组合通过，转发参数检查通过。Debian 13 上完整 ARMhf 交叉构建已通过。
 - 同一原型机用独立 EGL probe 强制 Tegra 包装层，在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 的 PC/R3 为零，实际 Thumb BLX R3 指令、LR 的 `+0xd645bc` 与运行库 Build ID 均与历史 Niri 调用点吻合；未切换 native 内核或改变现有桌面。
 - 候选 Mesa 在同一原型机的独立数据目录运行，Nouveau 与 Tegra 包装层均通过 32 轮 EGL fence 和像素检查。实际加载的三类 Mesa 库均来自候选目录，Tegra 不再 SIGSEGV；原有桌面仍运行。native KMS、Niri、面板与 zero-copy 验收仍待完成。
-- `/proc/config.gz` 确认运行内核关闭 `CONFIG_ELF_CORE`。公开 stable/native 配置已启用并增加构建断言；两份配置的 `olddefconfig` 均保留三个 core 前提选项，stable 的 Image/uImage、模块和 DTB 完整构建通过。native 编译、临时启动和实际 core 捕获仍待完成。
+- `/proc/config.gz` 确认运行内核关闭 `CONFIG_ELF_CORE`。公开 stable/native 配置已启用并增加构建断言；两份配置的 `olddefconfig` 均保留三个 core 前提选项，stable 的 Image/uImage、模块和 DTB 完整构建通过。native 完整构建随后也通过；临时启动和实际 core 捕获仍待完成。
 - 新 Python 工具语法、Meson cross file 解析通过；板上 `--require-tegra` 正确拒绝 Nouveau 节点。
 
 具体状态、验证边界和下一步见 [诊断记录](DIAGNOSTICS-2026-10-09.md) 与 desktop 仓库的 [MESA-FENCE.md](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/MESA-FENCE.md)。

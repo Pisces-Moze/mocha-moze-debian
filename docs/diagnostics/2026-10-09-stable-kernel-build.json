@@ -1,0 +1,26 @@
+{
+  "collection_date": "2026-10-09",
+  "scope": "cross-build; prototype boot and core capture pending",
+  "source_commit": "6f1e595e0237e6691437640048d4524909f33094",
+  "compiler": "arm-linux-gnueabihf-gcc (Debian 14.2.0-19) 14.2.0",
+  "profile": "stable",
+  "kernelrelease": "6.12.111-moze.1",
+  "image_bytes": 23710184,
+  "sha256": {
+    "Image": "50c56eb8f2dea38b352c50cee1aba357325c41ae2b11b0098152806b9d73e7e0",
+    "uImage": "a27defe8740acad2dd0ced5d451b8b6ceb0830f22a61a33dd3150e8e9b844148",
+    "mocha.dtb": "6be9ab152e90810aaae6f0abf346472d3d78ee30b0a39d6d14ad05b8f6d61d18",
+    ".config": "01b1a5f219617c97fa8e6c6dcc311d220d6d88b2cb7582a7361618588fff5053"
+  },
+  "core_options": {"BINFMT_ELF": true, "COREDUMP": true, "ELF_CORE": true},
+  "linked_core_symbol": "c034c66c t elf_core_dump",
+  "existing_dtc_warnings_retained": true,
+  "external_backlight": {
+    "source_commit": "2390e8bbe0765b3db9c4656c5e0e957cf4a4f8dc",
+    "build_pass": true,
+    "sha256": "628848de93211c37659d50f06bf1795f67c52395e7675477402335374ad8daaf",
+    "vermagic": "6.12.111-moze.1 SMP preempt mod_unload ARMv7 p2v8",
+    "prototype_module_load": false
+  },
+  "native_full_build": "in progress"
+}
