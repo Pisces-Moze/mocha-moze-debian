@@ -127,7 +127,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-10.md",
-      "sha256": "3f26f6436ddc58fae2269f029e695024eafcd2ad2e836b34bfc7cd0934c6c9f0"
+      "sha256": "4520c760d8635c7a3332f1729166d96095e0d043b30b3ffa00c514bbf406c9ae"
     },
     {
       "repository": "mocha-moze-debian",
@@ -147,7 +147,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/ISSUES.md",
-      "sha256": "66a892860596d0acf7ddb8ac22abc7fa337a2e4676a68d4879d3be63a3a77c61"
+      "sha256": "e7d7bc89bd9a8c1fc5e7f87268ec1dfc32835428a055ffc806b0161f7a48e5c8"
     },
     {
       "repository": "mocha-moze-debian",
@@ -172,12 +172,12 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "4ad769173ca7216bbcafdf44bcf2d0a1ebec8cdf993567521b79f8677f12b2cf"
+      "sha256": "88a8434b696a18645a6294bc3f19960641bdd469da633d301f7bfb883a4d1550"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "af2f78cfbedb9355172d4dd18b02a72562b191ed569db233bf3cb9033bb5e5a8"
+      "sha256": "3174989e9f4e9c0577275eff547ad6aeabe9d066f644ac9899c7131ed0390bbb"
     },
     {
       "repository": "mocha-moze-debian",
@@ -228,6 +228,11 @@
       "repository": "mocha-moze-debian",
       "path": "docs/diagnostics/2026-10-10-native-auto-layout-late.json",
       "sha256": "18a744972928d9402b8d52e5b2ac74d0207fb63d960a5012f8e5b6f5e50dfc6a"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/diagnostics/2026-10-10-native-baseline-dpms.json",
+      "sha256": "52f50deb3fe18f6a594bb0a5f371e8822a57f27f927e744cb4914f1908abfc04"
     },
     {
       "repository": "mocha-moze-debian",
@@ -292,7 +297,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "manifests/repos.lock.json",
-      "sha256": "02db7f69858e02faa7249979af82b47afc05dcd93058080da5d1ec1ba477902d"
+      "sha256": "e8812b94feba75543cf71322fda9d50d87dad20c6453b3439da53238f34459f7"
     },
     {
       "repository": "mocha-moze-debian",
@@ -447,7 +452,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "docs/MESA-FENCE.md",
-      "sha256": "e5c87b959090d527ca95c779432fb7a8a908971cfa1b23c6be631437255cb90e"
+      "sha256": "10a283c1622ca5ead3fdcd53479a83070ed3087240b972e5f28503b1159bac1a"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -907,7 +912,7 @@
     {
       "repository": "mocha-moze-linux",
       "path": "moze/source-overlay/drivers/gpu/drm/tegra/dsi.c",
-      "sha256": "cabfa3422c059551f442661c75e3194cefb6db52b9cd6ea50d9af1cef347bd5d"
+      "sha256": "51539536e45dc3dc9b674991595b7f3aad043133c7c6159d0f190b7fd52dba6f"
     },
     {
       "repository": "mocha-moze-linux",

@@ -57,4 +57,4 @@ CUDA开发libcuda stub的cuInit仅返回-1；真实NVIDIA库依赖旧驱动ABI�
 
 ## 2026-10-10 原生显示分段与启动时序
 
-真实 Tegra render node 的候选 Mesa fence 测试已通过；修复后的背光模块成功加载，DRM connected/enabled。CPU framebuffer 与 GPU DMA-BUF/KMS 色块均只有背光、黑屏；GPU 测试虽完成 1800 次翻页约 29.99 FPS，物理扫描输出仍失败。随后恢复 native5 的 DSI-B 控制归属后色块可见，仅手动校正 A=0/B=768 后位置正常。首版视频 enable 前校正，以及第二版 enable 后等待 40 ms 校正，都仍物理黑屏；自动修复未通过，新内核关闭校正属性后也黑屏，而原始内核＋相同 native5 DTB 的可见色块已复现。原始组合手动校正后，GPU DMA-BUF/KMS 与候选 Mesa 下的 Niri＋终端画面均由用户确认正常；仍需手动校正，Noctalia、触控与长期运行未验收。下一步以原始 DSI 源码重新构建核对新镜像差异。暂不替换默认路径。见 [本轮记录](DIAGNOSTICS-2026-10-10.md)。
+真实 Tegra render node 的候选 Mesa fence 测试已通过；修复后的背光模块成功加载，DRM connected/enabled。CPU framebuffer 与 GPU DMA-BUF/KMS 色块均只有背光、黑屏；GPU 测试虽完成 1800 次翻页约 29.99 FPS，物理扫描输出仍失败。随后恢复 native5 的 DSI-B 控制归属后色块可见，仅手动校正 A=0/B=768 后位置正常。首版视频 enable 前校正，以及第二版 enable 后等待 40 ms 校正，都仍物理黑屏；自动修复未通过，新内核关闭校正属性后也黑屏，而原始内核＋相同 native5 DTB 的可见色块已复现。原始组合手动校正后，GPU DMA-BUF/KMS 与候选 Mesa 下的 Niri＋终端画面均由用户确认正常；仍需手动校正，Noctalia、触控与长期运行未验收。原始驱动重建基线与此前成功内核仅有 34 字节构建元数据不同，机器指令相同；这次首次启动仍黑屏，但 DRM 关闭再开启后恢复可见，手动校正后的 GPU/Niri 画面正常。首次初始化状态/时序是当前排查方向，Mocha 主动 DSI 复位候选尚待实测。暂不替换默认路径。见 [本轮记录](DIAGNOSTICS-2026-10-10.md)。
