@@ -1,0 +1,34 @@
+{
+  "collection_date": "2026-10-10",
+  "scope": "temporary stock Fastboot boot of RAM U-Boot followed by stable/native RAM Linux boots",
+  "boot_repository_commit": "292bd36af1b5ab8a8b1cd0bdd4bd54c234da2f3d",
+  "ram_image_sha256": "a88a76c574a5f51cd5e4e3617b66f71a6a4278693c5df385b9db9a7c7b34d102",
+  "ram_image_bytes": 569344,
+  "host_fastboot_version": "34.0.5-10900879",
+  "stock_product": "Mocha",
+  "stock_bootloader": "tegra-19r15.1-android-4.4-98-gbf89846",
+  "stock_fastboot_upload": "OKAY",
+  "stock_fastboot_boot": "OKAY",
+  "boot_mode": "temporary Fastboot RAM boot",
+  "physical_display": {
+    "observed_by": "user",
+    "result": "normal",
+    "visible_text": "Mocha RAM USB diagnostics"
+  },
+  "new_usb_enumeration": {
+    "description": "USB download gadget",
+    "vendor_id": "18d1",
+    "product_id": "d00d",
+    "windows_problem_code": 0,
+    "uboot_fastboot_commands_tested": true,
+    "reason": "Signed WinUSB binding completed; U-Boot product/version checks and RAM block uploads succeeded"
+  },
+  "linux_ram_boot": true,
+  "core_capture": true,
+  "persistent_prototype_storage_write": false,
+  "linux_profiles": [
+    "stable",
+    "native"
+  ],
+  "native_linux_physical_display_pass": false
+}

@@ -1,0 +1,40 @@
+{
+  "collection_date": "2026-10-10",
+  "scope": "temporary RAM kernel boot and controlled SIGSEGV core capture",
+  "source_commit": "6f1e595e0237e6691437640048d4524909f33094",
+  "initrd_sha256": "eb2f38b1ab6538017b7712fec4e01c7b082053cdc4c847122bdfebb0bde1ac5f",
+  "online_cpus": "0-3",
+  "runtime_config": {
+    "CONFIG_BINFMT_ELF": "y",
+    "CONFIG_COREDUMP": "y",
+    "CONFIG_ELF_CORE": "y"
+  },
+  "core_probe": {
+    "binary_sha256": "4e8d037f051c93092bb0e87881e27cd03a8b8f3a3e4094be95da754d4fbe674f",
+    "signal": "SIGSEGV",
+    "exit_code": 139,
+    "limit_bytes": 4194304,
+    "core_bytes": 327680,
+    "elf_header_first_24_bytes": "7f454c460101010000000000000000000400280001000000",
+    "elf_class": "ELF32",
+    "elf_endian": "little",
+    "elf_type": "ET_CORE",
+    "elf_machine": "EM_ARM",
+    "storage": "RAM /tmp",
+    "raw_core_published": false,
+    "core_sha256": "742beb5b3e649e72a45f70e41f02ca4ecb3b997cda64934c3b458a15f2dc8932"
+  },
+  "emmc_read_only_before": true,
+  "emmc_read_only_after": true,
+  "emmc_mounted_during_core_test": false,
+  "persistent_storage_write": false,
+  "profile": "stable",
+  "kernelrelease": "6.12.111-moze.1",
+  "boot_artifacts_sha256": {
+    "Image": "50c56eb8f2dea38b352c50cee1aba357325c41ae2b11b0098152806b9d73e7e0",
+    "uImage": "a27defe8740acad2dd0ced5d451b8b6ceb0830f22a61a33dd3150e8e9b844148",
+    "mocha.dtb": "6be9ab152e90810aaae6f0abf346472d3d78ee30b0a39d6d14ad05b8f6d61d18",
+    ".config": "01b1a5f219617c97fa8e6c6dcc311d220d6d88b2cb7582a7361618588fff5053"
+  },
+  "physical_display": "normal Linux console, user confirmed"
+}

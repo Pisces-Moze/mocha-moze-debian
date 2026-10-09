@@ -28,3 +28,9 @@
 - 新 Python 工具语法、Meson cross file 解析通过；板上 `--require-tegra` 正确拒绝 Nouveau 节点。
 
 具体状态、验证边界和下一步见 [诊断记录](DIAGNOSTICS-2026-10-09.md) 与 desktop 仓库的 [MESA-FENCE.md](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/MESA-FENCE.md)。
+
+## 2026-10-10 RAM 验收
+
+2026-10-10 RAM 实机验证：新 U-Boot USB、stable/native 内核启动与实际 ELF core 捕获通过；stable 日志画面正常。真实 Tegra 节点的候选 Mesa fence 回归通过，但 native CPU/GPU 色块均背光亮、黑屏。原生 Niri、物理输出和改名后完整安装仍未通过，默认引导及 APP/LNX 未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
+
+捕获 core 时未挂载 eMMC，之后 Mesa/GPU 测试只以 ro,noload 挂载 APP/数据；原始 core、固件与编译镜像未发布。KMS 翻页成功与约 30 FPS 不代表面板输出成功。

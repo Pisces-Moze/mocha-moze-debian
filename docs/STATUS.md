@@ -1,6 +1,8 @@
-# 当前状态：2026-10-09
+# 当前状态：2026-10-10
 
 2026-10-09 已恢复 USB SSH 诊断。当前原型机运行旧 release `6.12.111-mocha-experimental-fbdiag`，DRM 是 simpledrm + Nouveau，四核在线，Niri/Noctalia 进程运行，没有失败的 systemd 服务。此次没有重启、写 APP/LNX 或更改默认引导；不能据此宣称改名后的安装通过。只读状态与 fence 原始输出见 [诊断记录](DIAGNOSTICS-2026-10-09.md)。下面既有的性能和面板结论仍来自之前的实机记录。
+
+2026-10-10 RAM 实机验证：新 U-Boot USB、stable/native 内核启动与实际 ELF core 捕获通过；stable 日志画面正常。真实 Tegra 节点的候选 Mesa fence 回归通过，但 native CPU/GPU 色块均背光亮、黑屏。原生 Niri、物理输出和改名后完整安装仍未通过，默认引导及 APP/LNX 未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
 
 | 子系统 | 实机状态 | 限制 |
 |---|---|---|
@@ -20,5 +22,5 @@
 | CUDA | Gdev 实验 Driver API 的有限计算通过 | libcudart 6.5 error 35；完整 CUDA Runtime 未完成 |
 | 摄像头 / OTG / 休眠 | 未完成 | 控制器、传感器、VBUS 与恢复链路待适配 |
 
-2026-10-07 暂停时曾运行临时 native6-order；2026-10-09 实测当前已回到 simpledrm 路径。Mesa 空回调修复的主机回归、完整 ARMhf 构建和候选库实机 Nouveau/Tegra 32 轮 fence / 像素回归均通过。native KMS/Niri/面板验收待完成。音频仍无 ALSA 卡，蓝牙无 HCI 且 UART 节点被禁用。两套新内核 core 配置通过 olddefconfig，stable/native 完整构建均通过，临时启动/core 捕获仍待完成。U-Boot emmc/ram 两种构建与打包校验通过，实际 RAM 启动待验收。
+2026-10-07 暂停时曾运行临时 native6-order；2026-10-09 实测当前已回到 simpledrm 路径。Mesa 空回调修复的主机回归、完整 ARMhf 构建和候选库实机 Nouveau/Tegra 32 轮 fence / 像素回归均通过。native KMS/Niri/面板验收待完成。音频仍无 ALSA 卡，蓝牙无 HCI 且 UART 节点被禁用。两套新内核 core 配置通过 olddefconfig，stable/native 完整构建均通过，随后两套内核的 RAM 启动/core 捕获和 U-Boot RAM USB 已通过，当前 native 面板黑屏，见上方 2026-10-10 记录。
 历史日志存在时间顺序冲突时，以本状态表和后期可复核证据为准。

@@ -33,7 +33,7 @@ CONFIG_COREDUMP=y但CONFIG_ELF_CORE关闭，第一次core捕获没有生成文�
 
 2026-10-09 已对照 Mesa `mesa-25.0.7` 的固定源码，确认 Tegra 无条件注册 `fence_server_sync` 包装回调，但 Nouveau 没有实现底层回调；`create_fence_fd` / `fence_get_fd` 也存在同类转发问题。desktop 仓库的 `0004` 补丁仅在底层回调存在时注册包装层，原始源码回归失败、修复后八种回调组合通过。原型机原有 Nouveau 路径另通过 32 轮 EGL fence 测试，作为系统库对照。
 
-同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已启用 stable/native 两套配置中的该选项，并增加构建检查；两套配置均通过 `olddefconfig`，stable/native 完整构建均已通过，两个 vmlinux 都含 elf_core_dump。临时启动与实际 core 捕获尚待完成。
+同日读取原型机 `/proc/config.gz`，确认 `CONFIG_ELF_CORE` 实际关闭。linux 仓库已启用 stable/native 两套配置中的该选项，并增加构建检查；两套配置均通过 `olddefconfig`，stable/native 完整构建均已通过，两个 vmlinux 都含 elf_core_dump。2026-10-10 两套新内核已在 RAM 实际捕获 ELF core，见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
 
 随后在当前 simpledrm 系统上，仅为无 modeset 的独立 EGL probe 设置 `MESA_LOADER_DRIVER_OVERRIDE=tegra`，实机在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 捕获 `PC=0`、`R3=0`，调用指令为 Thumb `BLX R3`，LR 规范化后为 libgallium `+0xd645bc`；运行库 Build ID 与历史 Niri 的 `fd7dcad10de8c89211ebe69ae8c8dda302f047d0` 相同，空回调来源得到运行时确认。
 
@@ -54,3 +54,7 @@ BC1.2识别DCP后2A输入，PC未知500mA，CDP1.5A；电池侧仍960mA/4.208V�
 补齐FFmpeg/libavcodec/MPV后软件视频和FirefoxHTML5通过，硬件解码未完成：Tegra124 VDE非标准tile布局尚未提供完整格式。
 Noctalia壁纸列表改为专用目录，数据文件安装后缩略图通过。
 CUDA开发libcuda stub的cuInit仅返回-1；真实NVIDIA库依赖旧驱动ABI。Gdev有限Driver API修复代码上传/GPU引用/ARM缓存后257与8193整数计算通过。CUDA6.5libcudart仍error35（驱动版本不足），不能声称完整CUDA运行时支持。
+
+## 2026-10-10 原生显示仍黑屏
+
+真实 Tegra render node 的候选 Mesa fence 测试已通过；修复后的背光模块成功加载，DRM connected/enabled。CPU framebuffer 与 GPU DMA-BUF/KMS 色块均只有背光、黑屏；GPU 测试虽完成 1800 次翻页约 29.99 FPS，物理扫描输出仍失败。暂不启动 Niri 或替换默认路径，先在 RAM 对照 native5/native6 双 DSI 链路顺序。见 [本轮记录](DIAGNOSTICS-2026-10-10.md)。

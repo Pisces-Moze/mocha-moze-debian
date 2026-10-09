@@ -45,3 +45,5 @@ python3 /tmp/collect-status.py --collection-date YYYY-MM-DD
 构建机位于远端 Windows 宿主机里的 Debian 虚拟机，SSH 入口已连通。Mesa 和 stable/native 内核完整构建已完成，U-Boot 两种模式构建与打包检查通过。候选 Mesa 的包装层回归已通过；下一步仍需准备临时 native 引导并验收 Niri、物理画面和实际 core。默认部署和系统库安装需以这些验收结果为依据。
 
 2026-10-10 补充核验：[stable 构建](diagnostics/2026-10-09-stable-kernel-build.json)、[native 构建](diagnostics/2026-10-10-native-kernel-build.json)、[U-Boot 双模式构建](diagnostics/2026-10-09-boot-build.json)、[背光模块 profile 切换回归](diagnostics/2026-10-10-backlight-build.json)。背光修复后 stable→native→stable 三次构建的 release 断言全部通过。RAM 测试包已下载校验；Windows Fastboot 的缺驱动错误 28 已通过签名 WinUSB 驱动解决，但官方工具 37.0.1／34.0.5 读取 product 均出现 USB 写超时。USB 标准控制读取正常，配置为 1，Fastboot 接口为 FF/42/03，bulk OUT 端点未 halt；64/512 字节 product 查询及先读 pending 回复仍超时。当前尚未发送 RAM 启动命令，实际 core 与 native 画面验收仍待通信恢复。
+
+后续 2026-10-10 已通过冷关机恢复 Fastboot bulk 通信，完成 RAM U-Boot、两套新内核启动与实机 ELF core 捕获；native 面板仍黑屏。本页保留上述各阶段的历史结果，当前进展以 [下一日 RAM 诊断](DIAGNOSTICS-2026-10-10.md) 为准。
