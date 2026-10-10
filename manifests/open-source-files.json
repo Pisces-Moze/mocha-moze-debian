@@ -107,7 +107,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "README.md",
-      "sha256": "8b1af9f034b1dcd620f309336218d06354ca85f2399f2bdba54124fc8e2ea3b1"
+      "sha256": "2f34c014f022d381b63a95aa14e1ece0bf90b78d4e3c60a1e4105495d96aa448"
     },
     {
       "repository": "mocha-moze-debian",
@@ -127,7 +127,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-10.md",
-      "sha256": "b671bde7bffcafc0afbbac25a36e718e471ba24e3f9be92fe4c16ae38b367a33"
+      "sha256": "40ff2c173859fedc03428805eaa475e943ec7c81d26d3c71641c2dc8ac4f38bf"
     },
     {
       "repository": "mocha-moze-debian",
@@ -172,7 +172,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "e19db9111bb9e822745cd6822df373e57699db835af0e0a87c4813871778400e"
+      "sha256": "7a73eb6adf8fd31388de090cb3c0216dde3e161dff86bf24d3ca5f3d919ce054"
     },
     {
       "repository": "mocha-moze-debian",
@@ -293,6 +293,11 @@
       "repository": "mocha-moze-debian",
       "path": "docs/diagnostics/2026-10-10-native5-niri.json",
       "sha256": "5f6f0e370fbfcd618a43514d8ab0a16efd4e7580fbe5566c34f38a1633e7aac6"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/diagnostics/2026-10-10-resumed-stable-status.json",
+      "sha256": "6b2ea23c24d51ab3b880f2fdb3fb9cc8ca90da09aaff6c751fd2188c344df277"
     },
     {
       "repository": "mocha-moze-debian",

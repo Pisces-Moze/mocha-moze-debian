@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "collection_date": "2026-10-10",
+  "boot_method": "unknown",
+  "kernelrelease": "6.12.111-mocha-experimental-fbdiag",
+  "pid1": "systemd",
+  "cpu_online": "0-3",
+  "live_fdt_sha256": "f56ce37500551dc4e0ceae1fcbd3059b168aac73abeda6ebe44eabfb7136d30d",
+  "drm": [
+    {
+      "node": "card0",
+      "driver": "simple-framebuffer"
+    },
+    {
+      "node": "card1",
+      "driver": "nouveau"
+    },
+    {
+      "node": "renderD128",
+      "driver": "nouveau"
+    }
+  ],
+  "connectors": [
+    {
+      "name": "card0-Unknown-1",
+      "status": "connected",
+      "modes": "1536x2048"
+    }
+  ],
+  "desktop_processes": [
+    "niri",
+    "noctalia"
+  ],
+  "alsa_cards": "--- no soundcards ---",
+  "bluetooth_hci": [],
+  "bluetooth_uart": [
+    {
+      "node": "serial@70006200",
+      "status": "disabled",
+      "compatible": "brcm,bcm43540-bt"
+    }
+  ],
+  "power_supply": [
+    {
+      "name": "bq24190-charger",
+      "type": "USB",
+      "status": "Charging",
+      "online": "1",
+      "capacity": null,
+      "temp": null,
+      "current_now": null,
+      "voltage_now": null,
+      "input_current_limit": "2000000",
+      "constant_charge_current": "960000",
+      "constant_charge_voltage": "4208000"
+    },
+    {
+      "name": "bq27520g4-0",
+      "type": "Battery",
+      "status": "Charging",
+      "online": null,
+      "capacity": "86",
+      "temp": "170",
+      "current_now": "691000",
+      "voltage_now": "4171000",
+      "input_current_limit": null,
+      "constant_charge_current": null,
+      "constant_charge_voltage": null
+    }
+  ],
+  "thermal": [
+    {
+      "type": "bq27520g4-0",
+      "temp": "17000"
+    }
+  ],
+  "filesystems": [
+    {
+      "path": "/",
+      "bytes_available": 42876928
+    },
+    {
+      "path": "/tmp",
+      "bytes_available": 872648704
+    },
+    {
+      "path": "/srv/mocha-data",
+      "bytes_available": 1216172032
+    }
+  ],
+  "core_dump_config": {
+    "CONFIG_BINFMT_ELF": true,
+    "CONFIG_COREDUMP": true,
+    "CONFIG_ELF_CORE": false
+  },
+  "mesa_packages": "libegl-mesa0:armhf 25.0.7-2+deb13u1\nmesa-libgallium:armhf 25.0.7-2+deb13u1",
+  "mesa_libgallium": [
+    {
+      "file": "libgallium-25.0.7-2+deb13u1.so",
+      "sha256": "a2674f6221109d4299e7b38c578a288e28043c5772d5d20bd00304915963764c",
+      "build_id": "fd7dcad10de8c89211ebe69ae8c8dda302f047d0"
+    }
+  ],
+  "failed_services": ""
+}

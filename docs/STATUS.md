@@ -1,5 +1,7 @@
 # 当前状态：2026-10-10
 
+本轮恢复工作后，通过 Wi-Fi 只读核对：平板已回到原来的 `6.12.111-mocha-experimental-fbdiag` 默认系统，四核在线，电量 85% 且正在充电，显示为 simpledrm；ALSA 仍无声卡。原生候选的先前 RAM 验收不能当作当前默认桌面已切换。新状态快照见 [恢复工作时的状态](diagnostics/2026-10-10-resumed-stable-status.json)。
+
 2026-10-09 已恢复 USB SSH 诊断。当时原型机运行旧 release `6.12.111-mocha-experimental-fbdiag`，DRM 是 simpledrm + Nouveau，四核在线，Niri/Noctalia 进程运行，没有失败的 systemd 服务。2026-10-09 该次检查没有重启、写 APP/LNX 或更改默认引导；不能据此宣称改名后的安装通过。只读状态与 fence 原始输出见 [诊断记录](DIAGNOSTICS-2026-10-09.md)。下面既有的性能和面板结论仍来自之前的实机记录。
 
 2026-10-10 RAM 实机验证：U-Boot USB、stable/native 启动与实际 ELF core 捕获通过。native 首轮 CPU/GPU 黑屏，原始驱动重建基线的 DRM 关闭再开启后可恢复图像；与此前成功内核只有 34 字节构建元数据不同，机器指令相同。保留 DSI-B 控制归属与延后分段，补上 Mocha runtime resume 的主动模块复位后，候选首次 CPU 色块、GPU DMA-BUF 色块及候选 Mesa 下的 Niri＋终端均由用户确认正常，没有手动校正或额外 DPMS 恢复。GPU 1801 帧／60.018 秒／30.01 FPS，180 秒 Niri 限时结束未见新 SIGSEGV/core；第二次有效冷启动的四色及恢复后的控制台也正常。两版旧自动候选的失败与一次过早 MMIO 访问干扰的检查仍保留。这只覆盖有限 RAM 验收；默认原生引导、Noctalia 全会话、触控、长期运行与改名后安装仍待完成，APP/LNX 和默认引导未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。

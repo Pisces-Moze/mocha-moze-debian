@@ -1,5 +1,7 @@
 # 2026-10-10 RAM 引导与原生显示诊断
 
+本轮继续工作时的 [只读状态快照](diagnostics/2026-10-10-resumed-stable-status.json) 显示平板运行旧默认 stable 系统、simpledrm、四核在线，电量 85% 且正在充电，ALSA 仍无卡。这份快照由仓库 `tools/collect-status.py` 采集；没有再次进行原生显示验收，下面的 RAM 结果仍属于先前的候选测试。
+
 本轮从原厂 Fastboot 临时加载新 RAM U-Boot，再分别启动新 stable/native 内核。没有写 APP/LNX 或更改默认引导；eMMC 全盘保持只读。**两套内核实际 ELF core 捕获通过；native 首轮黑屏，恢复面板控制主机并单独校正扫描起点后，用户确认 CPU 色块位置正常。原始内核配合手动校正的 GPU 色块和 Niri＋终端已由用户确认正常；两版旧自动方案失败；主动模块复位候选后续通过自动 CPU/GPU/Niri 及第二次冷 RAM CPU/控制台验收，仍未默认化。**
 
 | 实机检查 | 结果 | 证据与范围 |
