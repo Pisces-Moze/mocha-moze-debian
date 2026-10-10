@@ -12,6 +12,8 @@
 
 工程拆成五个仓库，本仓库是总入口，负责版本锁定、根文件系统、RAM 引导安装器、分区核对和全部文档，内核、U-Boot 与驱动的源码放在另外四个仓库。当前发布是 2026-10-07 的源码开发快照，不是所有外设都能用的成品安装盘；默认显示与原生显示实验是两条分开的路径。内核人类名称是 mocha moze linux 6.12.111-moze.1，`UTS_RELEASE` 与模块目录用 `6.12.111-moze.1`（空格只出现在项目名称里，不进入 uname），native 实验内核的 release 是 `6.12.111-moze.1-native`。`manifests/repos.lock.json` 里的 `new_brand_end_to_end_tested` 为 `false`：改名之后的完整安装还没有端到端实机验收过。2026-10-10 新 stable/native RAM 启动及 ELF core 已通过，native 首轮 CPU/GPU 色块黑屏；原始内核恢复 native5 控制归属并手动校正后，GPU 色块和候选 Mesa 下的 Niri＋终端已由用户确认正常；两版旧自动候选失败；主动模块复位候选后续通过有限 RAM 自动 CPU/GPU/Niri 及第二次冷 RAM CPU/控制台验收，完整桌面、触控、长期稳定性和默认安装仍待完成；详见 [RAM 实机诊断](docs/DIAGNOSTICS-2026-10-10.md)。完整安装路线见 [INSTALL.md](docs/INSTALL.md)，首次阅读请同时看 [状态表](docs/STATUS.md) 和 [回退](docs/RECOVERY.md)。
 
+继续的 native RAM 会话已确认 DSI-1、Tegra DRM、Nouveau 和 Niri 原生节点可以同时注册；候选 Mesa 仍缺少 DRI 驱动目录，Noctalia 只能暂时使用系统 Mesa 的 llvmpipe。这个缺口尚未写入默认系统，记录见 [native 桌面会话](docs/diagnostics/2026-10-10-native-desktop-session.json)。
+
 ## 硬件背景与适用机型
 
 | 项目 | 本机情况 |

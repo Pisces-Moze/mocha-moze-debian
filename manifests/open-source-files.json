@@ -107,7 +107,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "README.md",
-      "sha256": "2f34c014f022d381b63a95aa14e1ece0bf90b78d4e3c60a1e4105495d96aa448"
+      "sha256": "8af0db0c28e89530ec370362cbe4dfecf43208dc2234c9408e060896f6fbf7c0"
     },
     {
       "repository": "mocha-moze-debian",
@@ -127,7 +127,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-10.md",
-      "sha256": "40ff2c173859fedc03428805eaa475e943ec7c81d26d3c71641c2dc8ac4f38bf"
+      "sha256": "06a0e3048778cb471424f6759d328d0558edf1811b0bfdbd1122957ac4ff17a6"
     },
     {
       "repository": "mocha-moze-debian",
@@ -172,7 +172,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "7a73eb6adf8fd31388de090cb3c0216dde3e161dff86bf24d3ca5f3d919ce054"
+      "sha256": "45f3b1995d1b2f35053086585675dfef9245f38b4ed5db92a7a7eccca0bffbf6"
     },
     {
       "repository": "mocha-moze-debian",
@@ -978,6 +978,11 @@
       "repository": "mocha-moze-linux",
       "path": "moze/tools/build.sh",
       "sha256": "e7ca98792af71dda89ed6df2cb8dffdde0a97ca92d46a0718307ad5679107411"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/diagnostics/2026-10-10-native-desktop-session.json",
+      "sha256": "6411da53d339fab8b8bb0308cf937e8c21cfb43c9f7dfcdcdf645e1dc01da1c7"
     }
   ]
 }
