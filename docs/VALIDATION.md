@@ -16,3 +16,21 @@
 | GitHub上传 | 五个public仓库，远端main与本地提交逐一对照 | repos.lock.json锁定其余四仓库的配套版本 |
 
 不能把本表的静态/交叉编译验证称为“新版本已可一键刷入”。参考[安装指南](INSTALL.md)逐级RAM、APP、LNX验证；待解决的问题在[ISSUES.md](ISSUES.md)。
+
+## 2026-10-09 继续诊断
+
+- USB SSH 实际读取旧内核、四核、DRM、ALSA、蓝牙、电源和存储状态；未重启或写 APP/LNX。采集脚本只读取白名单字段，不收集设备身份、命令行、环境变量和任意 journal 内容。
+- 原有 Mesa / Nouveau / NVEA 的 32 轮 EGL fence 跨上下文等待和红/绿像素检查通过；未覆盖 Tegra 包装层，也未观察面板。
+- Mesa 官方 25.0.7 归档 SHA256 校验、补丁 hunk 检查与主机 C 回归完成：原始源码失败，候选源码的八种回调组合通过，转发参数检查通过。Debian 13 上完整 ARMhf 交叉构建已通过。
+- 同一原型机用独立 EGL probe 强制 Tegra 包装层，在 `eglWaitSyncKHR` 重现 SIGSEGV。GDB remote 的 PC/R3 为零，实际 Thumb BLX R3 指令、LR 的 `+0xd645bc` 与运行库 Build ID 均与历史 Niri 调用点吻合；未切换 native 内核或改变现有桌面。
+- 候选 Mesa 在同一原型机的独立数据目录运行，Nouveau 与 Tegra 包装层均通过 32 轮 EGL fence 和像素检查。实际加载的三类 Mesa 库均来自候选目录，Tegra 不再 SIGSEGV；原有桌面仍运行。native KMS、Niri、面板与 zero-copy 验收仍待完成。
+- `/proc/config.gz` 确认运行内核关闭 `CONFIG_ELF_CORE`。公开 stable/native 配置已启用并增加构建断言；两份配置的 `olddefconfig` 均保留三个 core 前提选项，stable 的 Image/uImage、模块和 DTB 完整构建通过。native 完整构建随后也通过；临时启动和实际 core 捕获仍待完成。
+- 新 Python 工具语法、Meson cross file 解析通过；板上 `--require-tegra` 正确拒绝 Nouveau 节点。
+
+具体状态、验证边界和下一步见 [诊断记录](DIAGNOSTICS-2026-10-09.md) 与 desktop 仓库的 [MESA-FENCE.md](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/MESA-FENCE.md)。
+
+## 2026-10-10 RAM 验收
+
+2026-10-10 RAM 实机验证：U-Boot USB、stable/native 启动与实际 ELF core 捕获通过。native 首轮 CPU/GPU 黑屏，原始驱动重建基线的 DRM 关闭再开启后可恢复图像；与此前成功内核只有 34 字节构建元数据不同，机器指令相同。保留 DSI-B 控制归属与延后分段，补上 Mocha runtime resume 的主动模块复位后，候选首次 CPU 色块、GPU DMA-BUF 色块及候选 Mesa 下的 Niri＋终端均由用户确认正常，没有手动校正或额外 DPMS 恢复。GPU 1801 帧／60.018 秒／30.01 FPS，180 秒 Niri 限时结束未见新 SIGSEGV/core；第二次有效冷启动的四色及恢复后的控制台也正常。两版旧自动候选的失败与一次过早 MMIO 访问干扰的检查仍保留。这只覆盖有限 RAM 验收；默认原生引导、Noctalia 全会话、触控、长期运行与改名后安装仍待完成，APP/LNX 和默认引导未改动。详见 [RAM 诊断](DIAGNOSTICS-2026-10-10.md)。
+
+捕获 core 时未挂载 eMMC，之后 Mesa/GPU 测试只以 ro,noload 挂载 APP/数据；原始 core、固件与编译镜像未发布。KMS 翻页成功与约 30 FPS 不代表面板输出成功。

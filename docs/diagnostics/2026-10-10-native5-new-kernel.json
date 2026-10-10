@@ -1,0 +1,21 @@
+{
+  "collection_date": "2026-10-10",
+  "scope": "same new kernel as the 40 ms candidate, previous native5 DTB without swap property",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "uimage_sha256": "55966616504024b2f9524069def49beedbbb3d0e55e934dd08f96b647083f6c0",
+  "dtb_sha256": "4654f8b681e5035e913a0bc9433d09e4bfe9f32d0751959647bdacce435456fc",
+  "live_fdt_sha256": "2688e089845c543eb80bf1c5491ee1e28b3f4ee60d257da7b7804f9983564cf0",
+  "swap_property_present": false,
+  "manual_start_register_writes": false,
+  "dsi_a_start": 768,
+  "dsi_b_start": 0,
+  "connector_enabled": true,
+  "physical_cpu_colors": "backlight lit but black screen",
+  "observed_by": "user",
+  "physical_pass": false,
+  "cpu_first_run_restored_framebuffer": true,
+  "cpu_second_run_completion": "not confirmed; SSH disconnected during requested cold restart",
+  "emmc_read_only": true,
+  "persistent_storage_write": false,
+  "conclusion": "automatic split writes alone cannot explain this black screen; retest previously visible original kernel/DTB pair before attributing a source regression"
+}
