@@ -1,0 +1,281 @@
+{
+  "date": "2026-10-12",
+  "device": "Xiaomi Mi Pad A0101 / Mocha",
+  "status": "Limited full-session native fencing verified; sustained multi-application acceptance pending",
+  "desktop_tools_commit": "dfc8c57a5a72cb2266435d16ee5b7f67dcfb96ee",
+  "drivers_commit": "52aff424f4841f512374941788c95bd9a8f067b4",
+  "default_boot_changed": false,
+  "partitions_flashed": false,
+  "kernel_selection": "temporary RAM loader",
+  "root_filesystem": "installed rw eMMC",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "niri": {
+    "upstream": "v26.04",
+    "patches": [
+      "0003",
+      "0009",
+      "0011"
+    ],
+    "sha256": "98436b29e1d9d258674e5db9caa8712e5495e6f710ddf86bc28c987fdac439c7",
+    "build_id": "c6870b8634d723a966f335c7ee9ca4c6cd02f419",
+    "fresh_release_build": true
+  },
+  "mesa": {
+    "upstream": "25.0.7",
+    "patches": [
+      "0004",
+      "0005",
+      "0006",
+      "0007",
+      "0008"
+    ],
+    "archive_sha256": "8452ab8e33b77af7f1534a937c6281c19b69dda49a3664227959182e88467811",
+    "imported_server_sync_still_cpu_wait": true
+  },
+  "regression_tests": {
+    "frame_parser": 5,
+    "isolated_service_workflow": 11,
+    "mock_boot": 3
+  },
+  "power_and_clock": {
+    "charger_input_limit_ua": 2000000,
+    "initial_battery_voltage_uv": 4135000,
+    "initial_gpu_temp_mc": 46000,
+    "observed_test_gpu_mhz": 852,
+    "later_observed_gpu_temp_mc": 66000,
+    "thermal_voltage_guards_enabled": true,
+    "policy_sha256": "742dfe2cfadf7da5dabba8c51447ca4c0bc483a270c1e8170d77347b583c818c",
+    "experimental_pmu_module_loaded": false
+  },
+  "corrected_profile": {
+    "baseline": {
+      "raw_result_directory": "mocha-profile-baseline.nHa5vs",
+      "frame_profile_enabled": true,
+      "gallium_sha256": "f27e845b7338eb0fc2f3184fa61ad94a074f1120730c9d6363dd662d180b9c64",
+      "candidate_gallium_egl_gbm_mapped": true,
+      "kms": {
+        "driver": "tegra",
+        "supports_fencing": true,
+        "legacy": false
+      },
+      "window_benchmark": {
+        "native_color_frames": 600,
+        "warmup": 120,
+        "seconds": 9.99,
+        "fps": 60.058,
+        "p50_ms": 16.657,
+        "p95_ms": 17.537,
+        "p99_ms": 18.699,
+        "over_25ms": 0
+      },
+      "frame_profile": {
+        "file": "profile-baseline.log",
+        "frames": 1121,
+        "cpu_wait_frames": 1121,
+        "percentile_method": "nearest-rank",
+        "elements_ms": {
+          "mean": 0.438,
+          "p50": 0.332,
+          "p95": 0.416,
+          "p99": 1.236,
+          "max": 85.552
+        },
+        "render_ms": {
+          "mean": 6.508,
+          "p50": 6.26,
+          "p95": 8.128,
+          "p99": 10.422,
+          "max": 27.586
+        },
+        "wait_ms": {
+          "mean": 2.972,
+          "p50": 3.79,
+          "p95": 4.454,
+          "p99": 4.718,
+          "max": 7.561
+        },
+        "queue_ms": {
+          "mean": 0.164,
+          "p50": 0.141,
+          "p95": 0.238,
+          "p99": 0.33,
+          "max": 3.073
+        },
+        "total_ms": {
+          "mean": 10.207,
+          "p50": 10.927,
+          "p95": 11.624,
+          "p99": 14.773,
+          "max": 95.364
+        },
+        "over_16_65ms": 6,
+        "startup_over_16_65ms": 2
+      },
+      "raw_evidence_sha256": {
+        "benchmark.log": "16a05be0ff54ce71584c54fe7180ae2a6a892b6a03115400821e7b28fc217397",
+        "capability.log": "fe5834e0ff4445e7075631088192c7f80ee9f3d685cf37f493a1e6463b88cd69",
+        "niri-maps.txt": "a0f49323b24a63d1ff158f32a91c9096f2df8ea04333516fabd90ce6cb22bb24",
+        "SHA256SUMS": "683ad84f36c939863d10290660b8c964066138bde139a0bb3afbe4c9253f469c",
+        "profile-baseline.log": "9e855960a3b370b507bcf77e93f8b042a8d942d21a1d451378ef815e010714ec"
+      }
+    },
+    "native_sync": {
+      "raw_result_directory": "mocha-profile-native-sync.Q1QZgH",
+      "frame_profile_enabled": true,
+      "gallium_sha256": "6d0a04e78e470a262b6b5ac8aa8697f0f0b19723e23af3b1606f766beb3ab712",
+      "candidate_gallium_egl_gbm_mapped": true,
+      "kms": {
+        "driver": "tegra",
+        "supports_fencing": true,
+        "legacy": false
+      },
+      "window_benchmark": {
+        "native_color_frames": 600,
+        "warmup": 120,
+        "seconds": 9.992,
+        "fps": 60.05,
+        "p50_ms": 16.629,
+        "p95_ms": 17.565,
+        "p99_ms": 19.338,
+        "over_25ms": 1
+      },
+      "frame_profile": {
+        "file": "profile-native-sync.log",
+        "frames": 1125,
+        "cpu_wait_frames": 0,
+        "percentile_method": "nearest-rank",
+        "elements_ms": {
+          "mean": 0.463,
+          "p50": 0.333,
+          "p95": 0.428,
+          "p99": 1.247,
+          "max": 111.895
+        },
+        "render_ms": {
+          "mean": 6.443,
+          "p50": 6.154,
+          "p95": 8.241,
+          "p99": 10.399,
+          "max": 27.635
+        },
+        "wait_ms": {
+          "mean": 0.0,
+          "p50": 0.0,
+          "p95": 0.0,
+          "p99": 0.0,
+          "max": 0.0
+        },
+        "queue_ms": {
+          "mean": 0.26,
+          "p50": 0.22,
+          "p95": 0.376,
+          "p99": 0.533,
+          "max": 5.356
+        },
+        "total_ms": {
+          "mean": 7.292,
+          "p50": 6.82,
+          "p95": 9.393,
+          "p99": 12.073,
+          "max": 120.567
+        },
+        "over_16_65ms": 3,
+        "startup_over_16_65ms": 2
+      },
+      "raw_evidence_sha256": {
+        "benchmark.log": "9775283f6dfbd5e70328ddde9e8d946401f3e8583471492403578ab879a0ea15",
+        "capability.log": "85025a05097ec4e9e5afb3558455e62a48625fe1c8c5f8a0f961d52d62709794",
+        "niri-maps.txt": "858652e3dc2af836f9412171442251c25897676fe9f55f40b275a81193a0af43",
+        "SHA256SUMS": "338e722a975f6fb46a47d75d5921433b439167cc57b264a646b06d8ac12c0318",
+        "profile-native-sync.log": "2c483fb7a7ac2daf1f1162cd208010e96f85b8133e8890e328272a8b627509df"
+      }
+    }
+  },
+  "without_per_frame_profile": {
+    "baseline": {
+      "raw_result_directory": "mocha-profile-baseline.9thkaC",
+      "frame_profile_enabled": false,
+      "gallium_sha256": "f27e845b7338eb0fc2f3184fa61ad94a074f1120730c9d6363dd662d180b9c64",
+      "candidate_gallium_egl_gbm_mapped": true,
+      "kms": {
+        "driver": "tegra",
+        "supports_fencing": true,
+        "legacy": false
+      },
+      "window_benchmark": {
+        "native_color_frames": 600,
+        "warmup": 120,
+        "seconds": 10.043,
+        "fps": 59.742,
+        "p50_ms": 16.648,
+        "p95_ms": 17.142,
+        "p99_ms": 21.345,
+        "over_25ms": 3
+      },
+      "raw_evidence_sha256": {
+        "benchmark.log": "b2bb5c9ef31a98409d7eba7f243d67bc993b4fdbaf9243f00992061ba392a11e",
+        "capability.log": "d11de35e9bbaf01e3d9faf6b2dd8377b0872802ed19898539b24c2382e7462ad",
+        "niri-maps.txt": "6a17e31f675cb949ea496f480054710f7898af0f43b3e37b4770805bc48dcca2",
+        "SHA256SUMS": "683ad84f36c939863d10290660b8c964066138bde139a0bb3afbe4c9253f469c"
+      }
+    },
+    "native_sync": {
+      "raw_result_directory": "mocha-profile-native-sync.vF57et",
+      "frame_profile_enabled": false,
+      "gallium_sha256": "6d0a04e78e470a262b6b5ac8aa8697f0f0b19723e23af3b1606f766beb3ab712",
+      "candidate_gallium_egl_gbm_mapped": true,
+      "kms": {
+        "driver": "tegra",
+        "supports_fencing": true,
+        "legacy": false
+      },
+      "window_benchmark": {
+        "native_color_frames": 600,
+        "warmup": 120,
+        "seconds": 10.042,
+        "fps": 59.747,
+        "p50_ms": 16.65,
+        "p95_ms": 17.671,
+        "p99_ms": 19.917,
+        "over_25ms": 3
+      },
+      "raw_evidence_sha256": {
+        "benchmark.log": "e1d0928bf762378651ca7421134e5f58a9a4f5ffeede2e1f9c0be52de7bef6c1",
+        "capability.log": "cec982a5b2c4adfa12ff6908e46cb3dba148b891c7c81cacd5444d6055ee1d34",
+        "niri-maps.txt": "389acb3651a721d7a43a28cc6d37c3ba6f6283aedd4e11710a522c8fbc1e4bdc",
+        "SHA256SUMS": "338e722a975f6fb46a47d75d5921433b439167cc57b264a646b06d8ac12c0318"
+      }
+    }
+  },
+  "native_egl_probe": {
+    "exports": 80,
+    "imports": 80,
+    "pending_exports": 80,
+    "export_mean_ms": 0.059,
+    "fd_baseline": 10,
+    "fd_final": 10,
+    "pixel_after_wait": [
+      0,
+      255,
+      0,
+      255
+    ],
+    "exit_code": 0
+  },
+  "new_atomic_probe": {
+    "status": "Rejected before scanout: native console has no active CRTC",
+    "exit_code": 1,
+    "desktop_restored": true,
+    "new_120_frame_pass": false
+  },
+  "user_observation": "Native-sync desktop, animation and color output reported normal",
+  "service_restored_after_each_test": true,
+  "limitations": [
+    "Single device, limited consecutive workloads",
+    "Per-frame profile overhead differs from window benchmark results",
+    "Initial renamed compositor trials at automatic clocks excluded from controlled comparison",
+    "New atomic scanout requires an active native console",
+    "Sustained Firefox/video/scroll/touch stress, DPMS/power-cycle and PMU tuning unverified",
+    "Xwayland-satellite absent; X11 applications not covered"
+  ]
+}

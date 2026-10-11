@@ -1,6 +1,6 @@
 # 当前状态：2026-10-12 接续
 
-原型机重新核对为默认旧内核/simpledrm，APP 预存 native 内核与 DTB 哈希匹配交接。验证脚本的环境混用、旧内核误测、服务恢复和不完整帧统计问题已修复；回归通过，三个探针已在独立 Docker 容器交叉编译。新 Niri/Smithay 完整构建和实机验收仍待完成，没有更改默认引导。见 [本轮记录](DIAGNOSTICS-2026-10-12.md)。
+本轮开始时是默认旧内核/simpledrm，之后通过已验证 RAM loader 临时选择 APP 的 native 内核。全新 Niri/Smithay、Mesa native-sync 和探针构建完成；2 A 墙充下的有限 Niri/Noctalia 同步会话通过，1125 帧全部无需 Niri CPU wait，实际库映射与约 60 FPS 窗口对照已核对。修复测试程序名导致 GPU 策略退回 auto 的问题，11 项会话工具回归通过；正常服务已恢复，默认引导没有更改。PMU 实验模块、长期多应用及其他外设任务仍未完成。见 [本轮记录](DIAGNOSTICS-2026-10-12.md)。
 
 # 历史状态：2026-10-11 远端交接
 

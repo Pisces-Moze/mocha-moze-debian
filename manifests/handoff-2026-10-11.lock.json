@@ -26,14 +26,14 @@
     {
       "name": "mocha-moze-desktop",
       "url": "https://github.com/Pisces-Moze/mocha-moze-desktop.git",
-      "commit": "583042e5e50afa2d850455acccc5957dfb2ea834"
+      "commit": "dfc8c57a5a72cb2266435d16ee5b7f67dcfb96ee"
     }
   ],
   "purpose": "remote-development-handoff",
   "includes_draft_candidates": true,
   "notes": [
     "Historical installation lock remains unchanged.",
-    "New Smithay/native-sync full compositor hardware acceptance is pending.",
+    "New Smithay/native-sync limited full-session profiling passed on 2026-10-12; sustained multi-application acceptance is pending.",
     "Default boot is unchanged; stock Nouveau is the tested baseline."
   ]
 }

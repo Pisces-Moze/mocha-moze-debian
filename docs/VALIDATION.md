@@ -1,6 +1,6 @@
 # 本轮接续验证
 
-2026-10-12：帧统计回归 5 项、Linux 隔离服务流程回归 8 项、模拟 Fastboot 引导流程 3 项通过。旧内核上的真实前置检查拒绝运行，原桌面 PID 未变；三个探针在独立 Docker 容器完成 ARMhf 交叉编译。新 Niri/Smithay 完整构建和实机同步验收仍待完成，见 [本轮记录](DIAGNOSTICS-2026-10-12.md)。
+2026-10-12：帧统计回归 5 项、Linux 隔离服务流程回归 11 项、模拟 Fastboot 引导流程 3 项通过。新 Niri/Smithay、Mesa native-sync 和三个 ARMhf 探针完整构建并核对哈希；旧内核前置检查拒绝运行且原桌面 PID 未变。2 A 墙充下有限原生 Niri/Noctalia 会话通过：1125 帧均无 Niri CPU wait、capability/真实加载库/600 帧窗口/服务恢复取证完成，另做关闭逐帧插桩对照及 80 轮独立 EGL native-fence 检查。新 KMS 探针本轮因无活动控制台 CRTC 拒绝运行，未报告新的 scanout pass。默认引导没有更改，长期多应用和 PMU 候选仍待验证，见 [本轮记录](DIAGNOSTICS-2026-10-12.md)。
 
 # 历史整理与发布的验证范围
 

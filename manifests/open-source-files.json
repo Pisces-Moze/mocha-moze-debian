@@ -132,7 +132,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-12.md",
-      "sha256": "e71f8e83d3aace7a19b92336524e76166e76e4febb9a52e426040bb3228b0569"
+      "sha256": "746c545b7d4604ecb6f4f62bee1785abe4b05e4927e8ea2787e3998ded545e79"
     },
     {
       "repository": "mocha-moze-debian",
@@ -157,7 +157,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/ISSUES.md",
-      "sha256": "3b7f1cd018a35cb0bb7553f1cad79706908940b0efd9b29b269da1508659bbc6"
+      "sha256": "3eb644552f87cdab6eba0c286f9645da3f808297a0887bedac181f1526530b20"
     },
     {
       "repository": "mocha-moze-debian",
@@ -182,17 +182,17 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "e032ab4f31d59b9fdfd94303f667c84519cf2dcfb3c91b13826567c2fda118fe"
+      "sha256": "e571765776663cb614ae89d402d2bdbdd0fe6c4776443b9d4366745b89d94cbb"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/TODO.md",
-      "sha256": "74e62d8b34982ef576f7ee64de8b1c60dfa9588b3a41d7916d9193225517a4ff"
+      "sha256": "a2041e4b766a06451aeb60fce18b9a5a253d7844ca6fb2e2d5d4bd985ae8ae0f"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "1c6d0ee0480d0d4e44052d0d96bef90ed4a68d6a5e3fc31b0bf3d724c42d001b"
+      "sha256": "8db9deb00c90adfba185220fe29fe624f2ec802464064413259d81075f19049d"
     },
     {
       "repository": "mocha-moze-debian",
@@ -341,8 +341,13 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "docs/diagnostics/2026-10-12-native-fencing.json",
+      "sha256": "bf38092a5c0f68a1b24fff8b9574c8f685e42bcfba0832347e2266adec57b320"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "manifests/handoff-2026-10-11.lock.json",
-      "sha256": "df946e7079ac65b862c99a36ead929e8c6af7a12fa54aa0ecae3267bef16fd9a"
+      "sha256": "f53ad8dc38cc716efa049c8020e055be31a3bef744bf204e7df9d6bdd2e70ddb"
     },
     {
       "repository": "mocha-moze-debian",
@@ -522,7 +527,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "docs/NATIVE-PERFORMANCE.md",
-      "sha256": "44698bd6f880550bdd81b451f839c18c6cc942401fd6c184a667004e63226c57"
+      "sha256": "ac8c2c8995aa3afc8b439d2b2d1da304d18c4b59b29e3f4f087d09ba9b02e7d5"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -597,12 +602,12 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "performance/native-frame-timing.c",
-      "sha256": "24c56c72b019874c1bc61aa5159aef4f2cc717397164c01130bfa637be3e371a"
+      "sha256": "8a7cd8cc06aab2d1768ab00660836c32fc0ce98cc17e237d2e0f9a568978f82c"
     },
     {
       "repository": "mocha-moze-desktop",
       "path": "performance/profile-installed-prototype.sh",
-      "sha256": "b6dfb2fb88809bb1a8d2395c5d77f883e07d4c1851452dc3788dfe71eaad9d6f"
+      "sha256": "f2ccdc59baae9c7856e24a098d141dfa40879f0added6450831f2bf90ee50ff3"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -682,7 +687,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/test-installed-profile.py",
-      "sha256": "794c92361935e528b5d53973b484579dbf81395e26766f5cfb1f70c44f522756"
+      "sha256": "77d2a855e00cdc1d3f0aa416713180e920241768e735854943342020fabb8dd6"
     },
     {
       "repository": "mocha-moze-desktop",

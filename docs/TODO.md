@@ -9,8 +9,8 @@
 - [x] 墙充 852 MHz 受控窗口测试约 60 FPS；记录 P95/P99 和观测开销。
 - [x] 独立异步输出 sync_file + KMS IN_FENCE_FD 测试通过；没有 CPU 像素复制。
 - [x] 修复完整会话 profile 的库环境、服务恢复和证据完整性检查；隔离回归通过，新 Docker 环境的 ARMhf 探针交叉编译完成。见 [10 月 12 日接续](DIAGNOSTICS-2026-10-12.md)。
-- [ ] 完成 0009 Smithay 新构建；核对二进制 marker/哈希，不采用截断或旧构建缓存。
-- [ ] 完整 Niri 验证 `supports_fencing=true`、`needs_sync=false`、wait_ms=0；对照帧时间并核对实际加载库。
+- [x] 完成 0009 Smithay 新构建；固定 vendor 的全新 release 编译完成，ARM ELF、两种 marker、Build ID 和三端 SHA256 已核对；原型机动态库依赖与 `--version` 检查通过。完整桌面验收仍在下一项。
+- [x] 有限完整 Niri/Noctalia 会话验证 `supports_fencing=true`、`needs_sync=false`、wait_ms=0；1125 帧无 CPU wait，对照 1121 帧均有等待。实际 Gallium/EGL/GBM 映射、600 帧窗口基准和正常服务恢复已核对；不能替代下一项长期/多应用验收。
 - [ ] 对多窗口、Noctalia 动画、Firefox 视频/滚动、触控拖动做稳定性与 P95/P99 对照。
 - [ ] 定位间歇黑屏/重启/SSH 失联，区分供电、温度、GPU hang、显示恢复与文件系统因素；不再盲目重复热卸载 Nouveau。
 - [ ] 用户空间充电/热策略完整冷启动、DPMS、充电器插拔与电池状态验证，随后才考虑默认原生引导。
