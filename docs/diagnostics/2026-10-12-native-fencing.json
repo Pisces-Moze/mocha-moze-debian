@@ -269,6 +269,7 @@
     "new_120_frame_pass": false
   },
   "user_observation": "Native-sync desktop, animation and color output reported normal",
+  "user_observed_restored_desktop_normal": true,
   "service_restored_after_each_test": true,
   "limitations": [
     "Single device, limited consecutive workloads",

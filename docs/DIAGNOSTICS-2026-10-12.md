@@ -71,3 +71,5 @@ desktop `dfc8c57a5a72cb2266435d16ee5b7f67dcfb96ee` 增加关闭逐帧 profile �
 本轮新 KMS 探针在停止桌面后发现 `native console has no active CRTC`，前置检查返回失败并恢复桌面，没有产生新的 120 帧 pass。原先交接中的 KMS 结果保留为历史证据；新探针本轮的完整 scanout/控制台恢复验收需在活动原生控制台条件下另测，不能用编译或上述 Niri 会话代替该项。
 
 构建标识、四组原始记录的哈希、真实候选库与统计汇总见 [本轮机器可读记录](diagnostics/2026-10-12-native-fencing.json)。原始 maps/journal、归档和二进制留在独立测试目录，未上传公开仓库。
+
+所有本轮测试结束后，用户再次确认恢复的 Noctalia 桌面正常；SSH、DSI 和频率策略仍在线，墙充输入仍为 2 A，电量读数 86%，净充电电流约 266 mA。当前仍是临时选择的 native 内核，重启会回到原默认引导。

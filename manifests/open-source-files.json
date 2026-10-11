@@ -132,7 +132,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-12.md",
-      "sha256": "746c545b7d4604ecb6f4f62bee1785abe4b05e4927e8ea2787e3998ded545e79"
+      "sha256": "c113f946b563f9bfa2103c58b85ab9d44908f6b3c98b034509a9d4e9c6c01652"
     },
     {
       "repository": "mocha-moze-debian",
@@ -342,7 +342,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/diagnostics/2026-10-12-native-fencing.json",
-      "sha256": "bf38092a5c0f68a1b24fff8b9574c8f685e42bcfba0832347e2266adec57b320"
+      "sha256": "796ab0abbde6cb40a4dda3efbdef935800578eaa4e9d0127eff88090bb5fe6cc"
     },
     {
       "repository": "mocha-moze-debian",
