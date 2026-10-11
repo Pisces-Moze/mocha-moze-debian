@@ -1,0 +1,20 @@
+patching file src/gallium/drivers/tegra/tegra_context.c
+patching file src/gallium/drivers/tegra/tegra_screen.c
+patching file src/gallium/drivers/tegra/tegra_context.c
+patching file src/gallium/drivers/tegra/tegra_screen.c
+patching file src/gallium/drivers/nouveau/nvc0/nvc0_miptree.c
+patching file src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+patching file src/gallium/drivers/nouveau/nouveau_buffer.c
+MESA_OPTIONAL_FENCE_CALLBACKS=PASS (8 combinations)
+MESA_TEGRA_RESET_AND_SCISSOR=PASS (4 callback combinations)
+MESA_TEGRA_MODIFIER_ALIASES=PASS (6 round trips, 4084 other layouts preserved)
+patching file src/gallium/drivers/nouveau/nouveau_fence.c
+patching file src/gallium/drivers/nouveau/nouveau_fence.h
+patching file src/gallium/drivers/nouveau/nouveau_screen.c
+patching file src/gallium/drivers/nouveau/nvc0/nvc0_context.c
+patching file src/gallium/drivers/nouveau/nvc0/nvc0_screen.c
+patching file src/backend/drm/compositor/mod.rs
+patching file src/backend/drm/compositor/mod.rs
+patching file src/backend/tty.rs
+patching file src/render/gl_shared_context.cpp
+PUBLIC_SOURCE_CHECKS_PASSED

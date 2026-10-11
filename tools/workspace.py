@@ -2,8 +2,10 @@
 """Fetch exactly the commits used by this multi-repository snapshot."""
 import argparse,json,subprocess
 from pathlib import Path
-p=argparse.ArgumentParser();p.add_argument('action',choices=['fetch','status']);p.add_argument('--dest',type=Path,required=True);a=p.parse_args()
-lock=json.loads((Path(__file__).resolve().parents[1]/'manifests/repos.lock.json').read_text())
+p=argparse.ArgumentParser();p.add_argument('action',choices=['fetch','status']);p.add_argument('--dest',type=Path,required=True)
+p.add_argument('--manifest',type=Path,default=Path(__file__).resolve().parents[1]/'manifests/repos.lock.json',help='Explicit snapshot lock; defaults to the installation baseline')
+a=p.parse_args()
+lock=json.loads(a.manifest.read_text(encoding='utf-8'))
 a.dest.mkdir(parents=True,exist_ok=True)
 for r in lock['repositories']:
  d=a.dest/r['name']

@@ -4,6 +4,10 @@
 
 [![License: GPL-2.0-only](https://img.shields.io/badge/License-GPL--2.0--only-blue.svg)](LICENSE)
 
+## 远端继续开发（2026-10-11）
+
+设备已移至远端；最新源码候选、已测约 60 FPS 的条件和未完成同步修复见 [接续说明](docs/HANDOFF-2026-10-11.md)、[任务清单](docs/TODO.md) 和 `manifests/handoff-2026-10-11.lock.json`。这组草稿 PR 不替换下面的安装基线，默认原生引导及新同步候选仍待验收。
+
 ## 简介
 
 项目源码、参数和第三方固件的边界见 [开源审计](docs/OPEN-SOURCE.md)，各组件配置入口见 [参数索引](docs/PARAMETERS.md)。项目自行编写或修改的驱动、引导与运行配置均公开；专有微码及 NVIDIA CUDA 库不冒称开源。
