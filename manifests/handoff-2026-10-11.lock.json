@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "snapshot_date": "2026-10-11",
-  "publication_date": "2026-10-11",
+  "publication_date": "2026-10-12",
   "kernel_name": "mocha moze linux 6.12.111-moze.1",
   "kernelrelease": "6.12.111-moze.1",
   "native_kernelrelease": "6.12.111-moze.1-native",
@@ -26,7 +26,7 @@
     {
       "name": "mocha-moze-desktop",
       "url": "https://github.com/Pisces-Moze/mocha-moze-desktop.git",
-      "commit": "e1e6ddb5e552892a0cf9c978a7fd8094a79b7e9b"
+      "commit": "583042e5e50afa2d850455acccc5957dfb2ea834"
     }
   ],
   "purpose": "remote-development-handoff",

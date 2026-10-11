@@ -1,5 +1,9 @@
 # 已遇到的问题与实现思路
 
+## 完整会话性能验收的环境与恢复问题（2026-10-12）
+
+原 prototype profile 的 `native-sync` 只为合成器选择新 Mesa，窗口基准仍使用 WC 库，导致两组数据条件不一致；固定 runtime override 在前置检查失败时也会被删除并重启桌面。现在共用库环境，先验证 native 内核/DSI/候选文件，再用锁和独占配置临时切换，按 MainPID 和对应 socket 取证；失败及可捕获的终止信号后恢复服务。帧日志缺失字段不再当作无需同步，KMS 探针的部分帧/零 pending exports 不再报告 pass。隔离回归通过，新合成器实机结果仍待验证；见 [接续记录](DIAGNOSTICS-2026-10-12.md)。
+
 ## 一核 → 四核
 默认主线安全复位注册接口与原厂 TLK 不匹配，CPU reset vector 被安全世界锁定。参考官方 reset/platsmp/tegra_sm_interface 后，对 `nvidia,mocha` 且显式 opt-in 的设备调用 SMC `0x82000001` 设置分发器，再使用 Tegra PMC/flow-controller 的 SMP 操作。四核冷启动和负载通过；这不意味着 CPU DVFS、热管理或 suspend 完成。
 

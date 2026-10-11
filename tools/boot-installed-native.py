@@ -13,6 +13,8 @@ p.add_argument('--factory-serial', required=True)
 p.add_argument('--uboot-serial', required=True)
 p.add_argument('--loader', type=Path, required=True)
 p.add_argument('--loader-sha256', required=True)
+p.add_argument('--loader-profile', choices=('charger-ready', 'ram-diagnostics'), default='charger-ready',
+               help='Require the charger-ready loader, or the separately verified RAM diagnostics environment')
 p.add_argument('--diagnostic', action='store_true')
 p.add_argument('--resume-loader', action='store_true')
 p.add_argument('--log', type=Path, default=Path('artifacts/native-boot.log'))
@@ -51,11 +53,26 @@ for _ in range(20):
     if serial in subprocess.check_output([a.fastboot, 'devices'], timeout=8).decode():
         break
     time.sleep(1)
-if 'U-Boot' not in run(['getvar', 'version-bootloader']):
+version = run(['getvar', 'version-bootloader'])
+if 'U-Boot' not in version or '2026.07' not in version:
     raise RuntimeError('expected RAM U-Boot')
-command('printenv charger_ready')
-if 'charger_ready=1' not in run(['oem', 'console']):
-    raise RuntimeError('expected verified prototype RAM loader with charger_ready=1')
+if 'mocha' not in run(['getvar', 'product']).lower():
+    raise RuntimeError('expected Mocha RAM U-Boot product')
+if a.loader_profile == 'charger-ready':
+    command('printenv charger_ready')
+    if 'charger_ready=1' not in run(['oem', 'console']):
+        raise RuntimeError('expected verified prototype RAM loader with charger_ready=1')
+else:
+    # The project's separately tested RAM profile never writes its environment.
+    command('printenv bootcmd')
+    environment = run(['oem', 'console'])
+    if ('bootcmd=echo Mocha RAM USB diagnostics' not in environment
+            or 'fastboot usb 0' not in environment):
+        raise RuntimeError('expected verified RAM diagnostics boot environment')
+command('mmc dev 0')
+command('setenv verify yes')
+command('setenv fdt_high ffffffff')
+command('setenv initrd_high ffffffff')
 for address, file in [('88000000', '/boot/initramfs.cpio.gz'),
                       ('80007fc0', '/boot/uImage-native-perf'),
                       ('8c000000', '/boot/mocha-native-perf.dtb')]:

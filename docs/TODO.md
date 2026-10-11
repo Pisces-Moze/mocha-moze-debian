@@ -8,6 +8,7 @@
 - [x] Mesa 空 fence/reset 回调、旋转 scissor、modifier alias、GK20A WC 图片/堆/上传缓冲源码及回归工具已整理。
 - [x] 墙充 852 MHz 受控窗口测试约 60 FPS；记录 P95/P99 和观测开销。
 - [x] 独立异步输出 sync_file + KMS IN_FENCE_FD 测试通过；没有 CPU 像素复制。
+- [x] 修复完整会话 profile 的库环境、服务恢复和证据完整性检查；隔离回归通过，新 Docker 环境的 ARMhf 探针交叉编译完成。见 [10 月 12 日接续](DIAGNOSTICS-2026-10-12.md)。
 - [ ] 完成 0009 Smithay 新构建；核对二进制 marker/哈希，不采用截断或旧构建缓存。
 - [ ] 完整 Niri 验证 `supports_fencing=true`、`needs_sync=false`、wait_ms=0；对照帧时间并核对实际加载库。
 - [ ] 对多窗口、Noctalia 动画、Firefox 视频/滚动、触控拖动做稳定性与 P95/P99 对照。
