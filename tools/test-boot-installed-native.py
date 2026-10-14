@@ -12,7 +12,7 @@ SCRIPT = Path(__file__).with_name('boot-installed-native.py')
 
 
 class BootTest(unittest.TestCase):
-    def exercise(self, profile=None, environment=None, product='mocha', version='U-Boot 2026.07'):
+    def exercise(self, profile=None, environment=None, product='mocha', version='U-Boot 2026.07', runtime=False):
         commands = []
         last_command = ''
 
@@ -42,6 +42,8 @@ class BootTest(unittest.TestCase):
                     '--log', str(Path(directory) / 'boot.log')]
             if profile:
                 argv += ['--loader-profile', profile]
+            if runtime:
+                argv += ['--runtime-candidate']
             with patch.object(sys, 'argv', argv), patch('subprocess.run', side_effect=run), \
                     patch('subprocess.check_output', return_value=b'factory-test\tfastboot\nram-test\tfastboot\n'), \
                     patch('builtins.print'):
@@ -79,6 +81,25 @@ class BootTest(unittest.TestCase):
                 self.assertFalse(passed)
                 self.assertFalse(any('ext4load' in ' '.join(args) for args in commands))
                 self.assertFalse(any('bootm' in ' '.join(args) for args in commands))
+
+    def test_runtime_candidate_uses_uda_and_masks_matched_hardware(self):
+        commands, passed = self.exercise(runtime=True)
+        self.assertTrue(passed)
+        self.assertIn(['oem', 'run:ext4load mmc 0#UDA 80007fc0 /moze-rt/uImage'], commands)
+        self.assertIn(['oem', 'run:ext4load mmc 0#UDA 8c000000 /moze-rt/mocha.dtb'], commands)
+        self.assertIn(['oem', 'run:ext4load mmc 0#APP 88000000 /boot/initramfs.cpio.gz'], commands)
+        self.assertIn(['oem', 'run:setenv bootargs ${bootargs} cpuidle.off=1'], commands)
+        for unit in ('user@1000.service', 'mocha-native-gpu-policy.service', 'mocha-desktop-hardware.service'):
+            self.assertIn(['oem', 'run:setenv m systemd.mask='+unit], commands)
+        for args in commands:
+            self.assertNotIn(args[0], ('flash', 'erase'))
+            if args[0]=='oem' and args[1].startswith('run:'):
+                self.assertLessEqual(len(('oem '+args[1]).encode()),64)
+                self.assertNotIn('saveenv',args[1])
+        normal, passed = self.exercise()
+        self.assertTrue(passed)
+        self.assertIn(['oem', 'run:ext4load mmc 0#APP 80007fc0 /boot/uImage-native-perf'],normal)
+        self.assertFalse(any('cpuidle.off' in ' '.join(args) for args in normal))
 
 
 if __name__ == '__main__':

@@ -16,6 +16,8 @@ p.add_argument('--loader-sha256', required=True)
 p.add_argument('--loader-profile', choices=('charger-ready', 'ram-diagnostics'), default='charger-ready',
                help='Require the charger-ready loader, or the separately verified RAM diagnostics environment')
 p.add_argument('--diagnostic', action='store_true')
+p.add_argument('--runtime-candidate', action='store_true',
+               help='Load /moze-rt/uImage and mocha.dtb from UDA, mask the desktop and disable CPU idle for the first DVFS trial')
 p.add_argument('--resume-loader', action='store_true')
 p.add_argument('--log', type=Path, default=Path('artifacts/native-boot.log'))
 a = p.parse_args()
@@ -73,10 +75,13 @@ command('mmc dev 0')
 command('setenv verify yes')
 command('setenv fdt_high ffffffff')
 command('setenv initrd_high ffffffff')
-for address, file in [('88000000', '/boot/initramfs.cpio.gz'),
-                      ('80007fc0', '/boot/uImage-native-perf'),
-                      ('8c000000', '/boot/mocha-native-perf.dtb')]:
-    command('ext4load mmc 0#APP ' + address + ' ' + file)
+files=[('88000000','APP','/boot/initramfs.cpio.gz')]
+if a.runtime_candidate:
+    files += [('80007fc0','UDA','/moze-rt/uImage'),('8c000000','UDA','/moze-rt/mocha.dtb')]
+else:
+    files += [('80007fc0','APP','/boot/uImage-native-perf'),('8c000000','APP','/boot/mocha-native-perf.dtb')]
+for address, partition, file in files:
+    command('ext4load mmc 0#' + partition + ' ' + address + ' ' + file)
     if 'bytes read' not in run(['oem', 'console']):
         raise RuntimeError('eMMC file was not loaded: ' + file)
     if address == '88000000':
@@ -90,8 +95,12 @@ for argument in ('root=/dev/mmcblk0p26', 'rootfstype=ext4', 'rootwait', 'rw',
     command('setenv bootargs ${bootargs} ' + argument)
 command('setenv m systemd.unit=multi-user.target')
 command('setenv bootargs ${bootargs} ${m}')
-if a.diagnostic:
-    for unit in ('user@1000.service', 'mocha-native-gpu-policy.service'):
+if a.runtime_candidate:
+    command('setenv bootargs ${bootargs} cpuidle.off=1')
+if a.diagnostic or a.runtime_candidate:
+    units=['user@1000.service', 'mocha-native-gpu-policy.service']
+    if a.runtime_candidate: units.append('mocha-desktop-hardware.service')
+    for unit in units:
         command('setenv m systemd.mask=' + unit)
         command('setenv bootargs ${bootargs} ${m}')
 command('bootm 80007fc0 88000000:${rdsize} 8c000000', disconnect=True)
