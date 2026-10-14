@@ -107,7 +107,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "README.md",
-      "sha256": "07ea8a26178c31c0a7884701c770e33476e614cd4dc1b4aa81450ac6a719b17b"
+      "sha256": "274d3a2f2a2e479a732da6115defc9ebf34da57130ffe7b22a2d3b6d00236091"
     },
     {
       "repository": "mocha-moze-debian",
@@ -142,7 +142,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-15.md",
-      "sha256": "7dd4d070a7c874bec4696b1c6e0501dcf2bb1ada514d5538bff30c1d2bb9b558"
+      "sha256": "141619a2274aec937fa1404dc19e9ef30979f17f1d66a84fed4dcdefc0cad8f2"
     },
     {
       "repository": "mocha-moze-debian",
@@ -192,17 +192,17 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "0f2b28a574470d0bf938efb4d478733cbb71fed0237c334a292527e5832dd2f0"
+      "sha256": "5aa47517a62e08e4ed8203a0007f28d2a19b01cd377d932f83034abe463f4824"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/TODO.md",
-      "sha256": "db94676fa70cb308e62c8cddc4ddfbf3ba916361a477ed180e27944849d37712"
+      "sha256": "ea46b0ab85b9ad232a41bc264044acb4de9ab7a43f87b3c6435a38af7cbc3ea1"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "5fed5e7aea802ea2b117993f57c1f2ea0b00dc6a1e4b8aa095bfaa44aabc09c8"
+      "sha256": "9f35306b09d41179c1b6d16cfe344cedbc0110f9c575be7cf8c9916a0bb8f18f"
     },
     {
       "repository": "mocha-moze-debian",
@@ -356,6 +356,11 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "docs/diagnostics/2026-10-15-dfll-alignment.json",
+      "sha256": "9d9154b844d3e998cffcaa557018e142e826045cc8bb8c6b514e990f30f57793"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "manifests/handoff-2026-10-11.lock.json",
       "sha256": "f53ad8dc38cc716efa049c8020e055be31a3bef744bf204e7df9d6bdd2e70ddb"
     },
@@ -367,7 +372,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "manifests/handoff-2026-10-15.lock.json",
-      "sha256": "691d7da998437aa25fc599e7b40fa9e00ef41dfe5236c821bb0f7c5fb250f0df"
+      "sha256": "aee943e542d3f543688ce152bab78caf3843d53c505b02b8ad45f20e94c18be0"
     },
     {
       "repository": "mocha-moze-debian",
@@ -1257,12 +1262,12 @@
     {
       "repository": "mocha-moze-drivers",
       "path": "runtime/README.md",
-      "sha256": "ecaa1b79820d7f90c0c4cc30eb572508a9cb3a41cca1af5f96d9345dc263b17b"
+      "sha256": "210886921beb80f85b9eb682011eb2a46056ce2d46b248177aa0e2c94e36b36b"
     },
     {
       "repository": "mocha-moze-drivers",
       "path": "runtime/mocha-runtime-policy.py",
-      "sha256": "6fe5897922a7941f93d413719301d06d143aa64200db4afa09a82fa5cf93d82e"
+      "sha256": "415c000a91548b083834e25074c021eb718dc42be163b03d33bb9ccc995aac28"
     },
     {
       "repository": "mocha-moze-drivers",
@@ -1272,7 +1277,7 @@
     {
       "repository": "mocha-moze-drivers",
       "path": "runtime/test-runtime-policy.py",
-      "sha256": "527e5ca46de20465d7a7ae760710b97ca8a4724f8ffce08e27cd3fedf6a45f04"
+      "sha256": "486d249c6f1497b89ae40ec093fbb0dc02783d70faafefc4bb1503b0359a22fe"
     },
     {
       "repository": "mocha-moze-drivers",
