@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "audit_date": "2026-10-12",
+  "audit_date": "2026-10-14",
   "scope": "Published project source, configuration and documentation; upstream Linux is tracked in full",
   "kernel_overlay_matches_full_tree": true,
   "files": [
@@ -107,7 +107,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "README.md",
-      "sha256": "d552aea6712043867bfd788b7ccd4f81bb2972e21aa178c87a4e9132f1f1123b"
+      "sha256": "cd1896b92ada5a7ce20b7bad66c5add905c93dcceec440010ba9899f70735723"
     },
     {
       "repository": "mocha-moze-debian",
@@ -136,6 +136,11 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "docs/DIAGNOSTICS-2026-10-14.md",
+      "sha256": "772071004276427903bc543e5b8be60e74ea6e52471558535cd5135bb5f26928"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "docs/FILE-ORGANIZATION.md",
       "sha256": "b5e68bb89f8dbde928154dda13b981f8ea48bd73e6627c7bb4547fddc88bc691"
     },
@@ -157,7 +162,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/ISSUES.md",
-      "sha256": "3eb644552f87cdab6eba0c286f9645da3f808297a0887bedac181f1526530b20"
+      "sha256": "2d32fada4e999517be6a198c93334ec2094bb6d5558b177098fe171b531bc8ab"
     },
     {
       "repository": "mocha-moze-debian",
@@ -182,17 +187,17 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "e571765776663cb614ae89d402d2bdbdd0fe6c4776443b9d4366745b89d94cbb"
+      "sha256": "0abdc617c23786197544092e6fcd59640a5787f4daf3d87adf43083a47d9d1b4"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/TODO.md",
-      "sha256": "a2041e4b766a06451aeb60fce18b9a5a253d7844ca6fb2e2d5d4bd985ae8ae0f"
+      "sha256": "91828f70478b3321bf443192a1684fa0c31782476b70532a60042e3c86f5bc10"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "8db9deb00c90adfba185220fe29fe624f2ec802464064413259d81075f19049d"
+      "sha256": "9c70c10a23e45d6b0eeb782807e24a93d22c8490e0ed41d790963bb6f4d1ffaa"
     },
     {
       "repository": "mocha-moze-debian",
@@ -351,8 +356,13 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "manifests/handoff-2026-10-14.lock.json",
+      "sha256": "20ab67b52e0ac0d44a80c3940b111f3da3e695a94898158aad18de39f7436017"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "manifests/repos.lock.json",
-      "sha256": "8700d97fd85a31277d906be0c050b121fe06eea43da5aabfbdab71c850bd8a52"
+      "sha256": "e429b5ce3a40167f4bbe5a089e3eebe7c1ac9289b040562f048eceeeb2ce09e2"
     },
     {
       "repository": "mocha-moze-debian",
@@ -382,7 +392,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "tools/boot-installed-native.py",
-      "sha256": "7f86afc541a17012aeaec2bebbdb9178f2e2d5076f4588d998f51fa81c614993"
+      "sha256": "7012e8f7c65272068c1e33b32039850eb6de2a75115200aebe64a54ea7cea8ce"
     },
     {
       "repository": "mocha-moze-debian",
@@ -398,6 +408,11 @@
       "repository": "mocha-moze-debian",
       "path": "tools/collect-status.py",
       "sha256": "c1039d3e8a8e1b75b78e1dc276db8e979d16e94552cd93e09818aa4973134c86"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/install-native-default.py",
+      "sha256": "b627cfe2773e98ad639a3475f9f0668cd2ced1f3d5ddad516ee5c0d1213a4ccb"
     },
     {
       "repository": "mocha-moze-debian",
@@ -417,7 +432,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "tools/test-boot-installed-native.py",
-      "sha256": "d628423e2992b55d3607ef11d2b8297dc0cfc604237ed35dcf2274c29018d3e9"
+      "sha256": "59b12259c56bfb1d3d35953cd9b922e61fde1c9bceeadb0c18ddd2cbb52936cb"
     },
     {
       "repository": "mocha-moze-debian",
@@ -462,7 +477,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "README.md",
-      "sha256": "cc68fe0a54b3f5cb79d9adf3db559262eea914f35251a4180f3dd45eb9db5d49"
+      "sha256": "159f398dce17172181641fbb56d627d2b151ef8260f076a43ab44886902ddbd0"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -482,7 +497,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "charging/mocha-charger-generator",
-      "sha256": "e1006783eab04eb990365f69ec731282a7bf242410945e67e1f02ef222396927"
+      "sha256": "e9b4cbff24f2e769e58b0e8c66b641334d7d520dee040150d837cd090f046c06"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -492,7 +507,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "charging/mocha-charger-ui.c",
-      "sha256": "cdf32284d3b7612461e1285cbc59a0ebb188857bd8847c3904e40c6026187ae6"
+      "sha256": "0ba581545f00f3be62c0f8a55027f4c0f3b1eec7d15dc8e2c217dedf95e88c85"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -503,6 +518,11 @@
       "repository": "mocha-moze-desktop",
       "path": "charging/mocha-charger.target",
       "sha256": "7cdad2d89ad78b90cb0e16a764a99615041ab6fe1b8065d51a134434f5111753"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-desktop-once.service",
+      "sha256": "0beccf6f37608397456cd05dc647cd8b43b12978406dbf8a35c908f90c19456e"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -527,7 +547,12 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "docs/NATIVE-PERFORMANCE.md",
-      "sha256": "ac8c2c8995aa3afc8b439d2b2d1da304d18c4b59b29e3f4f087d09ba9b02e7d5"
+      "sha256": "9b567517f0130f37571ab931fa9b1bbdb807f098136ddf962c5b6336f257b9f7"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "docs/TABLET-NYXURI.md",
+      "sha256": "d1d25be6310f127dbe84c6f8f071b4ed4dae5d1fa3e8d2cbbb7f6ed242ef3a9e"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -591,6 +616,146 @@
     },
     {
       "repository": "mocha-moze-desktop",
+      "path": "patches/0012-noctalia-touch-lock-keyboard.patch",
+      "sha256": "6cefea5bd73d3774a0fe500c4a2df53fb3d8cdb41b0f05d7283442ba507311d6"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0013-noctalia-arm-luau-alignment.patch",
+      "sha256": "32e82abdcdf67ed83e58fbf3f09512de6d3097af5b6db9a88166fbefb5ab7655"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0014-noctalia-native-dock-icons.patch",
+      "sha256": "8ca7c0aa754ee99243df476826a92794b4106cfe6b08226c2b214ae214114ea0"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0015-mesa-tegra-scanout-lifetime.patch",
+      "sha256": "e823da7b6ae77b582cffad38dcfa16b1ba1c5455d320d52756f07b4d361a477b"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0016-mesa-tegra-sampler-ownership.patch",
+      "sha256": "d630c977196e4b308b575a6f0d9934f93f8c3c1e71d487da31790cd579b8f024"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/0017-mesa-tegra-transferred-view-release.patch",
+      "sha256": "d545bb7c7fb2a0d306fa5ea4ebc1a329863e9991081da91f19c7818b4b265fbf"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0001-feat-input-add-touchscreen-3-finger-swipe-gestures.patch",
+      "sha256": "e0a109606b17967f49c4568f9becdc719c98eec2bada0ce4644803fd44f57930"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0002-feat-config-add-touchscreen-swipe-gesture-configurat.patch",
+      "sha256": "6c7d0529a6fa0ad4aa366166d3696977c13abe7366b9183b9d6a792e11d1c584"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0003-docs-document-touchscreen-swipe-gestures.patch",
+      "sha256": "266282997148b480d3fe6e0f684c0b1737377c9a84283148b766c240913c4337"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0004-feat-input-touchscreen-tap-and-bottom-edge-swipe-ges.patch",
+      "sha256": "3d00a1bb2d341ff331ce39e771bae44aa0c4814e681251254fda779ffc9c06c5"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0005-feat-input-discrete-4-finger-vertical-swipe-gestures.patch",
+      "sha256": "bd36b499606c91f01c5ffd90260311a14d3036d53afbe1c3b6ae33a12fde3e01"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0006-fix-input-count-late-joining-fingers-and-fix-deadloc.patch",
+      "sha256": "b0bdaddd80ea8b9a907d359f7437027067f8249d5cd9330030a0095a40556ef3"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0007-test-config-refresh-the-parse-insta-snapshot-for-the.patch",
+      "sha256": "213662c339db16a3b0b96bcb128208d9c65874a8e03e20a804980b389121bc92"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0008-feat-ui-show-touch-points-compositor-rendered-touch-.patch",
+      "sha256": "81021e3f42794ae25a9a0fb901f77269786935eadbf27dd56f9e1242c90553e2"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0009-feat-input-hold-swipe-touchscreen-gestures-move-wind.patch",
+      "sha256": "2c9f1800c6ee3ea33cab29bfd46000bcf2c4f74187159841005e139718ec891f"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0010-fix-input-own-multi-finger-touch-sequences-gestures-.patch",
+      "sha256": "e9ff2b560d19fab5c1186fd045bd59f988e377fbf00205f67fc7497639cd0889"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0011-fix-input-latch-gesture-ownership-through-smithay-s-.patch",
+      "sha256": "59fb1b5b1ac7c849f3f49dfa48090bc57105c0572d695b3c78e7ac8fd4d9cd47"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0012-fix-input-clear-touch-gesture-state-when-a-touch-dev.patch",
+      "sha256": "894e67039b1cc379eab94f1d4caefc990a31805fa0643b8dbe9e03abc9275635"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0013-feat-input-gesture-debug-logging-behind-gestures-deb.patch",
+      "sha256": "ba952e3768914c519fcfaffe7ab2f4d92debe44bc6ab858212617bee60bd423b"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0014-feat-input-single-finger-edge-and-corner-swipe-gestu.patch",
+      "sha256": "70d70499b8dc04118c0638576f6cf7eb0171acb29c73ce3c9a4f0b4f33225f70"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0015-docs-document-touchscreen-edge-and-corner-swipe-gest.patch",
+      "sha256": "c128588cb43f2d9a2e5d96778e9abc092341bc30f2d0f76f59c0073e613ccb8c"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0016-fix-test-edge-swipe-test-helper-rectangle-constructi.patch",
+      "sha256": "df71a7e5c10da1c2191f28e5f6558043529a911656d2824b6c97877f3241d4b3"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0017-feat-input-horizontal-swipe-column-resize-mode.patch",
+      "sha256": "676c6f7847612d0b3d304fe9bc81bfe21c914896cc6fad24a5e1af84f4ce5d1a"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0018-docs-document-the-touchscreen-swipe-action-options.patch",
+      "sha256": "ac92687df3e3e8bc4b86451159f40b11b967febbcbc842706a65f1728440d3fc"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0019-feat-gestures-derive-the-tap-flick-tier-from-fingers.patch",
+      "sha256": "31db31426ba08566862a3900f0c62a258cb51a7fc169c6e4e456690d2117f43a"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/0020-feat-gestures-swipe-more-left-right-for-extra-finger.patch",
+      "sha256": "22d206b430c33fadedd63583e624bc712e2a0d1daa867894e2516e8ae4e3912b"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "patches/tablet/source.json",
+      "sha256": "d313f4234eacfb6430af3939d6c357c186ecc052ec75d52834e7aa51cb09b882"
+    },
+    {
+      "repository": "mocha-moze-desktop",
       "path": "performance/atomic-fence-scanout.c",
       "sha256": "61ce513413ce2a9e58daa17fcb85afa59407f2271ad7af6ab06a3d50810f68cd"
     },
@@ -631,13 +796,143 @@
     },
     {
       "repository": "mocha-moze-desktop",
+      "path": "tablet/fcitx5-classicui.conf",
+      "sha256": "a6b618ce5d0d5d3ced78cf7e04bb9fa47560d58ca41337377b5a6e62eaafe591"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/fcitx5-config",
+      "sha256": "599c3835fb1e04d6ef7ee5d61cb3858abc1c9ce60931a714c42b01403df72f4a"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/fcitx5-profile",
+      "sha256": "11a328a09a939f9571f2115fae6c26a68171af8184fcdfdfced4d09b50feac4d"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/gestures.kdl",
+      "sha256": "52bf51f78dbd6437d9a2731348391243fb7b9a4d458ede35e25a390b870698f7"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-backlight-access.service",
+      "sha256": "2c533d7d518e18b3247a58960217593ad438503e204c8d83f659d016a6b24b7b"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-buttons.py",
+      "sha256": "e1329828690f0cc8df51a2d30f2d190dfe99aad650ff0626d4f229dc6cab8d1e"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-buttons.service",
+      "sha256": "9ffd7a40fb1413d1782d0541ed513ae6ce6679171c28c33bf36bff31e0b0791f"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-input-method",
+      "sha256": "230468e831f358ad88e60df82d161d386a4e43683a958ede90341ed5d426f869"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-input-method.desktop",
+      "sha256": "d54905566abde056635e020a8f515f100022e207fb95591bb6d4cb919a86610e"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-input-method.service",
+      "sha256": "a3fa907d4fad1646b09857ad9512db6c331b44c0ec8cf1af923b9d47cc47947d"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-keyboard",
+      "sha256": "6b91ef64500795e488d82624cf70d4408cd1dcb6f24caf6244647291b6d9be7c"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-keyboard.desktop",
+      "sha256": "66b00215dafed80a3e3a98a16040f49d5e0ebc242bd91220e967b92820a0eaa3"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-keyboard.service",
+      "sha256": "ee0a04081aadbcb656a025678bfa0e435d5ed07dd4ecfb881ccdb9cbdef09004"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-native-app",
+      "sha256": "f82aae06998b8365f0fd28ffeb0ae06ad3345df88595b9015e4b223e893b5c60"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-nyxuri-settings.py",
+      "sha256": "6b64448813ff346cf606acd166b994a8505204cd6f66c625cb8fabed6ba1ba1a"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-nyxuri-shell.service",
+      "sha256": "d7abcf7667d34bd4b1075ca9b9e330ab209fc1b290112949758572343dc2047e"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-session-exec",
+      "sha256": "ff83822cb8a2bd2e81516360aa4bf33b93ff04347aeb31dc3e7e4f264018d66d"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-touch-key-lights.py",
+      "sha256": "547785b78d421b954fbbcba9dff076c02ad8a7acb8fae34b413d66ed10ee7a66"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-touch-key-lights.service",
+      "sha256": "d8cb1fdb78b540a79c7263e0d56a3172154da0e6b752f8917d9acdf8679422ce"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-touch-keyboard.py",
+      "sha256": "f368c799ddef50d0aae42737a6834b45caba2745357fbbc2736cf6815d56ec08"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/mocha-touch-nav",
+      "sha256": "92f2af5563b5a9fa277f001b1d3f57eef88928b74f1bf98c0d914b6a62b9eb0b"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/niri-entry",
+      "sha256": "9d3f4f3d3b9c3ea36b786b72bd4e1825572baf8a09166f529108f8be50a2590c"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/niri.kdl",
+      "sha256": "14ae4df4f27ddef22a690fc6088fee253cc42ffa4a814a563a6909055041cccd"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/noctalia-entry",
+      "sha256": "e5a87d8472bfe4469efc7e7b9a353e8bb5b3c13d599db9e1a5390e31bc2ea123"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/noctalia.toml",
+      "sha256": "90a3c01a51a0b2f572a0abef46c53618540a311b9d25b69079ecfc195413c126"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tablet/touch-nav.kdl",
+      "sha256": "44c80f4dc621d0482ce8dc19ea66df0d423ef3898e1eb98515283bb12a43c04f"
+    },
+    {
+      "repository": "mocha-moze-desktop",
       "path": "tools/build-charger.sh",
       "sha256": "e4ae911c315f0afd8caf3fc1e344f3d8f6b563ac05ee485ffb487c9f8ec99868"
     },
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/build-mesa.sh",
-      "sha256": "924f016f9171c0bc2957f5c58c9acbccc3523f2597f22665ce67464e38971dd9"
+      "sha256": "1a267d23d2e0378c6b656317a57d85c5f8e60e2ff3fe182c68f2b7cf82b0e202"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -647,12 +942,12 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/build-niri.sh",
-      "sha256": "e3556d6e382fc0fd504f20c76fd8dbf03fb2c9d1d82a719ff64bdeb7501737a4"
+      "sha256": "bc46e34a786afa0a1c01bc9e363040aecb3f9763e6861c0889e530870149d5d7"
     },
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/build-noctalia.sh",
-      "sha256": "3d613fa4841cb0b3982585543e687b386a0229d4838d200ddada3204aaa8e559"
+      "sha256": "bc88bc7340f82404c1811b7c3b7ec74e69f314f14a0f87c534876f3a6bfe35a4"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -662,7 +957,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/install-charger.sh",
-      "sha256": "a74d201a186cc42799bfab60f66da678a25f361a8f4a0fe90f5fcffc904a2920"
+      "sha256": "f17c758b05705b56d0a4ea754241196c5ab388dd94978ab68a7210f2f6283d00"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -671,13 +966,58 @@
     },
     {
       "repository": "mocha-moze-desktop",
+      "path": "tools/install-nyxuri-fisher.py",
+      "sha256": "303f39e3d1a5a6157605bb7948a5380f8f44c1cba4806f0d238e674913b15685"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-nyxuri.py",
+      "sha256": "7179dd8803900b15f5e0b705f943cf27ce1d5dabf98437be5ff61b18e1537fdb"
+    },
+    {
+      "repository": "mocha-moze-desktop",
       "path": "tools/install-session.sh",
       "sha256": "db1027802d279d9ef7d7c9bca8fa826bee0bad1dd0163df7f75f0977a9b622a5"
     },
     {
       "repository": "mocha-moze-desktop",
+      "path": "tools/install-tablet-desktop.py",
+      "sha256": "e44b6a8acddc9f2e7ead1d38a6ed9e87c221324025bf3aeafb1d25a57596edeb"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-tablet-input.sh",
+      "sha256": "ecb29ee6ead7d062ae392af739f4b5578d6dac1d376b1ffe39162d6de64d0855"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-tablet-symbol-fonts.sh",
+      "sha256": "b15542ed0b980881cf6a4b12b449e11e301a64fee11ae27ca3e9fd022e09ccc6"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/install-touch-navigation.py",
+      "sha256": "a5b46dfc2f2e01ee551bd01fc56582d9803da4d075208c0c8f3beb5ae2b7dfe0"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/native-image-lifetime.c",
+      "sha256": "fc88861d633ee17ca5dbe5be27afee26748e6c766bdee44edba1b3bf3b832064"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/native-scanout-lifetime.c",
+      "sha256": "39e546ce9b70486e3a2babbc0ab20e1bd20c8c8a51ccbe1a574c6bce816bd91f"
+    },
+    {
+      "repository": "mocha-moze-desktop",
       "path": "tools/probe-egl-fence.py",
       "sha256": "03f5f604ac0b9352be97f8edf10ed970c317e8b375eaae259bde0149d0e28789"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/test-charger-generator.py",
+      "sha256": "fe95ecd2ae150e4780c0879b4d8f53d61180c3bb9b807ee27826d8f049d4bf83"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -696,6 +1036,16 @@
     },
     {
       "repository": "mocha-moze-desktop",
+      "path": "tools/test-mesa-sampler-ownership.py",
+      "sha256": "4da76d2bbb6ba75e457fc52b0caf9795888a128834ff159b544e49e88a20bae8"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/test-mesa-scanout-lifetime.py",
+      "sha256": "22dddb09523f78af5d83cc4f582d0620ae3bd416b1b001ba7febb39a3bb1b650"
+    },
+    {
+      "repository": "mocha-moze-desktop",
       "path": "tools/test-mesa-tegra-modifiers.py",
       "sha256": "3955d3f5d0c0ac56d0bba8a374f9f34669bc755b25b47c8c6f0949e41807e74f"
     },
@@ -703,6 +1053,21 @@
       "repository": "mocha-moze-desktop",
       "path": "tools/test-mesa-tegra-ui.py",
       "sha256": "d3a375b71e7cded62ef78160b1312043aa9845eb25d4353d08624104f2fe9a87"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/test-noctalia-arm-luau.py",
+      "sha256": "bd93ab7dd68204c3c881ea94b784653b712ebff60601f536f2f749f79d29615b"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/test-tablet-buttons.py",
+      "sha256": "69917fcb20476cb9e40694f5de1bb6f73f7e08a18b09d10345a9d0d5bf3ade47"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/test-touch-navigation.py",
+      "sha256": "f77f3cf33215563e043bbf300a0e8333b1b3e7a4cdfc6e7d5c82fe3f295a69fb"
     },
     {
       "repository": "mocha-moze-drivers",
@@ -877,7 +1242,27 @@
     {
       "repository": "mocha-moze-drivers",
       "path": "gpu/mocha-native-gpu-policy.sh",
-      "sha256": "742dfe2cfadf7da5dabba8c51447ca4c0bc483a270c1e8170d77347b583c818c"
+      "sha256": "a98db277d38ff46e92fc151e0f32e6f6050209d367ea38119fceceefeda7feeb"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "runtime/README.md",
+      "sha256": "4a3b84e815ebae63913ed63e3831d980c7ab56430fba50b10bdf6089c940c75e"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "runtime/mocha-runtime-policy.py",
+      "sha256": "100ad57e5310ab7f7cd751118c48f77c4ef4311ef35a986edfceae8563a1dff9"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "runtime/mocha-runtime-policy.service",
+      "sha256": "e6a4a16749cff19c045672c5d2665db1610db894c92c28e3432d05c0fff0c1d9"
+    },
+    {
+      "repository": "mocha-moze-drivers",
+      "path": "runtime/test-runtime-policy.py",
+      "sha256": "3544ea0b6081298d5216d2b579dcc45623ab3ccb9b78124dac6fe280ca452a86"
     },
     {
       "repository": "mocha-moze-drivers",
@@ -921,6 +1306,11 @@
     },
     {
       "repository": "mocha-moze-linux",
+      "path": "moze/configs/native-runtime.fragment",
+      "sha256": "780509bf2b2c4e897e69dfe77533f828e37e5b3d91f774b23d22943b31891e7a"
+    },
+    {
+      "repository": "mocha-moze-linux",
       "path": "moze/configs/smp-base.config",
       "sha256": "4843636fcab29a48938f2f8bb563a39a62efe2d705f8833622b1d6c0728ad752"
     },
@@ -943,6 +1333,11 @@
       "repository": "mocha-moze-linux",
       "path": "moze/dts/native-lp-clock.patch",
       "sha256": "4f1ddace5284c198f6a9639b2c7da923188d73f9ba012c1867baba4653a6a8cc"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/dts/native-runtime.dts",
+      "sha256": "3259589c6bd34c37b642b35eaaa0546197ae57a5b9c3f100d22be373ccbe01fa"
     },
     {
       "repository": "mocha-moze-linux",
@@ -1142,7 +1537,7 @@
     {
       "repository": "mocha-moze-linux",
       "path": "moze/tools/build.sh",
-      "sha256": "e7ca98792af71dda89ed6df2cb8dffdde0a97ca92d46a0718307ad5679107411"
+      "sha256": "b048d5baeb9b1d9654432fc321c2520b2e7d7566c56217e8c0aa5292edbba71c"
     }
   ]
 }

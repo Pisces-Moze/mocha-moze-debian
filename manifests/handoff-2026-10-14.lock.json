@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "snapshot_date": "2026-10-14",
+  "publication_date": "2026-10-14",
+  "kernel_name": "mocha moze linux 6.12.111-moze.1",
+  "kernelrelease": "6.12.111-moze.1",
+  "native_kernelrelease": "6.12.111-moze.1-native",
+  "architecture": "armhf",
+  "new_brand_end_to_end_tested": false,
+  "repositories": [
+    {
+      "name": "mocha-moze-boot",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-boot.git",
+      "commit": "1e0bacaaa83d74724007fbb81fcd08b52c7563c5"
+    },
+    {
+      "name": "mocha-moze-linux",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-linux.git",
+      "commit": "852606930aee94c61db27ec205a6f6795bc519e3"
+    },
+    {
+      "name": "mocha-moze-drivers",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-drivers.git",
+      "commit": "900e88bd2d02526c73f113521170ec8b6a7f338e"
+    },
+    {
+      "name": "mocha-moze-desktop",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-desktop.git",
+      "commit": "5d66626ea9a8d63db49113372d7c3fd847eeb942"
+    }
+  ],
+  "purpose": "remote-development-handoff",
+  "includes_draft_candidates": true,
+  "notes": [
+    "Historical installation lock and installer baseline remain unchanged.",
+    "The prototype default native boot and complete Nyxuri desktop passed user observation; the generalized installer is not end-to-end accepted.",
+    "Final Mesa scanout and sampler lifetime fixes are persistently installed; bounded GBM/EGL and desktop cycles passed.",
+    "The DFLL-off runtime control booted with fixed 696 MHz CPU and passed bounded LZ4 zram pageout/readback; CPU DVFS, voltage and idle remain unverified.",
+    "Only the opt-in runtime candidate uses the new profile; it is not the default boot."
+  ],
+  "runtime_kernelrelease": "6.12.111-moze.1-native-runtime"
+}

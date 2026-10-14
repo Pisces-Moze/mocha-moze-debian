@@ -1,4 +1,14 @@
-# 本轮接续验证
+# 2026-10-14 实机与回归验证
+
+默认原生内核、全量 Nyxuri 桌面、旋转触控、实体导航键、密码解锁、概览底部图标和控制中心亮度已有用户确认。深浅色键盘截图通过；ARM Luau 1,000 次真实库状态创建／释放回归通过。导航 5 项、电源／音量按键 11 项、充电 generator 2 项、临时启动流程 4 项与运行时策略 4 项回归通过。
+
+Mesa 可选 fence 8 种组合、reset/scissor 4 种组合、modifier 6 次往返和 4,084 种非目标布局检查通过。新增 scanout 生命周期回归覆盖共享句柄、独立句柄、零句柄、失败分配／导入及 8 线程并发导入／释放。真实 Tegra GBM 创建销毁 384 次对照显示：旧库逐批积累 8 MiB，新库缓冲容量不增长；新库在 Niri/Noctalia 中实际加载，20 轮概览开关后缓冲计数不增长。
+
+0016/0017 补齐 sampler 的两层所有权：借用绑定不消耗 GPU reserve；转交绑定先让 GPU 接管，再释放调用者交出的 wrapper 引用。先前只修 reserve 的候选仍在 20 轮控制中心开关中从 14 个、42,504,192 字节增至 98 个、313,954,304 字节，不能算完整修复。真实离屏 EGL 图像导入／采样对照每批 128 次留下 8 MiB；完整修复累计 384 次只保留当前绑定的 1 个 64 KiB 缓冲，销毁 context 后恢复原计数。最终 Gallium SHA256 `cc81fe6399af38442a48aa52801400086dcb43008aae292353ebac4d65c57fbe` 已持久安装并核对 Niri/Noctalia maps；20 轮概览和 20 轮控制中心开关及随后空闲均保持 7 个缓冲、39,735,296 字节，可用内存约 1.2 GiB。该有限测试不能替代长期多应用检查。
+
+`native-runtime` 搭配 DFLL 关闭的已验收设备树、`cpuidle.off=1` 两次进入 Debian，USB/Wi-Fi SSH 可用，CPU 固定 696 MHz。LZ4 zram 的 32 MiB 自有匿名页 pageout／SHA256 读回通过，MGLRU/PSI 可读。开启 DFLL 的试验未取得连接；CPU DVFS、电压、CPU idle、长期内存压力和其他外设仍未通过。详见 [本轮诊断](DIAGNOSTICS-2026-10-14.md)。
+
+# 历史接续验证
 
 2026-10-12：帧统计回归 5 项、Linux 隔离服务流程回归 11 项、模拟 Fastboot 引导流程 3 项通过。新 Niri/Smithay、Mesa native-sync 和三个 ARMhf 探针完整构建并核对哈希；旧内核前置检查拒绝运行且原桌面 PID 未变。2 A 墙充下有限原生 Niri/Noctalia 会话通过：1125 帧均无 Niri CPU wait、capability/真实加载库/600 帧窗口/服务恢复取证完成，另做关闭逐帧插桩对照及 80 轮独立 EGL native-fence 检查。新 KMS 探针本轮因无活动控制台 CRTC 拒绝运行，未报告新的 scanout pass。默认引导没有更改，长期多应用和 PMU 候选仍待验证，见 [本轮记录](DIAGNOSTICS-2026-10-12.md)。
 
