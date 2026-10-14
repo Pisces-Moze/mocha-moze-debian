@@ -21,3 +21,12 @@ PMU 只计用户态周期，时间包含少量系统开销，所以该估算不�
 原型机随后按正常引导恢复 `6.12.111-moze.1-native`，用户确认桌面恢复；SSH 核对 Niri/Nyxuri 进程、背光 171/255 和两进程实际加载的最终 Mesa 路径。临时诊断服务已移除，默认内核与 DTB 哈希保持原值。
 
 源码检查发现 Palmas SMPS 使用分段电压表，`regulator_get_linear_step()` 读取的 `uV_step` 为零；DFLL 却用它除电压索引。这是空 LUT 的候选原因，尚非实机因果验收。新的内核候选从受板级约束的有效电压项推导均匀正步长，跳过零项与重复平台，拒绝非均匀／倒序／单电压表，保持原厂 CVB 与电压范围；实际驱动函数的十项 C 回归通过。新候选仍需独立 RAM 验证，不提升为默认。
+
+候选已完成 Image、模块、DTB、uImage 与匹配背光模块构建，release 为 `6.12.111-moze.1-native-runtime`；构建机与提交的 DFLL 源文件 SHA256 一致。构建通过不能替代调频实机验收。
+
+| 新候选产物 | SHA256 |
+| --- | --- |
+| 私有测试包 | `96a6f7c9e194444277c8bd62c6b40b811953dea3d98929c08cd9f5b0999ebf9b` |
+| uImage | `edd808a2e827254fa782295d0d1ceaeafca485b04dbac986b457a089fa0f239b` |
+| DFLL 开启 DTB | `3ab925dfbe9c1071af0cdd4b0c121280c3e18c40de943168a7ee6faddf9820ef` |
+| 匹配背光模块 | `1777303c46a1b50f2539d93915d8b852f0bb199f2f0c3a12b98169f5bc450aed` |
