@@ -4,11 +4,11 @@
 
 [![License: GPL-2.0-only](https://img.shields.io/badge/License-GPL--2.0--only-blue.svg)](LICENSE)
 
-## 实机接续（2026-10-14）
+## 实机接续（2026-10-15）
 
-这台原型机已使用默认原生内核与完整 Nyxuri 桌面，旋转触控、实体导航、密码锁屏、概览图标和亮度已有用户确认。Mesa 图形缓冲生命周期修复已持久安装；关闭 DFLL 的新内核临时对照通过桌面及有限 LZ4 zram 读回检查，CPU 动态调频、电压和 idle 仍未通过。最新记录见 [本轮诊断](docs/DIAGNOSTICS-2026-10-14.md) 与 [任务清单](docs/TODO.md)。
+这台原型机已使用默认原生内核与完整 Nyxuri 桌面，旋转触控、实体导航、密码锁屏、概览图标和亮度已有用户确认。Mesa 图形缓冲生命周期修复已持久安装；关闭 DFLL 的新内核临时对照通过桌面及有限 LZ4 zram 读回检查，开启 DFLL 的重测虽已启动，但实际约 1.85–1.9 GHz 不遵守 204 MHz 请求，CPU 动态调频、电压和 idle 仍未通过；候选不提升为默认。最新记录见 [DFLL 实测](docs/DIAGNOSTICS-2026-10-15.md)、[桌面与 zram 对照](docs/DIAGNOSTICS-2026-10-14.md) 与 [任务清单](docs/TODO.md)。
 
-`manifests/handoff-2026-10-14.lock.json` 固定本轮草稿源码。`manifests/repos.lock.json` 保留历史安装基线，只增加最新开发锁的指向，避免把尚未完整验收的候选混入默认安装路线；可用 `tools/workspace.py --manifest …` 显式选择开发锁。
+`manifests/handoff-2026-10-15.lock.json` 固定本轮草稿源码。`manifests/repos.lock.json` 保留历史安装基线，只增加最新开发锁的指向，避免把尚未完整验收的候选混入默认安装路线；可用 `tools/workspace.py --manifest …` 显式选择开发锁。
 
 ## 简介
 
