@@ -142,7 +142,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-15.md",
-      "sha256": "0236bc6550299142d728ca2fd6cbda3372963b889e0c9cd93e429e3e51a4be61"
+      "sha256": "e1a376385643715e6f14690da7fbe75baed1362600715e978e47815b016f47bc"
     },
     {
       "repository": "mocha-moze-debian",
@@ -367,7 +367,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "manifests/handoff-2026-10-15.lock.json",
-      "sha256": "339eab0b19b0f3db69b3a80e768792d0abae2270f0943212c89574da614bed6e"
+      "sha256": "691d7da998437aa25fc599e7b40fa9e00ef41dfe5236c821bb0f7c5fb250f0df"
     },
     {
       "repository": "mocha-moze-debian",
@@ -1476,6 +1476,11 @@
     },
     {
       "repository": "mocha-moze-linux",
+      "path": "moze/source-overlay/drivers/clk/tegra/clk-tegra124-dfll-fcpu.c",
+      "sha256": "87d13b7bc6059d8437c697ea90d84202ae1b53c19511e83888e7ae95f5c9927d"
+    },
+    {
+      "repository": "mocha-moze-linux",
       "path": "moze/source-overlay/drivers/clk/tegra/clk-tegra124.c",
       "sha256": "e658b2cfbc493bf0352785e6a3e1acab0b51464afda2c6f88b60658dceb6b28d"
     },
@@ -1542,12 +1547,17 @@
     {
       "repository": "mocha-moze-linux",
       "path": "moze/source-provenance.json",
-      "sha256": "655fb305648d53c1754cf7a6cffaf48ad3050dcaf39bd3888f2c5a99821f7e03"
+      "sha256": "f2b4612ae293358e0f41ffcb536cbff978404ef8431db61044d13b2ddedcc016"
     },
     {
       "repository": "mocha-moze-linux",
       "path": "moze/tools/build.sh",
       "sha256": "b048d5baeb9b1d9654432fc321c2520b2e7d7566c56217e8c0aa5292edbba71c"
+    },
+    {
+      "repository": "mocha-moze-linux",
+      "path": "moze/tools/test-dfll-alignment.py",
+      "sha256": "6b5ef60ee3a2300f45c0f452695db3eca36341a33b6622e587f76d0723366850"
     }
   ]
 }
