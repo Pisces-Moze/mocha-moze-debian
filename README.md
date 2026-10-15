@@ -4,11 +4,15 @@
 
 [![License: GPL-2.0-only](https://img.shields.io/badge/License-GPL--2.0--only-blue.svg)](LICENSE)
 
-## 实机接续（2026-10-15）
+## 实机接续（2026-10-16）
+
+`native-runtime` 已持久安装并确认普通启动。充电动画旋转、自动熄屏后拔插线唤醒、插电按住电源直接进入桌面已由用户和启动记录共同确认。下一步先做整盘离线备份，再把约 1.25 GiB 的 APP 扩到 3 GiB；尚未修改 GPT。新产物哈希、验收范围及剩余工作见 [10 月 16 日记录](docs/DIAGNOSTICS-2026-10-16.md)。
+
+## 历史接续（2026-10-15）
 
 这台原型机已使用默认原生内核与完整 Nyxuri 桌面，旋转触控、实体导航、密码锁屏、概览图标和亮度已有用户确认。Mesa 图形缓冲生命周期修复已持久安装。Palmas 步长修复候选已通过两次 RAM 冷启动与有限 CPU 档位／独立 PMU 对照、受限 schedutil 桌面、缓冲释放和 LZ4 zram 回读；用户确认画面、触控与锁屏唤醒。实际频率仍有约 6%–8% 偏差，完整电压曲线、idle 与长测未验收；候选不提升为默认。最新记录见 [DFLL 实测](docs/DIAGNOSTICS-2026-10-15.md)、[桌面与 zram 对照](docs/DIAGNOSTICS-2026-10-14.md) 与 [任务清单](docs/TODO.md)。
 
-`manifests/handoff-2026-10-15.lock.json` 固定本轮草稿源码。`manifests/repos.lock.json` 保留历史安装基线，只增加最新开发锁的指向，避免把尚未完整验收的候选混入默认安装路线；可用 `tools/workspace.py --manifest …` 显式选择开发锁。
+`manifests/handoff-2026-10-16.lock.json` 固定当前配套源码；10 月 15 日锁保留 RAM 验收时的版本。`manifests/repos.lock.json` 保留历史安装基线，只更新最新开发锁的指向，单台实机持久安装不等于通用安装器端到端验收；可用 `tools/workspace.py --manifest …` 显式选择开发锁。
 
 ## 简介
 

@@ -11,5 +11,7 @@
 | Mesa | Debian 25.0.7-2+deb13u1；上游 mesa-25.0.7 / `742a20f48c59e8649533c84c4d49dd95b403f5da`，https://gitlab.freedesktop.org/mesa/mesa | 默认渲染与 native 崩溃证据；候选采用官方 mesa-25.0.7.tar.xz，固定 SHA256 见 manifests/source-provenance.json；desktop 可选 fence 回调补丁保留 MIT 许可，完整构建与候选实机包装层回归通过；不发布 NVIDIA 用户态库 |
 | CUDA/Gdev | 原厂 CUDA 6.5 包和实验 Gdev 兼容层 | 示例/接口检查；完整运行时未通过 |
 
+U-Boot 的 `overlay/board/xiaomi/mocha/mocha.c` 基于 v2026.07 同路径文件，保留 Svyatoslav Ryhel 的版权与 GPL-2.0+ 标识；Mocha 提前电源键采样覆盖层不改变上游许可。
+
 官方 MIUI V9.2.4.0 固件包与原设备固件只用于对照和私有提取，不随仓库分发。
 构建版本和固定 SHA256 另见 `manifests/source-provenance.json`。外部 GPL 源码的版权头必须保留。

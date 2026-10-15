@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "audit_date": "2026-10-15",
+  "audit_date": "2026-10-16",
   "scope": "Published project source, configuration and documentation; upstream Linux is tracked in full",
   "kernel_overlay_matches_full_tree": true,
   "files": [
@@ -32,12 +32,12 @@
     {
       "repository": "mocha-moze-boot",
       "path": "README.md",
-      "sha256": "17cdbb64f4ce33bdc1c755b7398191b9f0a42c9fb5718e52588b75f6e9c70f37"
+      "sha256": "ef4ac0f2fd7612aa4d82bce28140250e61ccb375185877c4164a3489ca3d7f41"
     },
     {
       "repository": "mocha-moze-boot",
       "path": "configs/mocha_defconfig.full",
-      "sha256": "cef2d6a27ab82cb3706faae08a4f8b3bbaafb357d18ff2aeec5fdceb438de705"
+      "sha256": "e711ca4c559e3475e170f58fbdd74406475139a119d14eb18cbb80ecd17a2340"
     },
     {
       "repository": "mocha-moze-boot",
@@ -46,8 +46,13 @@
     },
     {
       "repository": "mocha-moze-boot",
+      "path": "overlay/board/xiaomi/mocha/mocha.c",
+      "sha256": "60771fbbe0b9d214f5a77b00a4e9f70f9e3e11b87f8d866d03c4053c827993fc"
+    },
+    {
+      "repository": "mocha-moze-boot",
       "path": "overlay/board/xiaomi/mocha/mocha_emmc_boot.env",
-      "sha256": "18b0035fec13c87e964fcc5a35b6e4d1edde94f59994960d1e17ffd86098b384"
+      "sha256": "7b03fb870a43739fb54dc3ba63492a3731400fbf5bb9b7a99ffe6f9cd588a919"
     },
     {
       "repository": "mocha-moze-boot",
@@ -107,12 +112,12 @@
     {
       "repository": "mocha-moze-debian",
       "path": "README.md",
-      "sha256": "274d3a2f2a2e479a732da6115defc9ebf34da57130ffe7b22a2d3b6d00236091"
+      "sha256": "ef99751b869b04b80527069fddccd34166b91b040fcfabcc39b1333f75e6fd47"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "SOURCES.md",
-      "sha256": "2fff04e814c22527ef18c62236caaf145042ea8751d1f95e41ba179301898577"
+      "sha256": "c729a58234d6e0edfe13c2f461cf9255631879859d4f78ceb6e80c1e9577a535"
     },
     {
       "repository": "mocha-moze-debian",
@@ -146,6 +151,11 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "docs/DIAGNOSTICS-2026-10-16.md",
+      "sha256": "41ec8cebecceb76dd7a877b57d59b7509351e6f9e1275e61a1748c3c26743984"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "docs/FILE-ORGANIZATION.md",
       "sha256": "b5e68bb89f8dbde928154dda13b981f8ea48bd73e6627c7bb4547fddc88bc691"
     },
@@ -167,7 +177,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/ISSUES.md",
-      "sha256": "97e08971bedc3ac7e4020311a60014fe78b3ace12b5001b5193aa2d812f4aef2"
+      "sha256": "5121c00bdfee1fab36e435c32523a47b2aabda6ea8d8f34cb4c3dbba70ac6939"
     },
     {
       "repository": "mocha-moze-debian",
@@ -192,17 +202,22 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/STATUS.md",
-      "sha256": "5aa47517a62e08e4ed8203a0007f28d2a19b01cd377d932f83034abe463f4824"
+      "sha256": "755740ccf89d4082fbea7cb4b95e20b61a13cc500c320341281306308db53b36"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/SYSTEM3G.md",
+      "sha256": "509e50de3657ce9feefbab0981a3674e5a50490df884391507c55c20d31bc594"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/TODO.md",
-      "sha256": "ea46b0ab85b9ad232a41bc264044acb4de9ab7a43f87b3c6435a38af7cbc3ea1"
+      "sha256": "2b0719af225cf848483f5302e87cd6cb0826ef43094ef7ee43a6a283df8b874d"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "9f35306b09d41179c1b6d16cfe344cedbc0110f9c575be7cf8c9916a0bb8f18f"
+      "sha256": "d9cf4df212fa824fad5baf5fc60f3cf13a229a3dfdac1bf22a88cd446a839001"
     },
     {
       "repository": "mocha-moze-debian",
@@ -376,8 +391,13 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "manifests/handoff-2026-10-16.lock.json",
+      "sha256": "251696479e8e05b21efb9a44e1c80e342d0ce6a7364d0006087a9728fdfa6725"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "manifests/repos.lock.json",
-      "sha256": "9df4f164b79f4e93bf9f47770b4060699bdf2ab971431dc8702f147b8999a732"
+      "sha256": "566778031e8de65f4de832c1b8d6e43b5e1725e09fe973e060d1488e2701fd22"
     },
     {
       "repository": "mocha-moze-debian",
@@ -387,7 +407,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "ramdisk/init-emmc",
-      "sha256": "d0dff03fd8e261528ae93bce2b1b8f3b3bba812ba8120c5bed386c4bd9f3bb45"
+      "sha256": "c59adfbfe759d89c50bd3c69b3b26d6277c4630b2df2f96e4f9b07eaea1a0a34"
     },
     {
       "repository": "mocha-moze-debian",
@@ -426,8 +446,23 @@
     },
     {
       "repository": "mocha-moze-debian",
+      "path": "tools/grow-app-offline.py",
+      "sha256": "64889f21b7c63c3f9623ef4d9cec8c81fda52b1e227a33ea27628f6117bb2d5a"
+    },
+    {
+      "repository": "mocha-moze-debian",
       "path": "tools/install-native-default.py",
       "sha256": "b627cfe2773e98ad639a3475f9f0668cd2ced1f3d5ddad516ee5c0d1213a4ccb"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/install-runtime-default.py",
+      "sha256": "a2264fd2ff2b12620f45ebc0204cdd0aa2beebe8c544aa58b8a85750ea1b3814"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/install-uboot-default.py",
+      "sha256": "28fad3c430125bd5a4d2980826890410814f9d93761ca0c21546ace58e7578a9"
     },
     {
       "repository": "mocha-moze-debian",
@@ -448,6 +483,11 @@
       "repository": "mocha-moze-debian",
       "path": "tools/test-boot-installed-native.py",
       "sha256": "59b12259c56bfb1d3d35953cd9b922e61fde1c9bceeadb0c18ddd2cbb52936cb"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "tools/test-grow-app-offline.py",
+      "sha256": "c730befb836f2c962cfb7473bcd6e03233ff2ffc7407d68cb12749b12b119cf0"
     },
     {
       "repository": "mocha-moze-debian",
@@ -492,7 +532,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "README.md",
-      "sha256": "159f398dce17172181641fbb56d627d2b151ef8260f076a43ab44886902ddbd0"
+      "sha256": "3a2cb88791d4fbcd3ac48f021e56774cd24e27909e76042a21debaedbeb22c52"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -512,7 +552,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "charging/mocha-charger-generator",
-      "sha256": "e9b4cbff24f2e769e58b0e8c66b641334d7d520dee040150d837cd090f046c06"
+      "sha256": "942848df20cbc09842664408aadbdd8db256f9c6671d71150ff87711b3e27ab9"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -522,7 +562,12 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "charging/mocha-charger-ui.c",
-      "sha256": "0ba581545f00f3be62c0f8a55027f4c0f3b1eec7d15dc8e2c217dedf95e88c85"
+      "sha256": "181b655c8a561e4f6f90e281e60c305598cfdd03c6bfadf36825e860f31c2cfc"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "charging/mocha-charger.default",
+      "sha256": "20ef2d8e79459deec077fff0454c5f0711685438f91472c1a74a3b853aa803c6"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -972,7 +1017,7 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/install-charger.sh",
-      "sha256": "f17c758b05705b56d0a4ea754241196c5ab388dd94978ab68a7210f2f6283d00"
+      "sha256": "266dacc7bb092975dba4a1dc5bffc3cb331f3c54310de07708d1e53301374369"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -1032,7 +1077,12 @@
     {
       "repository": "mocha-moze-desktop",
       "path": "tools/test-charger-generator.py",
-      "sha256": "fe95ecd2ae150e4780c0879b4d8f53d61180c3bb9b807ee27826d8f049d4bf83"
+      "sha256": "a1d9c8098c41e2d829580a55a36027aad7f3ce25c1f5c7a59401d7b1a2f6ebd3"
+    },
+    {
+      "repository": "mocha-moze-desktop",
+      "path": "tools/test-charger-transform.py",
+      "sha256": "652b0b18848d82fdc41c1f5f50d6aafecee34564f76de4a382fd862fb60b3e96"
     },
     {
       "repository": "mocha-moze-desktop",
@@ -1272,7 +1322,7 @@
     {
       "repository": "mocha-moze-drivers",
       "path": "runtime/mocha-runtime-policy.service",
-      "sha256": "e6a4a16749cff19c045672c5d2665db1610db894c92c28e3432d05c0fff0c1d9"
+      "sha256": "d074aeb63c6fd0f9e4c2c8166485030fe468ded3bd86bcee7f3dc3f5832aaab5"
     },
     {
       "repository": "mocha-moze-drivers",
@@ -1322,7 +1372,7 @@
     {
       "repository": "mocha-moze-linux",
       "path": "moze/configs/native-runtime.fragment",
-      "sha256": "780509bf2b2c4e897e69dfe77533f828e37e5b3d91f774b23d22943b31891e7a"
+      "sha256": "5678a88db6f6e9e5aeddc0eeb3f1a8e24fbc348aed8adfae13a80d74dc13f0c0"
     },
     {
       "repository": "mocha-moze-linux",
@@ -1352,7 +1402,7 @@
     {
       "repository": "mocha-moze-linux",
       "path": "moze/dts/native-runtime.dts",
-      "sha256": "3259589c6bd34c37b642b35eaaa0546197ae57a5b9c3f100d22be373ccbe01fa"
+      "sha256": "0c7533e0ba5c43ede79af0e0b9ea3727addb39a4dfad88b0ae4501464504a58b"
     },
     {
       "repository": "mocha-moze-linux",

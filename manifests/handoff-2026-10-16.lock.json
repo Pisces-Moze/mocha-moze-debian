@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "snapshot_date": "2026-10-16",
+  "publication_date": "2026-10-16",
+  "kernel_name": "mocha moze linux 6.12.111-moze.1",
+  "kernelrelease": "6.12.111-moze.1",
+  "native_kernelrelease": "6.12.111-moze.1-native",
+  "architecture": "armhf",
+  "new_brand_end_to_end_tested": false,
+  "repositories": [
+    {
+      "name": "mocha-moze-boot",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-boot.git",
+      "commit": "18b50004b33f7600f0ec0b690c0741dd48400259"
+    },
+    {
+      "name": "mocha-moze-linux",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-linux.git",
+      "commit": "b6b2eecb1a2bca2e43a985d456e39642c6873b16"
+    },
+    {
+      "name": "mocha-moze-drivers",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-drivers.git",
+      "commit": "de544fceae8f619873d0f6bac1eb5b01934fdbb8"
+    },
+    {
+      "name": "mocha-moze-desktop",
+      "url": "https://github.com/Pisces-Moze/mocha-moze-desktop.git",
+      "commit": "4e282dda9cd936cbc65fb8279d24378e18ee06a6"
+    }
+  ],
+  "purpose": "persistent-prototype-runtime-and-storage-preparation",
+  "includes_draft_candidates": true,
+  "notes": [
+    "Historical installer baseline remains unchanged; these pins describe the one-prototype runtime and storage preparation.",
+    "The native-runtime kernel, matching modules and runtime policy are persistently installed and verified on ordinary boot. CPU idle remains disabled; new SDIO power retention has not passed suspend/resume.",
+    "Earlier two cold RAM trials passed bounded capped schedutil, PMU frequency checks, Nyxuri, touch, lock/wake and LZ4 checksum tests. Measured frequency is approximately 6-8 percent above the request; full voltage curves and sustained pressure remain unverified.",
+    "Charging framebuffer transform 90, bounded incremental animation preparation and cable reconnect wake are persistently installed and user-confirmed. UI SHA256 is 9d321e3f516e2b8882c90496124d3a8e6210cf225dd26f2d46233ae577038990.",
+    "Early Q0 input configuration and power-intent latch passed released RAM boot and held ordinary boot after guarded LNX installation. The user confirmed direct desktop entry; charging service did not run. Android container SHA256 is 26cf1bef5ebfbf1e0a05f068de1463b8aaed658021ab792ba11c7a99817b0bb4.",
+    "Storage migration code is preparation only: full offline backup, bridge initramfs boot acceptance and free space are mandatory before writes. No GPT change or 3 GiB APP acceptance is claimed.",
+    "Bluetooth, audio, browser optimization and hardware video acceleration remain pending after the backup and storage migration requested by the user."
+  ],
+  "runtime_kernelrelease": "6.12.111-moze.1-native-runtime"
+}

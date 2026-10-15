@@ -1,0 +1,37 @@
+# 2026-10-16 持久安装、充电启动与扩容准备
+
+本记录接续 [10 月 15 日 RAM 验收](DIAGNOSTICS-2026-10-15.md)。以下仅针对这一台 16 GB Mocha A0101；配套四仓库提交固定于 `manifests/handoff-2026-10-16.lock.json`，不能拿旧版本锁代表这些新产物。桥接 initramfs 与迁移工具仍处于准备阶段，尚未完成实机扩容。
+
+## 已安装的运行系统
+
+`install-runtime-default.py` 已实际执行，保存原文件后安装 APP 中的默认内核、设备树、匹配模块与硬件 helper，并启用数据分区挂载后的运行策略。随后普通冷启动核对 `uname -r=6.12.111-moze.1-native-runtime`，用户桌面和运行策略服务均活动。默认启动参数包含 `cpuidle.off=1`；设备树增加 SDIO `keep-power-in-suspend`，但这项改变尚未经过新的 suspend/resume 实测，不能写成 Wi-Fi 待机问题已解决。
+
+| 实际安装文件 | SHA256 |
+| --- | --- |
+| 默认 uImage | `f4ab0ab6dee1355591a16810eaed12454c3c259f259fb6014b3eaacd1f57729f` |
+| 默认 DTB | `13ebd86d38fee8f2b1625d36e817fc9995e11f81552c8cdf6b968e152fa2c237` |
+| 匹配背光模块 | `1777303c46a1b50f2539d93915d8b852f0bb199f2f0c3a12b98169f5bc450aed` |
+
+CPU 请求上限为 1020 MHz，实测约 1084 MHz 的偏差仍按上一轮有限验收处理；没有宣称完成完整电压曲线或长期压力测试。LZ4 zram 逻辑容量 384 MiB。已验收的 Niri、Noctalia 和最终 Mesa 继续使用原安装路径。
+
+## 充电界面与电源启动
+
+充电 UI 使用 90° framebuffer 变换，对应桌面的 270° 输出变换。原先一次性生成整套动画帧会长时间阻塞线缆状态轮询；现改为每轮至多生成一帧，优化像素打包和采样表，已准备帧可立即显示。真实变换函数与旧像素结果对照覆盖四方向及 18 种格式／透明度／缩放组合。
+
+最终 UI SHA256 为 `9d321e3f516e2b8882c90496124d3a8e6210cf225dd26f2d46233ae577038990`，已持久安装。用户确认充电方向、自动熄屏后拔线约 2–3 秒再插回唤醒、充电界面长按电源进入桌面正常。本轮 UI 内首屏约 0.68 秒；该值不包含引导器、内核和数据分区挂载时间，不能当作整机冷启动到充电画面的耗时。
+
+先前仅在 U-Boot bootcmd 中读取 Q0，显示初始化后可能已错过启动按键。新增 board early hook，先将 Q0 配成与 DT 一致的上拉输入，保持输出禁用，再在显示探测前采样；非零初始化的 `.data` 状态随 relocation 保留。late hook 将采样状态和桌面请求传给 Linux，生成器在电量至少 5% 时接受桌面请求。
+
+第一版只读继承配置的提前采样得到 `unavailable`，不算通过。补齐输入配置的新镜像在 RAM 启动中得到 `mocha_power_key_early=released` 和 `mocha_desktop_requested=0`，用户确认充电界面及长按进入桌面正常。该镜像已通过带完整 LNX 备份、预期旧哈希校验及写后回读的安装器持久安装；电脑另存并校验了旧 LNX。新 Android 容器为 571392 字节，entry `0x80a00000`、page 2048，SHA256 `26cf1bef5ebfbf1e0a05f068de1463b8aaed658021ab792ba11c7a99817b0bb4`。六个 U-Boot 存储写入功能仍关闭。
+
+普通冷启动随后通过：用户确认按住电源后接入 USB 可直接进入桌面；实际内核命令行为 `mocha_power_key_early=held mocha_desktop_requested=1`，`mocha-charger.service` 未启动，用户桌面和运行策略服务活动。安装后的完整 LNX 分区 SHA256 为 `0d4d4aff2d4aa94fa3891e1358113f39f74c688dbcdb65dc2a1a57a56e6fa9a0`。该结果覆盖本次插电按住路径，不能解决原厂前级引导器的关机短按门控。
+
+## 备份和 3 GiB APP 计划
+
+尚未改 GPT 或扩容。当前 APP 起点 524288、2612431 个扇区，实际为 1337564672 字节，约 1.25 GiB；UDA 也接近满。APP 后面紧接 AP1、CAC、UDA，不能直接在线扩展根文件系统。
+
+独立 RAM 维护镜像已构建并下载校验，包含 armhf Python、e2fsprogs 和 fdisk 工具；启动脚本保留 eMMC 只读、分区不挂载的保护。镜像 SHA256 `9acc96ed2690b47468e6dd39cda64540aadc5a8a11fa66ced4a6388192317ac5`。e2fsck、sfdisk、resize2fs 已通过 QEMU 基本启动检查，镜像尚未实机启动。电脑备份程序会检查无挂载、无 holders、磁盘和 boot0/boot1 只读，校验传输两端与电脑回读哈希，再验证 GPT 两份 header 和 entries 的 CRC；合成 GPT 的有效与损坏路径已通过测试。
+
+接下来先完成充电启动验收，再从 RAM 对整盘及 boot0/boot1 做一致性备份。扩容到 3 GiB 需要离线缩小／迁移 UDA、保存 AP1/CAC、保持文件系统 UUID 和分区 GUID，并先更新和验证 initramfs 的精确 APP 大小检查。个人媒体和旧 multirom 不能未经核对直接删除。备份、分区迁移、扩容后的普通启动与完整组件检查均尚未完成。
+
+蓝牙仍在 Reset 成功后的 Read Local Version 超时，ALSA 仍无已验收声卡。音频实验模块未装入默认路径；按用户顺序，蓝牙、扬声器、浏览器和硬件视频加速工作放在备份与扩容之后。
