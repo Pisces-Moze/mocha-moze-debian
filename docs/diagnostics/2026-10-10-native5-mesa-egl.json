@@ -1,0 +1,35 @@
+{
+  "operator_date": "2026-10-10",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "mesa_version": "25.0.7",
+  "mesa_source_sha256": "592272df3cf01e85e7db300c449df5061092574d099da275d19e97ef0510f8a6",
+  "candidate_archive_sha256": "cb2259ddf653ff72f78c8d528f6721469c2700c5e344d2c7893a423df47b94d9",
+  "libgallium_sha256": "e89304a3a2f6e782b67e50325636df458012433d387d1eff6e7fcdfdd3c2b484",
+  "libgallium_build_id": "9655e407b21f062859570f90c2acd6e3a5c7b7a0",
+  "panel_scanout_tested": false,
+  "native_kms_tested": false,
+  "tests": {
+    "nouveau": {
+      "returncode": 0,
+      "stdout": "DRM_DEVICE=/dev/dri/renderD129\nDRM_DRIVER=nouveau\nEGL_VERSION=1.5\nRENDERER=NVEA\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libEGL_mesa.so.0.0.0\nMESA_LIBRARY_SHA256=731117735fd7d61d3b99899898f1e9ab6f7d19423a78efe5ab41c587729243ee\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgallium-25.0.7.so\nMESA_LIBRARY_SHA256=e89304a3a2f6e782b67e50325636df458012433d387d1eff6e7fcdfdd3c2b484\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgbm.so.1.0.0\nMESA_LIBRARY_SHA256=436351688ed55b569e2a5b32c9bcc0e251469ba507e6bf48913cc17b183b4f09\nFENCE_ITERATIONS=32\nEGL_FENCE_TEST=PASS\nTEGRA_WRAPPER_TESTED=NO\nPANEL_SCANOUT_TESTED=NO\n",
+      "stderr": ""
+    },
+    "tegra": {
+      "returncode": 0,
+      "stdout": "DRM_DEVICE=/dev/dri/renderD129\nDRM_DRIVER=nouveau\nEGL_VERSION=1.5\nRENDERER=tegra\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libEGL_mesa.so.0.0.0\nMESA_LIBRARY_SHA256=731117735fd7d61d3b99899898f1e9ab6f7d19423a78efe5ab41c587729243ee\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgallium-25.0.7.so\nMESA_LIBRARY_SHA256=e89304a3a2f6e782b67e50325636df458012433d387d1eff6e7fcdfdd3c2b484\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgbm.so.1.0.0\nMESA_LIBRARY_SHA256=436351688ed55b569e2a5b32c9bcc0e251469ba507e6bf48913cc17b183b4f09\nFENCE_ITERATIONS=32\nEGL_FENCE_TEST=PASS\nTEGRA_WRAPPER_TESTED=YES\nPANEL_SCANOUT_TESTED=NO\n",
+      "stderr": ""
+    },
+    "native_tegra": {
+      "returncode": 0,
+      "stdout": "DRM_DEVICE=/dev/dri/renderD128\nDRM_DRIVER=tegra\nEGL_VERSION=1.5\nRENDERER=tegra\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libEGL_mesa.so.0.0.0\nMESA_LIBRARY_SHA256=731117735fd7d61d3b99899898f1e9ab6f7d19423a78efe5ab41c587729243ee\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgallium-25.0.7.so\nMESA_LIBRARY_SHA256=e89304a3a2f6e782b67e50325636df458012433d387d1eff6e7fcdfdd3c2b484\nMESA_LIBRARY=/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgbm.so.1.0.0\nMESA_LIBRARY_SHA256=436351688ed55b569e2a5b32c9bcc0e251469ba507e6bf48913cc17b183b4f09\nFENCE_ITERATIONS=32\nEGL_FENCE_TEST=PASS\nTEGRA_WRAPPER_TESTED=YES\nPANEL_SCANOUT_TESTED=NO\n",
+      "stderr": ""
+    }
+  },
+  "scope": "headless EGL probe after native5 RAM comparison, corrected libdrm ABI field types",
+  "dtb_sha256": "4654f8b681e5035e913a0bc9433d09e4bfe9f32d0751959647bdacce435456fc",
+  "non_tegra_guard_negative_test": {
+    "device": "/dev/dri/renderD129",
+    "returncode": 1,
+    "message": "Unexpected DRM driver: nouveau"
+  }
+}

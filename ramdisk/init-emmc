@@ -14,7 +14,12 @@ while [ ! -b /dev/mmcblk0p26 ] && [ "$count" -lt 30 ]; do sleep 1; count=$((coun
 test -b /dev/mmcblk0p26 || fail 'eMMC APP partition missing.'
 test "$(cat /sys/class/block/mmcblk0/device/name)" = 016GE2 || fail 'Unexpected eMMC identity.'
 test "$(cat /sys/class/block/mmcblk0p26/start)" = 524288 || fail 'Unexpected APP start.'
-test "$(cat /sys/class/block/mmcblk0p26/size)" = 2612431 || fail 'Unexpected APP size.'
+# Keep the original geometry bootable while the backed-up 16 GB device is
+# migrated to a 3 GiB APP. Both layouts retain the same start and partition ID.
+case "$(cat /sys/class/block/mmcblk0p26/size)" in
+    2612431|6291456) ;;
+    *) fail 'Unexpected APP size.' ;;
+esac
 mount -t ext4 -o rw /dev/mmcblk0p26 /newroot || fail 'Cannot mount Debian APP filesystem.'
 test -f /newroot/etc/mocha-internal-debian || fail 'Debian installation marker missing.'
 test -x /newroot/usr/lib/systemd/systemd || fail 'Debian systemd missing.'

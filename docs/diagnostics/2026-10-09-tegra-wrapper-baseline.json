@@ -1,0 +1,5 @@
+{
+  "returncode": -11,
+  "stdout": "DRM_DEVICE=/dev/dri/renderD128\nDRM_DRIVER=nouveau\nEGL_VERSION=1.5\nRENDERER=tegra\n",
+  "stderr": "PROBE_STAGE=gbm_create_device\nPROBE_STAGE=eglInitialize\nPROBE_STAGE=eglBindAPI\nPROBE_STAGE=eglChooseConfig\nPROBE_STAGE=eglCreateContext producer\nPROBE_STAGE=eglMakeCurrent producer\nPROBE_STAGE=glGenTextures\nPROBE_STAGE=glBindTexture\nPROBE_STAGE=glTexImage2D\nPROBE_STAGE=glFlush texture\nPROBE_STAGE=eglCreateContext consumer\nPROBE_STAGE=eglMakeCurrent setup\nPROBE_STAGE=framebuffer setup\nPROBE_STAGE=eglMakeCurrent setup\nPROBE_STAGE=framebuffer setup\nPROBE_STAGE=eglMakeCurrent producer\nPROBE_STAGE=glClear producer\nPROBE_STAGE=eglCreateSyncKHR\nPROBE_STAGE=eglMakeCurrent consumer\nPROBE_STAGE=enter eglWaitSyncKHR\n"
+}

@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-11",
+  "device": "Xiaomi Mi Pad A0101 / Mocha",
+  "status": "device moved to remote workplace; new Smithay candidate has not been tested on hardware",
+  "default_boot_changed": false,
+  "kernelrelease": "6.12.111-moze.1-native",
+  "native_kernel_sha256": "d8bc8736b124aad1ccecf097cf480d9df5be4fb9aab55bafc486e94625367e81",
+  "native_dtb_sha256": "11e4916155e564fb2b884be6df191288997ecbad8d7863de681884718b3fab88",
+  "stock_nouveau_sha256": "f3ae72d63d06cf82123f49e707a6199e8db48fb07f3daade9862cfdd181db87d",
+  "wc_mesa_sha256": "f27e845b7338eb0fc2f3184fa61ad94a074f1120730c9d6363dd662d180b9c64",
+  "experimental_native_sync_mesa_sha256": "3b4ed9cd6a4b1db53767ee495b90f7f2384019ad68d40e0f563f79df50fa0cd3",
+  "noctalia_sha256": "63d910c2076c3c0c1f6931073b6336cf09eacdbbb887dc121a7d0c3b731f0696",
+  "backlight_module_sha256": "5cb1c425c994e60cb5cb38a82a6ed946179a3fd55fa3d254bba317a4f36e1f10",
+  "policy_sha256": "742dfe2cfadf7da5dabba8c51447ca4c0bc483a270c1e8170d77347b583c818c",
+  "controlled_window_test": {
+    "gpu_mhz": 852,
+    "charger_input_limit_ua": 2000000,
+    "frames": 600,
+    "warmup": 120,
+    "fps": 60.042,
+    "p50_ms": 16.648,
+    "p95_ms": 17.014,
+    "p99_ms": 17.469,
+    "over_25ms": 0,
+    "observer": "none; single workload, not all desktop applications"
+  },
+  "light_telemetry_window_test": {
+    "fps": 59.744,
+    "p95_ms": 17.406,
+    "p99_ms": 20.775,
+    "over_25ms": 4
+  },
+  "atomic_native_fence": {
+    "frames_each": 120,
+    "pending_exports_each": 120,
+    "cpu_wait_control_fps": 30.02,
+    "async_fps": 30.03,
+    "pixel_readback_or_copy_in_test": false,
+    "full_compositor_proven": false
+  },
+  "compositor_profiles": {
+    "baseline": {
+      "frames": 395,
+      "cpu_wait_frames": 395,
+      "render_ms": {
+        "mean": 4.933,
+        "p95": 7.551,
+        "p99": 11.624,
+        "max": 34.751
+      },
+      "wait_ms": {
+        "mean": 1.61,
+        "p95": 4.029,
+        "p99": 6.564,
+        "max": 8.371
+      },
+      "queue_ms": {
+        "mean": 0.18,
+        "p95": 0.315,
+        "p99": 0.475,
+        "max": 1.72
+      },
+      "total_ms": {
+        "mean": 7.295,
+        "p95": 10.645,
+        "p99": 15.168,
+        "max": 72.353
+      }
+    },
+    "native_sync_old_smithay": {
+      "frames": 381,
+      "cpu_wait_frames": 381,
+      "render_ms": {
+        "mean": 7.025,
+        "p95": 10.406,
+        "p99": 12.835,
+        "max": 40.786
+      },
+      "wait_ms": {
+        "mean": 0.938,
+        "p95": 3.077,
+        "p99": 5.34,
+        "max": 12.646
+      },
+      "queue_ms": {
+        "mean": 0.214,
+        "p95": 0.337,
+        "p99": 0.606,
+        "max": 5.667
+      },
+      "total_ms": {
+        "mean": 8.877,
+        "p95": 12.854,
+        "p99": 17.17,
+        "max": 97.248
+      }
+    }
+  },
+  "smithay_candidate": {
+    "hardware_tested": false,
+    "build_status": "rebuilding after VM restart; no verified new binary yet"
+  },
+  "power": {
+    "computer_usb_under_load_min_voltage_uv": 3534000,
+    "computer_usb_under_load_discharge_ua": 1496000,
+    "thermal_downclock_observed": true,
+    "black_screen_cause_confirmed": false
+  },
+  "filesystem": {
+    "root_and_data_offline_fsck_exit": 0,
+    "new_io_errors_in_followup": false
+  },
+  "privacy": "No Wi-Fi credentials, SSH keys, firmware binaries, original partition backups or raw identifying logs included.",
+  "publication_validation": {
+    "patches_apply_to_pinned_upstream": true,
+    "mesa_callback_combinations": 8,
+    "reset_callback_combinations": 4,
+    "modifier_round_trips": 6,
+    "other_layouts_preserved": 4084,
+    "probes_cross_compiled": true,
+    "mesa_patched_source_matches_working_tree_files": 9,
+    "new_niri_hardware_tested": false
+  }
+}

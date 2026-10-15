@@ -1,0 +1,58 @@
+{
+  "collection_date": "2026-10-10",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "dtb_sha256": "8572c7b5e4b08fbef81d7f6dfe5f70e35020b6608754256f18e9593945151ecb",
+  "boot": "RAM",
+  "emmc_read_only": true,
+  "persistent_storage_write": false,
+  "userspace_access": "APP and data mounted read-only,noload after core capture; /tmp remains RAM",
+  "backlight": {
+    "module_load_exit_code": 0,
+    "module_sha256": "5cb1c425c994e60cb5cb38a82a6ed946179a3fd55fa3d254bba317a4f36e1f10",
+    "release": "6.12.111-moze.1-native",
+    "registered": true,
+    "brightness_before": 31,
+    "brightness_test": 96,
+    "brightness_restored": 31
+  },
+  "drm": {
+    "driver": "tegra",
+    "connector": "DSI-1",
+    "connected": true,
+    "enabled": true,
+    "crtc_active": true,
+    "mode": "1536x2048",
+    "clock_khz": 215000,
+    "fb_format": "XR24",
+    "fb_pitch": 6144,
+    "dsi_lp_clock_hz": 12000000
+  },
+  "cpu_framebuffer_test": {
+    "process_exit_code": 0,
+    "restored_framebuffer": true,
+    "physical_result": "backlight lit but black screen",
+    "observed_by": "user"
+  },
+  "gpu_dmabuf_test": {
+    "program": "native-dmabuf-scanout-v2 private RAM variant",
+    "changes_from_public_program": [
+      "boot guard changed from mocha_native_debug4=1 to rdinit=/init",
+      "duration extended from 5 to 60 seconds"
+    ],
+    "source_sha256": "ed360f9e539f565db41d2f51ed6bf9fb2df7ba233c71150f2b020dc2383df80f",
+    "binary_sha256": "ad4e941de48d6a8fa68e3ed4c389a56a309e48b6ab3b1772b748177917c6d821",
+    "exit_code": 0,
+    "frames": 1800,
+    "seconds": 60.018,
+    "fps": 29.99,
+    "cpu_pixel_copies": 0,
+    "stdout": "GPU_RENDERER=NVEA\nDMA_BUF_0 pitch=6144 fb=52 linear=1 imported=1\nDMA_BUF_1 pitch=6144 fb=53 linear=1 imported=1\nNATIVE_GPU_SCANOUT_STARTED mode=1536x2048 clock_khz=215000\nNATIVE_GPU_SCANOUT_FRAMES=1800 SECONDS=60.018 FPS=29.99 CPU_PIXEL_COPIES=0\n",
+    "physical_result": "backlight lit but black screen",
+    "observed_by": "user",
+    "restored_original_crtc": true
+  },
+  "physical_scanout_pass": false,
+  "niri_started": false,
+  "native_desktop_pass": false,
+  "next_comparison": "same kernel and initrd; restore native5 DSI primary/panel ownership in a private RAM-only DTB; not yet booted"
+}

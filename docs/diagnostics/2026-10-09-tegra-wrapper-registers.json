@@ -1,0 +1,21 @@
+{
+  "initial": "T050b:00000000;0d:70fdffbe;0f:c0e8fdb6;thread:2cc;core:2;",
+  "stopped": "T0b0b:b8f6ffbe;0d:48f6ffbe;0f:00000000;thread:2cc;core:2;",
+  "registers": {
+    "r0": "0x6ce9c8",
+    "r1": "0x6483b8",
+    "r2": "0x0",
+    "r3": "0x0",
+    "lr": "0xb5b245bd",
+    "pc": "0x0"
+  },
+  "libgallium": {
+    "name": "/lib/arm-linux-gnueabihf/libgallium-25.0.7-2+deb13u1.so",
+    "lm": "0x5d71d8",
+    "l_addr": "0xb4dc0000",
+    "l_ld": "0xb65ffe50",
+    "lmid": "0xb6fff7b8"
+  },
+  "relative_lr": "0xd645bc",
+  "call_instruction": "9847"
+}

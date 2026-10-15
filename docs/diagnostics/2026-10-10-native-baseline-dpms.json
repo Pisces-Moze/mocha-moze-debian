@@ -1,0 +1,126 @@
+{
+  "collection_date": "2026-10-10",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "scope": "original DSI source rebuilt in existing output; first start and DRM OFF/ON comparison in one RAM boot",
+  "kernel_source_base_commit": "6f1e595e0237e6691437640048d4524909f33094",
+  "compiled_dsi_c_sha256": "cfd8ed8db239f3198aa8a893f6f7201ab670b98709717a9dca3468434dfdd413",
+  "clean_output_tree_rebuild": false,
+  "full_native_target_build_exit_code": 0,
+  "uimage_sha256": "3b8b30dc382b6dfd63436740dec4fe5ad4b42e6f96a3daf242ecfa921bf76141",
+  "image_sha256": "01b59c3c3e8a351ea38198e0c1f3100491347df82a6f681885bccabd12372d56",
+  "config_sha256": "b0111bd69c99133ef5674882a8d192353cc8bbefa494a94e2b3747a75aacea33",
+  "dtb_sha256": "4654f8b681e5035e913a0bc9433d09e4bfe9f32d0751959647bdacce435456fc",
+  "live_fdt_sha256": "5a9ca6e6b042b512a0f6a140c2a53d407e7ac8c29a2a09eff199efe837ce7b82",
+  "initrd_sha256": "eb2f38b1ab6538017b7712fec4e01c7b082053cdc4c847122bdfebb0bde1ac5f",
+  "boot_mode": "RAM",
+  "emmc_read_only": true,
+  "persistent_storage_write": false,
+  "userspace_mount_options": "ro,noload",
+  "actual_core": {
+    "pass": true,
+    "bytes": 327680,
+    "sha256": "e2d12e559968f8ceb2a8faa4989d573376b683c332f10a367a962bb886c8e3da",
+    "raw_core_published": false
+  },
+  "payload_comparison": {
+    "reference_uimage_sha256": "926c6f3bee3ff2a5071b4168ce547080d1775161f4c21431985d8d15d7a7440e",
+    "payload_bytes": 23715220,
+    "different_bytes": 34,
+    "difference_scope": "build number/time strings and GNU build ID only; machine instructions unchanged",
+    "equal_outside_metadata_ranges": true,
+    "ranges": [
+      {
+        "start_va": "0xc1067efe",
+        "end_va": "0xc1067efe",
+        "symbol": "linux_banner",
+        "different_bytes": 1
+      },
+      {
+        "start_va": "0xc1067f17",
+        "end_va": "0xc1067f1e",
+        "symbol": "linux_banner",
+        "different_bytes": 6
+      },
+      {
+        "start_va": "0xc12f8a74",
+        "end_va": "0xc12f8a87",
+        "symbol": "GNU build ID note",
+        "different_bytes": 20
+      },
+      {
+        "start_va": "0xc168442c",
+        "end_va": "0xc168442c",
+        "symbol": "init_uts_ns",
+        "different_bytes": 1
+      },
+      {
+        "start_va": "0xc1684445",
+        "end_va": "0xc168444c",
+        "symbol": "init_uts_ns",
+        "different_bytes": 6
+      }
+    ]
+  },
+  "initial_start": {
+    "dsi_a_start": 768,
+    "dsi_b_start": 0,
+    "cpu_framebuffer_physical_result": "lit backlight, black; user confirmed",
+    "gpu": {
+      "frames": 1801,
+      "seconds": 60.001,
+      "fps": 30.02,
+      "program_cpu_pixel_copy_calls": 0,
+      "process_exit_code": 0,
+      "physical_result": "lit backlight, black; user confirmed",
+      "physical_pass": false
+    }
+  },
+  "drm_off_on": {
+    "private_program_source_sha256": "bd79895d1b3afddb0aca4ca2a7f309388f238bda4309ae06da4eb198d4db0b4e",
+    "private_program_binary_sha256": "bc4aa622caec5cedea49d829d9a957db78dd1c46c056bbd6bc4289ecffc57382",
+    "off_return": 0,
+    "on_return": 0,
+    "off_interval_ms": 500,
+    "path": "existing DRM connector DPMS atomic disable/enable helpers",
+    "manual_start_register_writes": false,
+    "dsi_a_start": 768,
+    "dsi_b_start": 0,
+    "physical_result": "CPU colors visible: TL green, TR red, BL white, BR blue; user confirmed",
+    "visible": true,
+    "layout_correct": false
+  },
+  "after_manual_start_correction": {
+    "dsi_a_start": 0,
+    "dsi_b_start": 768,
+    "manual_start_register_writes": true,
+    "gpu": {
+      "frames": 1801,
+      "seconds": 60.001,
+      "fps": 30.02,
+      "program_cpu_pixel_copy_calls": 0,
+      "process_exit_code": 0,
+      "renderer": "NVEA",
+      "pitch": 6144,
+      "linear": true,
+      "imported": true,
+      "physical_result": "visible and correct positions; user confirmed",
+      "physical_pass": true
+    },
+    "niri": {
+      "version": "26.04",
+      "binary_source_commit_verified": false,
+      "binary_sha256": "428d4d7784782b263d22ad915aee31e2a3178b0a45cbf510409693a176ac7e18",
+      "duration_limit_seconds": 180,
+      "expected_SIGTERM_observed": true,
+      "SIGSEGV_or_new_core_observed": false,
+      "clean_process_exit_code_verified": false,
+      "candidate_mesa_library_maps_verified": true,
+      "physical_result": "blue background and updating foot terminal normal; user confirmed",
+      "manual_start_correction_after_niri_modeset": true,
+      "physical_pass": true
+    }
+  },
+  "interpretation": "same instruction bytes fail first start and recover after OFF/ON; startup reset/power sequencing is a hypothesis, not a proven single root cause",
+  "automatic_driver_layout_pass": false,
+  "new_brand_end_to_end_tested": false
+}

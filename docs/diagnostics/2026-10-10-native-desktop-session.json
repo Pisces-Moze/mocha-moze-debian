@@ -1,0 +1,59 @@
+{
+  "collection_date": "2026-10-10",
+  "scope": "native KMS RAM session with read-only eMMC and bounded desktop smoke test",
+  "boot_mode": "RAM",
+  "kernel_release": "6.12.111-moze.1-native",
+  "cpu_online": "0-3",
+  "emmc_read_only": true,
+  "persistent_storage_write": false,
+  "firmware_source": "read-only /dev/mmcblk0p26 copied into RAM /lib/firmware before module load",
+  "module_load": {
+    "mocha_miui_backlight": 0,
+    "drm_exec": 0,
+    "drm_gpuvm": 0,
+    "nouveau": 0,
+    "firmware_requests": [
+      "nvidia/gk20a/fecs_inst.bin",
+      "nvidia/gk20a/fecs_data.bin",
+      "nvidia/gk20a/gpccs_inst.bin",
+      "nvidia/gk20a/gpccs_data.bin",
+      "nvidia/gk20a/sw_bundle_init.bin",
+      "nvidia/gk20a/sw_nonctx.bin",
+      "nvidia/gk20a/sw_ctx.bin",
+      "nvidia/gk20a/sw_method_init.bin"
+    ]
+  },
+  "display": {
+    "connector": "DSI-1",
+    "connector_status": "connected",
+    "tegra_card": "/dev/dri/card1",
+    "nouveau_card": "/dev/dri/card0",
+    "tegra_render_node": "/dev/dri/renderD128",
+    "nouveau_render_node": "/dev/dri/renderD129",
+    "runtime_reset_markers": true
+  },
+  "niri": {
+    "version": "26.04",
+    "render_node": "/dev/dri/renderD129",
+    "wayland_socket": "wayland-1",
+    "process_alive_after_start": true,
+    "candidate_gbm_library_mapped": true,
+    "physical_desktop_acceptance": null
+  },
+  "noctalia": {
+    "version": "5.2.1",
+    "candidate_mesa_result": "eglInitialize failed",
+    "candidate_mesa_reason": "staged candidate has libEGL/libGBM/libgallium but no DRI driver directory; packaging gap",
+    "system_mesa_result": "started",
+    "system_mesa_renderer": "llvmpipe (LLVM 19.1.7, 128 bits)",
+    "hardware_acceleration_verified": false
+  },
+  "physical_result": null,
+  "not_covered": [
+    "touch confirmation",
+    "audio",
+    "long-term stability",
+    "default boot",
+    "accelerated Noctalia"
+  ]
+}

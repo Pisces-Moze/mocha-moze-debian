@@ -1,0 +1,88 @@
+{
+  "collection_date": "2026-10-10",
+  "kernelrelease": "6.12.111-moze.1-native",
+  "uimage_sha256": "926c6f3bee3ff2a5071b4168ce547080d1775161f4c21431985d8d15d7a7440e",
+  "dtb_sha256": "4654f8b681e5035e913a0bc9433d09e4bfe9f32d0751959647bdacce435456fc",
+  "live_fdt_sha256": "5a9ca6e6b042b512a0f6a140c2a53d407e7ac8c29a2a09eff199efe837ce7b82",
+  "initrd_sha256": "eb2f38b1ab6538017b7712fec4e01c7b082053cdc4c847122bdfebb0bde1ac5f",
+  "boot_mode": "RAM",
+  "emmc_read_only": true,
+  "persistent_storage_write": false,
+  "scope": "installed Niri with candidate Mesa, native Tegra output, manual scanout correction; standalone RAM session",
+  "niri_version": "26.04 (unknown commit)",
+  "niri_binary_sha256": "428d4d7784782b263d22ad915aee31e2a3178b0a45cbf510409693a176ac7e18",
+  "niri_build_id": "9858b8418d23e1c15a2a99a18c39ac0cd44d9d1e",
+  "niri_binary_source_commit_verified": false,
+  "render_node": "/dev/dri/renderD128",
+  "kms_card": "/dev/dri/card1",
+  "connector": "DSI-1",
+  "mode": "1536x2048",
+  "transform": "90",
+  "scale": 1.5,
+  "libraries": [
+    {
+      "path": "/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libEGL_mesa.so.0.0.0",
+      "sha256": "731117735fd7d61d3b99899898f1e9ab6f7d19423a78efe5ab41c587729243ee",
+      "live_process_map_verified": true
+    },
+    {
+      "path": "/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgbm.so.1.0.0",
+      "sha256": "436351688ed55b569e2a5b32c9bcc0e251469ba507e6bf48913cc17b183b4f09",
+      "live_process_map_verified": true
+    },
+    {
+      "path": "/srv/mocha-data/codex-mesa-fence-20261009/stage/opt/mocha-mesa-candidate/lib/arm-linux-gnueabihf/libgallium-25.0.7.so",
+      "sha256": "e89304a3a2f6e782b67e50325636df458012433d387d1eff6e7fcdfdd3c2b484",
+      "live_process_map_verified": true
+    }
+  ],
+  "seat_backend": "builtin",
+  "block_linear_test_only": "EINVAL; existing compositor fallback to invalid/linear modifier used",
+  "active_plane": {
+    "allocated_by": "niri",
+    "format": "XR24",
+    "modifier": "0x0",
+    "pitch": 6144,
+    "imported": true
+  },
+  "manual_start_register_writes_after_niri_modeset": true,
+  "niri_modeset_initial_starts": {
+    "a": 768,
+    "b": 0
+  },
+  "corrected_starts": {
+    "a": 0,
+    "b": 768
+  },
+  "physical_result": "blue desktop and Mocha-native-RAM terminal completely normal",
+  "physical_pass": true,
+  "observed_by": "user",
+  "bounded_session_seconds": 180,
+  "termination": "planned timeout; Niri logged SIGTERM and watcher thread exit",
+  "ssh_tty_launcher_exit_code": 1,
+  "niri_clean_exit_code_verified": false,
+  "sigsegv_observed": false,
+  "core_created": false,
+  "ram_harness_fix": "mount devpts and bind it into chroot before launching terminal",
+  "ram_environment_limitations": [
+    "login1/locale1 system bus unavailable",
+    "xwayland-satellite unavailable"
+  ],
+  "touch_tested": false,
+  "noctalia_full_session_tested": false,
+  "automatic_driver_layout_pass": false,
+  "new_brand_end_to_end_tested": false,
+  "second_bounded_session": {
+    "seconds": 180,
+    "terminal_updates": "configured 150 one-second text updates; exact rendered frame count not measured",
+    "terminal_started_from_config": true,
+    "niri_and_foot_alive_at_143_seconds": true,
+    "manual_start_correction_after_modeset": true,
+    "termination": "planned SIGTERM; watcher thread exit logged",
+    "ssh_tty_launcher_exit_code": 1,
+    "sigsegv_observed": false,
+    "core_created": false,
+    "new_gpu_errors_observed": false,
+    "separate_user_physical_observation": false
+  }
+}

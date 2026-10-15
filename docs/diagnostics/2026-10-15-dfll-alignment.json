@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-15",
+  "kernel": "6.12.111-moze.1-native-runtime",
+  "default_boot_unchanged": true,
+  "runtime_candidate_promoted": false,
+  "cold_ram_boots": 2,
+  "cpu_idle_disabled": true,
+  "wall_input_limit_ua": 2000000,
+  "fixed_rate_samples": [
+    {
+      "request_hz": 204000000,
+      "dfll_hz": 221132812,
+      "pmu_hz": 218383410,
+      "cpu_uv": 900000
+    },
+    {
+      "request_hz": 408000000,
+      "dfll_hz": 436289062,
+      "pmu_hz": 431054080,
+      "cpu_uv": 900000
+    },
+    {
+      "request_hz": 612000000,
+      "dfll_hz": 651943359,
+      "pmu_hz": 649612469,
+      "cpu_uv": 900000
+    },
+    {
+      "request_hz": 1020000000,
+      "dfll_hz": 1084596679,
+      "pmu_hz": 1081845633,
+      "cpu_uv": 900000
+    },
+    {
+      "request_hz": 612000000,
+      "dfll_hz": 651943359,
+      "pmu_hz": 650935545,
+      "cpu_uv": 900000
+    },
+    {
+      "request_hz": 204000000,
+      "dfll_hz": 224818359,
+      "pmu_hz": 217325926,
+      "cpu_uv": 900000
+    }
+  ],
+  "second_boot_low_rate": {
+    "requested_hz": 204000000,
+    "dfll_hz": 221132812,
+    "pmu_hz": 217693134,
+    "cpu_uv": 900000
+  },
+  "actual_rate_offset_percent_approx": [
+    6,
+    8
+  ],
+  "requested_desktop_cap_khz": 1020000,
+  "desktop_artifact_hashes": {
+    "niri": {
+      "executable_sha256": "1ec8125678b777e2e7971d7514d535eb37568bf7cbb469401019b0af84c3082e",
+      "gallium_sha256": "cc81fe6399af38442a48aa52801400086dcb43008aae292353ebac4d65c57fbe"
+    },
+    "noctalia": {
+      "executable_sha256": "c375a31ef4ee0f26cc005d0963f9b275142c3ba7998f11ddfe8e82d2d236465a",
+      "gallium_sha256": "cc81fe6399af38442a48aa52801400086dcb43008aae292353ebac4d65c57fbe"
+    }
+  },
+  "ui_buffer_cycles": [
+    {
+      "stage": "before",
+      "objects": 8,
+      "dma_bytes": 40685568,
+      "available_kib": 1287428
+    },
+    {
+      "stage": "after-20-overview-cycles",
+      "objects": 8,
+      "dma_bytes": 40685568,
+      "available_kib": 1287724
+    },
+    {
+      "stage": "after-20-panel-cycles",
+      "objects": 8,
+      "dma_bytes": 40685568,
+      "available_kib": 1276932
+    },
+    {
+      "stage": "idle-after",
+      "objects": 8,
+      "dma_bytes": 40685568,
+      "available_kib": 1278876
+    }
+  ],
+  "mixed_zram": {
+    "bytes": 134217728,
+    "incompressible_fraction": 0.5,
+    "checksum_preserved": true,
+    "before": {
+      "available_kib": 1264836,
+      "mm_stat": "266240     3777    24576        0   544768        0        0        0        0",
+      "memory_psi": "some avg10=0.00 avg60=0.00 avg300=0.00 total=64497\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=64497\n"
+    },
+    "pageout": {
+      "available_kib": 1163432,
+      "mm_stat": "134471680 68054663 68173824        0 68173824        0        0    16382    16382",
+      "memory_psi": "some avg10=0.00 avg60=0.00 avg300=0.00 total=64497\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=64497\n"
+    },
+    "after_free": {
+      "available_kib": 1228684,
+      "mm_stat": "516096   128455   151552        0 68173824        0        0       30    16382",
+      "memory_psi": "some avg10=1.54 avg60=0.31 avg300=0.06 total=297684\nfull avg10=1.54 avg60=0.31 avg300=0.06 total=297282\n"
+    }
+  },
+  "temporary_policy_duration_seconds": 40,
+  "policy_exit_restored_parameters": true,
+  "policy_regressions": 9,
+  "alignment_actual_function_fixtures": 10,
+  "user_confirmed": [
+    "desktop/touch/icons/popups on both boots",
+    "power lock/off/wake/touch-password unlock on first boot"
+  ],
+  "pending": [
+    "default promotion",
+    "complete voltage curve and frequency calibration",
+    "CPU idle",
+    "sustained multi-application memory/thermal stability",
+    "other hardware tasks"
+  ]
+}

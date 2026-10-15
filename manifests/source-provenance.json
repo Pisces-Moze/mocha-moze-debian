@@ -70,5 +70,13 @@
     "CUDA debs",
     "compiled images",
     "VM disks"
-  ]
+  ],
+  "mesa_candidate": {
+    "version": "25.0.7",
+    "upstream_commit": "742a20f48c59e8649533c84c4d49dd95b403f5da",
+    "source_url": "https://archive.mesa3d.org/mesa-25.0.7.tar.xz",
+    "source_sha256": "592272df3cf01e85e7db300c449df5061092574d099da275d19e97ef0510f8a6",
+    "patch_repository": "mocha-moze-desktop",
+    "patch": "patches/0004-mesa-tegra-optional-fence-callbacks.patch"
+  }
 }
