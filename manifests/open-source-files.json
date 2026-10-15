@@ -152,7 +152,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-16.md",
-      "sha256": "4a01a5e9deb452c50fac862be75fffe6c49c74f9a1f5c37968474b96bff2fd0c"
+      "sha256": "18e6e0c7caeaa3303bb6241c545bfba139533752c2e864290f9691755a315236"
     },
     {
       "repository": "mocha-moze-debian",
@@ -177,7 +177,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/ISSUES.md",
-      "sha256": "10ce56d563aaa4ae9ad8ec11bcf75bb7ae5d7a4fe4df35e3907f1d6bdc923c53"
+      "sha256": "4cde24d468f8fde8f2fff09cfaf8bfa9eed4b154b5c9b6284218d1af814ae01c"
     },
     {
       "repository": "mocha-moze-debian",
@@ -207,17 +207,17 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/SYSTEM3G.md",
-      "sha256": "fb768065ab9b671808479b9ff05dc396f95c137d2c71a6a2805a1e22dce0ac99"
+      "sha256": "b4e71eb51462b34ff947b45a4785755881c1a8e98d9876098bff06c3753581f4"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/TODO.md",
-      "sha256": "a71fbedbc4d8ec18f43a799107e46c28a2a975f3cffb525ee757e895e5dccffa"
+      "sha256": "3b47a58c1aad6c070dff1d8ce16be8e972ca95d781f2c6b9ff11a0e9e427aeb4"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "ebacbb68c47b76136fb8161114d59d2df6ba2ea8302a0783dda8091f04211b86"
+      "sha256": "b62ea0c249129a62270ff3085ca483fb1d643670c8d9ec7cd11a61abefa1ba4a"
     },
     {
       "repository": "mocha-moze-debian",
@@ -392,7 +392,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "manifests/handoff-2026-10-16.lock.json",
-      "sha256": "af07df35717b51152d6d1efb509a8c13434e006b1224bc405da16a4f4b909de5"
+      "sha256": "e376837a1a98d5da45046cd9e33f1a40c671198b4b4521754152480deb2c5e06"
     },
     {
       "repository": "mocha-moze-debian",
@@ -447,7 +447,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "tools/grow-app-offline.py",
-      "sha256": "e51765a8fef5e8bc2d4e76e2ab50c335a95f0b241a85507d99943a624d349f80"
+      "sha256": "7c906204f24128b39cc10cecd6de4e2ba6fb1f149d5853da7da8f36de5067bc5"
     },
     {
       "repository": "mocha-moze-debian",
@@ -487,7 +487,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "tools/test-grow-app-offline.py",
-      "sha256": "2a6b66e8ca72e01fb9b4b4903900f7ef5b91f2ba14a116e46a70673ea0c01177"
+      "sha256": "7b7b57f28ddb05a7de4e74d707ac5eaad77ca023cf18e6a0090adb630fac49b0"
     },
     {
       "repository": "mocha-moze-debian",

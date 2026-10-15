@@ -141,10 +141,23 @@ def filesystem(device):
     return {key:value.strip() for key,value in values.items()}
 
 
+def filesystem_times(device):
+    with open(device,'rb',buffering=0) as stream:
+        superblock=read_at(stream,1024,1024)
+    return tuple(struct.unpack_from('<I',superblock,offset)[0] for offset in (44,64))
+
+
+def check_filesystem_clock(device):
+    assert time.time()>=max(filesystem_times(device)), 'RAM clock precedes filesystem timestamps; synchronize UTC before fsck/resize'
+
+
 def fsck(device):
+    check_filesystem_clock(device)
     result=command(['e2fsck','-f','-p',device],check=False)
     assert result.returncode in (0,1), result.stdout+result.stderr
     assert filesystem(device)['Filesystem state']=='clean'
+    mounted,checked=filesystem_times(device)
+    assert checked>=mounted, 'Filesystem check must be newer than its last mount; verify the RAM clock'
 
 
 def main():
@@ -176,6 +189,7 @@ def main():
         command(['debugfs','-R',f'dump /boot/initramfs.cpio.gz {extracted}','/dev/mmcblk0p26'])
         assert digest(extracted.read_bytes())==args.bridge_sha256
     uda=filesystem('/dev/mmcblk0p29');app=filesystem('/dev/mmcblk0p26')
+    for device in ('/dev/mmcblk0p26','/dev/mmcblk0p29'):check_filesystem_clock(device)
     assert int(uda['Block size'])==int(app['Block size'])==4096
     target_blocks=NEW[-1][3]*512//4096
     used=int(uda['Block count'])-int(uda['Free blocks'])
@@ -190,6 +204,7 @@ def main():
     try:
         offline()
         for device in targets:command(['blockdev','--setrw',device])
+        fsck('/dev/mmcblk0p26')
         fsck('/dev/mmcblk0p29')
         command(['resize2fs','/dev/mmcblk0p29',str(target_blocks)])
         fsck('/dev/mmcblk0p29')

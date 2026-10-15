@@ -13,6 +13,19 @@ grow=importlib.util.module_from_spec(spec);spec.loader.exec_module(grow)
 
 
 class Tests(unittest.TestCase):
+    def test_ram_epoch_clock_is_rejected_before_filesystem_writes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            device=Path(directory)/'filesystem.bin'
+            image=bytearray(2048)
+            struct.pack_into('<I',image,1024+44,1792083216)
+            struct.pack_into('<I',image,1024+64,1737633720)
+            device.write_bytes(image)
+            with patch.object(grow.time,'time',return_value=252):
+                with self.assertRaisesRegex(AssertionError,'RAM clock'):
+                    grow.check_filesystem_clock(device)
+            with patch.object(grow.time,'time',return_value=1792083216):
+                grow.check_filesystem_clock(device)
+
     def test_secondary_array_requires_eight_sectors_for_29_entries(self):
         table=bytes(29*128)
         last=grow.SIZE//512-1
