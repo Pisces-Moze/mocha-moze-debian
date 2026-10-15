@@ -152,7 +152,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/DIAGNOSTICS-2026-10-16.md",
-      "sha256": "18e6e0c7caeaa3303bb6241c545bfba139533752c2e864290f9691755a315236"
+      "sha256": "6e3e75de30984a16e8d0e7fc8baa575277cee89736c8373e13c8d171fd9cd30e"
     },
     {
       "repository": "mocha-moze-debian",
@@ -177,7 +177,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/ISSUES.md",
-      "sha256": "4cde24d468f8fde8f2fff09cfaf8bfa9eed4b154b5c9b6284218d1af814ae01c"
+      "sha256": "0dd3e14905a90d50e848baa4615b7182391eb6017e19cb7955e6f37f255bb088"
     },
     {
       "repository": "mocha-moze-debian",
@@ -188,6 +188,11 @@
       "repository": "mocha-moze-debian",
       "path": "docs/PARAMETERS.md",
       "sha256": "1c10fcf9179039309afa96c8f0ab3f1c53229c7dfcdab1617151567ce1c7264f"
+    },
+    {
+      "repository": "mocha-moze-debian",
+      "path": "docs/PARTITIONS-2026-10-16.md",
+      "sha256": "736be02c14a6737e20f95519d4a20140b58ec3a3bed822436d3111baf19462ee"
     },
     {
       "repository": "mocha-moze-debian",
@@ -207,17 +212,17 @@
     {
       "repository": "mocha-moze-debian",
       "path": "docs/SYSTEM3G.md",
-      "sha256": "b4e71eb51462b34ff947b45a4785755881c1a8e98d9876098bff06c3753581f4"
+      "sha256": "833aa2dbc941c2b3eafba58cf0cce714c29db88e7f21b8250a6ffcf41711e53f"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/TODO.md",
-      "sha256": "3b47a58c1aad6c070dff1d8ce16be8e972ca95d781f2c6b9ff11a0e9e427aeb4"
+      "sha256": "8ccb476c15ced648a3435d52f6658517495f726ce5cd18ee917aefaa66ff6b7a"
     },
     {
       "repository": "mocha-moze-debian",
       "path": "docs/VALIDATION.md",
-      "sha256": "b62ea0c249129a62270ff3085ca483fb1d643670c8d9ec7cd11a61abefa1ba4a"
+      "sha256": "5981dda28f7a75d9b4b1038abd72075766fdf2671ca1548d51ff7519473c3e73"
     },
     {
       "repository": "mocha-moze-debian",
@@ -392,7 +397,7 @@
     {
       "repository": "mocha-moze-debian",
       "path": "manifests/handoff-2026-10-16.lock.json",
-      "sha256": "e376837a1a98d5da45046cd9e33f1a40c671198b4b4521754152480deb2c5e06"
+      "sha256": "3de87cde1c47fd9c63f625ade0e7b8142e1299c67e8472e3e60ca1ab1ed80518"
     },
     {
       "repository": "mocha-moze-debian",
