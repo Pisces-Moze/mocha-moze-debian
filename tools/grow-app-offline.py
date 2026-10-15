@@ -75,6 +75,11 @@ def read_gpt(stream):
         assert fields[7]==4096 and fields[8]==30773247
         assert 0<fields[11]<=4096 and 128<=fields[12]<=1024
         assert fields[10]*512+fields[11]*fields[12]<=SIZE
+        table_end=fields[10]+(fields[11]*fields[12]+511)//512
+        if lba==1:
+            assert fields[10]>=2 and table_end<=fields[7]
+        else:
+            assert fields[10]>fields[8] and table_end<=lba, 'Secondary GPT table overlaps its header'
         table=read_at(stream,fields[10]*512,fields[11]*fields[12])
         assert zlib.crc32(table)==fields[13]
         headers.append((sector,fields));tables.append(table)
@@ -154,7 +159,7 @@ def main():
     cid=offline()
     assert command(['blockdev','--getro','/dev/mmcblk0']).stdout.strip()=='1'
     evidence=json.loads(args.backup_evidence.read_text())
-    assert evidence['verification']=='SOURCE_AND_PC_READBACK_AND_BOTH_GPT_COPIES_VERIFIED'
+    assert evidence['verification']=='SOURCE_AND_PC_READBACK_VERIFIED_CURRENT_GPT_COPIES_AGREE'
     assert evidence['snapshot']['cid']==cid and evidence['snapshot']['sizes']['mmcblk0']==SIZE
     assert evidence['images']['mmcblk0']['bytes']==SIZE
     assert re.fullmatch('[0-9a-f]{64}',evidence['images']['mmcblk0']['sha256'])
