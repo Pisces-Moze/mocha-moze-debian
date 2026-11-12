@@ -38,4 +38,5 @@ cp "$repo/rootfs/mocha-usb.service" "$root/etc/systemd/system/"
 chroot "$root" systemctl enable ssh.service mocha-usb.service NetworkManager.service
 chroot "$root" apt-get clean
 rm -f "$root/usr/bin/qemu-arm-static"
+touch "$root/.mocha-source-rootfs-build"
 echo 'Core rootfs ready. Firmware, final initramfs, backlight module and desktop remain separate steps.'
