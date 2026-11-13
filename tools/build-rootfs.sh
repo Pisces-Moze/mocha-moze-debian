@@ -4,7 +4,7 @@ root=$(realpath -m "${1:?rootfs output}");key=$(realpath "${2:?authorized public
 repo=$(cd "$(dirname "$0")/.." && pwd)
 test "$EUID" = 0;test ! -e "$root";grep -Eq '^ssh-(ed25519|rsa) ' "$key"
 mirror=${MOCHA_DEBIAN_MIRROR:-https://mirrors.aliyun.com/debian}
-debootstrap --foreign --arch=armhf --variant=minbase --include=systemd-sysv,openssh-server,dropbear-bin,busybox-static,kmod,udev,iproute2,iputils-ping,ca-certificates,network-manager,sudo trixie "$root" "$mirror"
+debootstrap --foreign --arch=armhf --variant=minbase --include=systemd-sysv,openssh-server,dropbear-bin,busybox-static,kmod,udev,iproute2,iputils-ping,ca-certificates,dbus,dbus-daemon,dbus-user-session,network-manager,sudo trixie "$root" "$mirror"
 install -m755 /usr/bin/qemu-arm-static "$root/usr/bin/qemu-arm-static"
 chroot "$root" /debootstrap/debootstrap --second-stage
 mount --bind /dev "$root/dev";mount -t proc proc "$root/proc";mount -t sysfs sysfs "$root/sys"
