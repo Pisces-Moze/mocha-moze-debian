@@ -16,3 +16,15 @@
 | GitHub上传 | 五个public仓库，远端main与本地提交逐一对照 | repos.lock.json锁定其余四仓库的配套版本 |
 
 不能把本表的静态/交叉编译验证称为“新版本已可一键刷入”。参考[安装指南](INSTALL.md)逐级RAM、APP、LNX验证；待解决的问题在[ISSUES.md](ISSUES.md)。
+
+## 2026-11-14 3 GB 改装机现场验证
+
+| 项 | 内容 |
+|---|---|
+| 设备 | A0101 硬件 3 GB 改装（低 2 GiB + 4 GiB 以上 1 GiB），64 GB eMMC `SDW64G` |
+| 内核 | `6.12.111-moze.1-native-runtime`（含 `CONFIG_ARM_LPAE=y`） |
+| uImage SHA256 | `89098e299fe5c3fc53c717ed7f462bc65a9dbd5800ebeafac2ce197f13c22cc9` |
+| 设备树 SHA256 | `f6c5b0484018a5ffb0cbaa74a4bbde5cada4c56d6b10929a60f6a45fa6d9696d` |
+| 启动方式 | 普通冷启动（U-Boot 从 APP 载入） |
+| 实际观察 | 桌面正常；用户确认扬声器发声；手机可搜到并配对 “mocha”；DFLL monitor 与 CPUFreq 请求一致 |
+| 结论范围 | 只覆盖这一台改装机；BT 音频/HID、耳机、麦克风、相机、OTG、休眠未验证 |

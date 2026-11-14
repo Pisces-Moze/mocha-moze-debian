@@ -3,16 +3,16 @@
 | 子系统 | 实机状态 | 限制 |
 |---|---|---|
 | Debian armhf / eMMC | 已持久安装、systemd PID 1 | 仅一台 A0101 验证；GPT 没有重分区 |
-| 四核 | CPU 0–3 上线、逐核负载及冷启动通过 | 使用原厂 TLK SMC；CPU DVFS 尚未启用 |
+| 四核 | CPU 0–3 上线、逐核负载及冷启动通过 | 使用原厂 TLK SMC；CPU DVFS 已在 native-runtime + 3 GB 机验证（1530 MHz 上限），默认仍不启用 |
 | 默认显示 | 冷启动、横屏、触控、亮度通过 | simpledrm 输出仍有同步/CPU 拷贝开销 |
 | 原生 Tegra 双 DSI | GPU 线性 DMA-BUF 色块实机可见，约 29.8 FPS | Niri 原生桌面 SIGSEGV；尚未替换默认路径 |
 | 左右链路 | native6 的起点 `[0,768]` 在桌面 modeset 后仍正确 | 仅寄存器读数通过；控制台位置/换行仍异常，桌面稳定性未完成 |
-| GPU | Nouveau NVEA / GK20A 硬件着色器通过 | 固件需要自行提取；DVFS/热管理未完成 |
+| GPU | Nouveau NVEA / GK20A 硬件着色器通过 | 固件需要自行提取；调频由用户态 pstate governor 验证（540/684/852 MHz），不是内核 DVFS |
 | Wi-Fi | BCM4354 扫描、连接、自动连接通过 | 需要板级 NVRAM 和本机 MAC |
 | 触控 | 本机 Atmel maXTouch 1664T 点击、滑动、横屏坐标准确 | Mocha 有不同面板/触控批次，不要盲刷 Synaptics 固件 |
 | 充电 | 竖屏动画、按键进桌面、BC1.2 DCP 2 A 输入策略通过 | 最小 Linux 充电模式，并非 SoC 完全断电；电量计偶有跳变 |
-| 扬声器/麦克风 | 未完成 | RT5671 0x1c NACK，ALSA 无卡；TFA9890 两颗 revision 可读 |
-| 蓝牙 | 旧内核 HCI 初始化通过；现代内核完整功能未验证 | UART/固件/GPIO及配对、音频待完成 |
+| 扬声器/麦克风 | 扬声器通过（用户确认发声） | RT5671 + 双 TFA9890 声卡注册、工厂校准读取、输出解锁；耳机/麦克风未完成 |
+| 蓝牙 | 现代内核可发现并配对 | HCD build 0367、BD_ADDR 00:90:4C:16:70:02；BT 音频/HID 未测 |
 | 视频播放 | FFmpeg H.264 72 帧解码、Firefox HTML5 播放通过 | 软件解码可用；Tegra124 硬件编解码未完成 |
 | 壁纸预览 | 缩略图与专用壁纸目录修复通过 | 需正确安装 Noctalia 数据文件 |
 | CUDA | Gdev 实验 Driver API 的有限计算通过 | libcudart 6.5 error 35；完整 CUDA Runtime 未完成 |

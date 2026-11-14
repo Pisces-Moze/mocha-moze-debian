@@ -46,3 +46,25 @@ BC1.2识别DCP后2A输入，PC未知500mA，CDP1.5A；电池侧仍960mA/4.208V�
 补齐FFmpeg/libavcodec/MPV后软件视频和FirefoxHTML5通过，硬件解码未完成：Tegra124 VDE非标准tile布局尚未提供完整格式。
 Noctalia壁纸列表改为专用目录，数据文件安装后缩略图通过。
 CUDA开发libcuda stub的cuInit仅返回-1；真实NVIDIA库依赖旧驱动ABI。Gdev有限Driver API修复代码上传/GPU引用/ARM缓存后257与8193整数计算通过。CUDA6.5libcudart仍error35（驱动版本不足），不能声称完整CUDA运行时支持。
+
+## 蓝牙：现代内核可发现与配对（2026-11-14，3 GB 改装机）
+控制器是 BCM4350C0（组合芯片报 BCM4354），UART HCI。三个独立问题：① 缺 `brcm/BCM4354.hcd`，MIUI 的 `BCM4350C0.hcd` 改名即可，mainline btbcm 加载成功（build 0000→0367）；② 固件在 rootfs 挂载前就被请求，开机那次 probe 必然失败，需在服务里 unbind/bind `serial0-0` 重新 probe；③ 控制器默认地址是占位符（首字节带组播位，手机直接丢弃），用 Broadcom `0xFC01` 写 `00:90:4C:16:70:02`，`hciconfig hci0 reset` 让内核重读，且必须排在 bluetoothd 启动之前。
+实机：手机可搜到 “mocha” 并配对。未验证 BT 音频与 HID 外设。
+
+## 扬声器：RT5671 + 双 TFA9890 发声通过
+此前记录 RT5671 0x1c NACK。本机最终方案是 out-of-tree 的 RT5671 board 驱动（`register_codec=1`）、I2S probe、DATA pin、TFA9890 与 runtime card 六个模块，加上从本机提取的 TFA 校准/预设写入 `/lib/firmware/mocha`。声卡注册为 `Mocha Speakers`，TFA 日志出现 Factory calibration and DSP protection ready、output unmuted；raw PCM 与 PipeWire 两条路径都由用户确认发声。
+未验证耳机检测与麦克风；模块必须针对同一 kernelrelease 编译。
+
+## CPU DVFS：native-runtime 上通过 DFLL monitor 校验
+`native-runtime` 配置 + DTS 里 DFLL `status = "okay"` 后，`cpufreq-dt` 出现 20 档（204 MHz–2116 MHz），`dfllCPU_out` 成为 `cpu_g` 的 parent，`vdd-cpu` 随频率变化（204 MHz→900 mV）。
+monitor 校验：请求 1122 MHz 读回 1189 MHz；请求 1428 MHz 读回 1511 MHz。独立时间基准（不读 CCF）：同一段 4,000,000 次乘加在 204 MHz 下 14.785 s、1530 MHz 下 1.859 s（7.95×）。
+边界：1530 MHz 四核满载 30 s 稳定（76–85 °C）；2014 MHz 持续满载会挂；2116 MHz 一上负载即挂。上限取 1530 MHz，默认仍不启用。
+
+## 3 GB 改装机：native-runtime 需要 CONFIG_ARM_LPAE
+`moze/configs/native-experimental.config` 里 `CONFIG_ARM_LPAE` 关闭，`native-runtime` 直接继承，导致 3 GB 硬件改装机静默只拿到 2 GB（DT 两个 bank 都在，内核丢弃 4 GB 以上那段；`MemTotal` 2,001,992 kB）。给 `native-runtime.fragment` 补 `CONFIG_ARM_LPAE=y` 后恢复 2,976,304 kB。
+注意：改 LPAE 这类配置后必须重装整套模块，旧 `.ko` 能被加载但 nouveau 会在 `nouveau_channel_new` 崩溃（先报 `unable to map PRI`）。
+
+
+## 充电/桌面环境的使用坑
+`systemctl reboot` 偶尔停在 `Rebooting.` 不硬件复位（本机两次），需长按电源 15 秒；可靠重启用 `echo b > /proc/sysrq-trigger`。
+往 `/` 解包 payload 时必须用 `tar --keep-directory-symlink`，否则包内的顶层 `lib/` 会把 usrmerge 的 `/lib -> usr/lib` 替换成真实目录，动态加载器失效、系统启动循环（本机遇到两次）。
