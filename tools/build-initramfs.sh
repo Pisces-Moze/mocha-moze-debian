@@ -25,6 +25,16 @@ if [ "$mode" = install ];then
  install -m755 "$repo/ramdisk/init-install" "$stage/init"
 else
  install -m755 "$repo/ramdisk/init-emmc" "$stage/init"
+ # These drivers may request firmware before the real root is mounted.
+ if [ -f "$root/usr/lib/firmware/regulatory.db-upstream" ] && [ -f "$root/usr/lib/firmware/regulatory.db.p7s-upstream" ];then
+  mkdir -p "$stage/lib/firmware"
+  cp "$root/usr/lib/firmware/regulatory.db-upstream" "$stage/lib/firmware/regulatory.db"
+  cp "$root/usr/lib/firmware/regulatory.db.p7s-upstream" "$stage/lib/firmware/regulatory.db.p7s"
+ fi
+ if [ -f "$root/usr/lib/firmware/brcm/BCM4350C0.hcd" ];then
+  mkdir -p "$stage/lib/firmware/brcm"
+  cp "$root/usr/lib/firmware/brcm/BCM4350C0.hcd" "$stage/lib/firmware/brcm/BCM4354.hcd"
+ fi
 fi
 mkdir -p "$(dirname "$output")"
 (cd "$stage";find . -print0 | cpio --null -o --format=newc --owner=0:0 2>/dev/null | gzip -n -9 > "$output")
