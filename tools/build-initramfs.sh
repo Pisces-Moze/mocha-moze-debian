@@ -25,6 +25,14 @@ if [ "$mode" = install ];then
  install -m755 "$repo/ramdisk/init-install" "$stage/init"
 else
  install -m755 "$repo/ramdisk/init-emmc" "$stage/init"
+ shopt -s nullglob
+ backlight=("$root"/usr/lib/modules/*/extra/mocha_miui_backlight.ko)
+ if [ "${#backlight[@]}" -eq 1 ]; then
+  install -m644 "${backlight[0]}" "$stage/mocha_miui_backlight.ko"
+ elif [ "${#backlight[@]}" -gt 1 ]; then
+  echo 'Multiple Mocha backlight modules found in rootfs' >&2
+  exit 1
+ fi
  # These drivers may request firmware before the real root is mounted.
  if [ -f "$root/usr/lib/firmware/regulatory.db-upstream" ] && [ -f "$root/usr/lib/firmware/regulatory.db.p7s-upstream" ];then
   mkdir -p "$stage/lib/firmware"

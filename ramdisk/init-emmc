@@ -9,6 +9,9 @@ exec </dev/console >/dev/console 2>&1
 say() { printf '<6>MOCHA_DEBIAN: %s\n' "$*" > /dev/kmsg; }
 fail() { say "$*"; while :; do sleep 30; done; }
 say 'Loading Debian from internal eMMC APP partition.'
+if [ -f /mocha_miui_backlight.ko ]; then
+    /bin/busybox insmod /mocha_miui_backlight.ko || say 'Early backlight load failed; Debian will retry.'
+fi
 count=0
 while [ ! -b /dev/mmcblk0p26 ] && [ "$count" -lt 30 ]; do sleep 1; count=$((count+1)); done
 test -b /dev/mmcblk0p26 || fail 'eMMC APP partition missing.'
