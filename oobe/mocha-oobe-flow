@@ -1,0 +1,82 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+# OOBE flow launcher: native welcome video first, WebKit form pages second.
+#
+# Hard constraint on this stack: ANY disconnect of the waylandsink client makes
+# niri abort. Root cause seen in the compositor log: GL_INVALID_VALUE in
+# glTexSubImage2D, then heap corruption ("corrupted double-linked list") and
+# SIGABRT. Reproduced with a bare `gst-launch ... ! waylandsink` (no GTK), so it
+# is not specific to this app; WebKit form teardown is safe.
+#
+# Consequences and design:
+#  - The welcome process must NEVER be stopped while the compositor runs. After
+#    the exit animation it PAUSEs the pipeline, hides the window and stays
+#    alive (subsurfaces kept) until the OOBE session ends.
+#  - The form phase is a separate process that follows a marker file written by
+#    the welcome app, so there is no fixed black gap.
+#  - The OOBE completes by rebooting, or by the session stopping: the session
+#    stops niri before its clients, so nothing disconnects from a live
+#    compositor. This launcher therefore kills nothing and uses no traps.
+set -u
+
+WELCOME_VIDEO=${MOCHA_OOBE_WELCOME_VIDEO:-/usr/local/share/mocha-oobe/welcome/intro-baked.mp4}
+FORM_WEB=${MOCHA_OOBE_FORM_WEB:-/usr/local/share/mocha-oobe/form-web}
+RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/1000}
+MARKER="$RUNTIME_DIR/mocha-oobe-welcome-ready"
+
+if [ ! -f "$WELCOME_VIDEO" ]; then
+    echo "missing welcome video: $WELCOME_VIDEO" >&2
+    exit 1
+fi
+if [ ! -f "$FORM_WEB/index.html" ]; then
+    echo "missing form web tree: $FORM_WEB" >&2
+    exit 1
+fi
+
+rm -f "$MARKER"
+WELCOME_ARGS="--max-seconds 115"
+if [ "${MOCHA_OOBE_WINDOWED:-0}" = "1" ]; then
+    # Development/validation only: no fullscreen takeover.
+    WELCOME_ARGS="$WELCOME_ARGS --windowed"
+fi
+if [ -n "${MOCHA_OOBE_WELCOME_CLICK_AT:-}" ]; then
+    # Development/validation only: trigger the tap transition automatically.
+    WELCOME_ARGS="$WELCOME_ARGS --click-at $MOCHA_OOBE_WELCOME_CLICK_AT"
+fi
+# shellcheck disable=SC2086
+/usr/bin/python3 /usr/local/libexec/mocha_oobe_welcome.py \
+    --video "$WELCOME_VIDEO" --stay-alive --signal-file "$MARKER" $WELCOME_ARGS &
+WELCOME_PID=$!
+
+# Wait until the welcome video has played its exit segment and released the
+# screen (marker), with a bounded fallback if the welcome app fails to start.
+attempt=0
+while [ "$attempt" -lt 600 ]; do
+    if [ -f "$MARKER" ]; then
+        break
+    fi
+    if ! kill -0 "$WELCOME_PID" 2>/dev/null; then
+        echo "welcome phase exited before the form handoff" >&2
+        break
+    fi
+    attempt=$((attempt + 1))
+    sleep 0.2
+done
+if [ ! -f "$MARKER" ] && kill -0 "$WELCOME_PID" 2>/dev/null; then
+    # Starting the form while the full-screen welcome is still mapped leaves
+    # two competing windows.  Do not destroy its Wayland client: on Mocha
+    # that can crash niri. Keep waiting so a late click can still hand off.
+    echo "welcome handoff delayed; waiting for the welcome to release" >&2
+    while kill -0 "$WELCOME_PID" 2>/dev/null && [ ! -f "$MARKER" ]; do
+        sleep 1
+    done
+fi
+rm -f "$MARKER"
+
+# Niri inherits CAP_SYS_NICE for compositor scheduling. Bubblewrap rejects
+# inherited capabilities in unprivileged mode, so clear them for WebKit.
+if [ ! -f "$FORM_WEB/assets/background.mp4" ]; then
+    export WEBKIT_DISABLE_COMPOSITING_MODE=1
+fi
+exec /usr/bin/setpriv --ambient-caps=-all --inh-caps=-all -- \
+    /usr/bin/python3 /usr/local/libexec/mocha-oobe-ui.py --web-root "$FORM_WEB"

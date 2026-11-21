@@ -40,7 +40,15 @@
       "arch/arm/boot/dts/nvidia/tegra124-mocha-mipi.dtsi",
       "arch/arm/boot/dts/nvidia/tegra124-mocha-pinmux.dtsi",
       "arch/arm/boot/dts/nvidia/tegra124-mocha-usb.dtsi",
-      "arch/arm/boot/dts/nvidia/tegra124-mocha-keys.dtsi"
+      "arch/arm/boot/dts/nvidia/tegra124-mocha-keys.dtsi",
+      "drivers/clk/tegra/clk-tegra124-dfll-fcpu.c",
+      "Documentation/devicetree/bindings/media/nvidia,tegra-vde.yaml",
+      "drivers/media/platform/nvidia/tegra-vde/vde.c",
+      "drivers/media/platform/nvidia/tegra-vde/vde.h",
+      "drivers/media/platform/nvidia/tegra-vde/h264.c",
+      "drivers/media/platform/nvidia/tegra-vde/v4l2.c",
+      "drivers/media/platform/nvidia/tegra-vde/tegra124-layout.h",
+      "drivers/bluetooth/hci_bcm.c"
     ]
   },
   "uboot": {

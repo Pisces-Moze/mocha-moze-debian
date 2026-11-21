@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/dongioia/webkit-vulkan-video-rk3588",
+  "path": "gstv4l2metabridge.c",
+  "git_blob_sha1": "fde5e7bd44af3c189ece8ac948020167dd3451e4",
+  "source_sha256": "1fa565c60fb127c880a9cbaf7867f2dfb63924cf80154ad2c6739c11466640d6",
+  "license": "LGPL-2.1-or-later",
+  "changes": [
+    "Register only Tegra VDE H264, AU alignment",
+    "Read display height directly from caps for DMA_DRM",
+    "Limit plugin lookup to OOBE process environment"
+  ]
+}

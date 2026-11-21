@@ -1,0 +1,57 @@
+{
+  "checked_on": "2026-11-01",
+  "fault_injection_python_tests": 12,
+  "network_mock_tests": 10,
+  "frontend_checks": [
+    "transient status failure retry",
+    "unavailable choice prompts reselection",
+    "queued does not complete",
+    "ambiguous submission cannot be replayed",
+    "definite pre-queue rejection can be corrected",
+    "media-disabled video element cannot abort form startup"
+  ],
+  "real_account_test": {
+    "scope": "disposable Linux root; actual usermod/chpasswd/NSS; other configuration mocked",
+    "rename_failure_then_retry": "pass",
+    "password_correct_and_incorrect": "pass",
+    "preserves_hardware_groups": "pass",
+    "host_accounts_changed": false
+  },
+  "device_systemd_test": {
+    "normal_apply_exception_onfailure": "pass",
+    "sigkill_onfailure": "pass",
+    "pending_and_request_preserved": true,
+    "scope": "isolated state/root and dummy UI/desktop units",
+    "owner_account_changed": false,
+    "temporary_units_removed": true
+  },
+  "real_webkit_retry": {
+    "scope": "windowed form with native bridge and private status-only socket",
+    "retry_page": 2,
+    "username_hostname_locale_timezone_restored": true,
+    "password_and_confirmation_blank": true,
+    "javascript_errors": 0,
+    "actual_account_apply_permitted": false
+  },
+  "radios": {
+    "wifi_existing_connection_state_and_ip": "pass-uid1000",
+    "wifi_existing_connection_no_duplicate_profile": "pass",
+    "wifi_fresh_activation": "pass-uid1000-real-AddAndActivateConnection-with-DHCP",
+    "wifi_psk64_regression_fixed": true,
+    "wifi_original_profile_restored_and_test_uuid_removed": true,
+    "bluetooth_thinkbook_mouse_connect": "pass-uid1000-existing-pairing",
+    "bluetooth_connected_and_services_resolved": true,
+    "fresh_pairing_in_dedicated_oobe_seat": "pending"
+  },
+  "deployment": {
+    "inactive_oobe_runtime_update_installed": true,
+    "backup": "/var/backups/mocha-oobe/recovery-20261101-153634",
+    "hashes_verified": true,
+    "owner_first_run_reactivated": false
+  },
+  "not_yet_accepted": [
+    "complete dedicated first-run session and real desktop/PAM handoff",
+    "fresh Bluetooth pairing in the dedicated first-run seat",
+    "fresh image flash and initialization"
+  ]
+}

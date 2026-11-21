@@ -1,0 +1,11 @@
+[Unit]
+Description=Restore Mocha first-run setup after an apply failure
+ConditionPathExists=/var/lib/mocha-oobe/pending
+ConditionPathExists=/var/lib/mocha-oobe/request.json
+After=mocha-oobe-apply.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/libexec/mocha-oobe-apply.py --recover
+UMask=0077
+LimitCORE=0

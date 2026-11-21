@@ -1,0 +1,263 @@
+/* SPDX-License-Identifier: LGPL-2.1-or-later */
+/* Copyright (C) 2026 Saverio Pavone */
+/* Adapted for Mocha on 2026-10-29 from Saverio Pavone's LGPL-2.1-or-later
+ * V4L2 meta-bridge. Changes: H.264-only AU/Baseline caps, DMA_DRM visible
+ * height handling, and Debian ARMhf plugin directory. Only selected through
+ * the OOBE process's GST_PLUGIN_PATH_1_0; never installed system-wide.
+ * See UPSTREAM.json and COPYING.LGPL-2.1 for origin and license.
+ */
+#define PACKAGE "v4l2metabridge"
+#define PACKAGE_VERSION "1.2-mocha1"
+#include <gst/gst.h>
+#include <gst/video/video.h>
+
+/* Per-codec description, carried as GObject class_data (static -> stable ptr). */
+typedef struct {
+  const gchar *elem_name;   /* registered element name                       */
+  const gchar *type_name;   /* GType name                                    */
+  const gchar *factory;     /* wrapped v4l2codecs decoder                    */
+  const gchar *long_name;   /* gst-inspect Long-name                         */
+  const gchar *sink_caps;   /* sink pad template caps string                 */
+  const gchar *force_caps;  /* NULL, or a capsfilter inserted after the      */
+                            /* decoder to constrain its output format        */
+} BridgeDesc;
+
+/* Every v4l2codecs stateless decoder. Only those present on the running
+ * hardware are registered (see plugin_init). */
+/* Mocha: only H.264 exists in Tegra124 VDE. Never advertise absent codecs. */
+static const BridgeDesc CODECS[] = {
+  { "v4l2h264metabridge", "GstV4l2H264MetaBridge", "v4l2slh264dec",
+    "Mocha VDE H.264 Meta Bridge Decoder",
+    "video/x-h264, stream-format=(string){ byte-stream, avc, avc3 }, alignment=(string)au, profile=(string){ constrained-baseline, baseline }", NULL },
+};
+#define N_CODECS (G_N_ELEMENTS (CODECS))
+
+typedef struct {
+  GstBin      parent;
+  GstElement *decoder;
+  GstPad     *sinkpad;
+  GstPad     *srcpad;
+} GstMetaBridge;
+
+typedef struct {
+  GstBinClass       parent_class;
+  const BridgeDesc *desc;   /* filled in class_init from class_data */
+} GstMetaBridgeClass;
+
+#define META_BRIDGE(obj) ((GstMetaBridge *) (obj))
+
+/* Advertise raw video incl. the DMABuf feature so decodebin links us to the
+ * GL/dmabuf consumer (where the zero-copy path lives). */
+static const gchar SRC_CAPS[] = "video/x-raw(memory:DMABuf); video/x-raw";
+
+/* Add GstVideoMeta API to the downstream ALLOCATION query (idempotent). The
+ * whole point of the element: compensate for a consumer that omits GstVideoMeta,
+ * which v4l2codecs requires for DMABuf output. Codec-agnostic. */
+static GstPadProbeReturn
+meta_probe (GstPad *pad, GstPadProbeInfo *info, gpointer user_data)
+{
+  (void) pad; (void) user_data;
+  GstQuery *q = GST_PAD_PROBE_INFO_QUERY (info);
+  if (q && GST_QUERY_TYPE (q) == GST_QUERY_ALLOCATION) {
+    if (gst_query_is_writable (q)) {
+      guint idx;
+      if (!gst_query_find_allocation_meta (q, GST_VIDEO_META_API_TYPE, &idx))
+        gst_query_add_allocation_meta (q, GST_VIDEO_META_API_TYPE, NULL);
+    } else {
+      GST_WARNING ("v4l2metabridge: ALLOCATION query not writable; "
+                   "GstVideoMeta NOT injected (negotiation will fail)");
+    }
+  }
+  /* Non-blocking data probe: OK = continue normally (PASS is for blocking probes). */
+  return GST_PAD_PROBE_OK;
+}
+
+/* Correct the output GstVideoMeta height to the visible (caps) height. The
+ * v4l2codecs decoders put the CODED height in the meta (e.g. VP9 768 for a
+ * visible 720, H264 1088 for 1080); WebKit renders that, so the coded padding
+ * rows below the picture are scanned out as a band (green on NV12). Per the
+ * GstVideoMeta convention the height is the display height and the padding
+ * belongs in the plane offsets, which the decoder already sets correctly (the
+ * chroma offset includes the luma padding). So lowering meta->height to the
+ * visible height keeps the layout consistent and crops the band, zero-copy. */
+static GstPadProbeReturn
+crop_probe (GstPad *pad, GstPadProbeInfo *info, gpointer user_data)
+{
+  (void) user_data;
+  GstBuffer *buf = GST_PAD_PROBE_INFO_BUFFER (info);
+  if (!buf)
+    return GST_PAD_PROBE_OK;
+
+  /* Decide whether we need to act (peek; no mutation yet). */
+  GstVideoMeta *vm = gst_buffer_get_video_meta (buf);
+  if (!vm)
+    return GST_PAD_PROBE_OK;
+  GstCaps *caps = gst_pad_get_current_caps (pad);
+  if (!caps)
+    return GST_PAD_PROBE_OK;   /* caps not settled yet; let it pass uncropped */
+  /* Caps height is valid for DMA_DRM as well as raw-video formats. */
+  gint visible_height = 0;
+  gst_structure_get_int (gst_caps_get_structure (caps, 0), "height", &visible_height);
+  guint vis_h = visible_height > 0 ? (guint) visible_height : 0;
+  gst_caps_unref (caps);
+  if (!vis_h || vm->height <= vis_h)
+    return GST_PAD_PROBE_OK;
+
+  /* Modifying buffer metadata requires a writable buffer. make_writable is a
+   * no-op at refcount==1 (zero-copy), or a shallow copy if shared (the meta is
+   * copied, the dmabuf memory stays shared by ref -> still zero-copy on the
+   * pixels). Store the (possibly new) buffer back and re-fetch the meta on it. */
+  buf = gst_buffer_make_writable (buf);
+  GST_PAD_PROBE_INFO_DATA (info) = buf;
+  vm = gst_buffer_get_video_meta (buf);
+  if (vm)
+    vm->height = vis_h;
+  return GST_PAD_PROBE_OK;
+}
+
+static void
+meta_bridge_instance_init (GTypeInstance *instance, gpointer g_class)
+{
+  GstMetaBridge      *self = META_BRIDGE (instance);
+  GstMetaBridgeClass *klass = (GstMetaBridgeClass *) g_class;
+  const BridgeDesc   *d = klass->desc;
+  GstPad *pad;
+
+  self->decoder = gst_element_factory_make (d->factory, "dec");
+  if (!self->decoder) {
+    GST_ERROR_OBJECT (self, "Cannot create %s", d->factory);
+    return;
+  }
+  gst_bin_add (GST_BIN (self), self->decoder);
+
+  /* Ghost sink pad (v4l2sl*dec are GstVideoDecoder: sink/src are static ALWAYS
+   * pads, non-NULL right after factory_make). */
+  pad = gst_element_get_static_pad (self->decoder, "sink");
+  if (!pad) { GST_ERROR_OBJECT (self, "no decoder sink pad"); return; }
+  self->sinkpad = gst_ghost_pad_new ("sink", pad);
+  gst_pad_set_active (self->sinkpad, TRUE);
+  gst_element_add_pad (GST_ELEMENT (self), self->sinkpad);
+  gst_object_unref (pad);
+
+  /* Meta-injecting probe on the decoder's INTERNAL real src pad: the
+   * GstVideoDecoder base class issues the ALLOCATION query via
+   * gst_pad_peer_query(decoder->srcpad, ...) on this pad (not the ghost), and a
+   * QUERY_DOWNSTREAM probe here fires on that outgoing query before
+   * decide_allocation reads it back (confirmed via gstpad.c peer_query path).
+   * The probe stays on the decoder src pad even when a capsfilter follows (the
+   * capsfilter forwards the allocation query transparently). */
+  pad = gst_element_get_static_pad (self->decoder, "src");
+  if (!pad) { GST_ERROR_OBJECT (self, "no decoder src pad"); return; }
+  gst_pad_add_probe (pad, GST_PAD_PROBE_TYPE_QUERY_DOWNSTREAM, meta_probe, NULL, NULL);
+  gst_object_unref (pad);
+
+  /* Optional output-format constraint (e.g. VP9: force 8-bit NV12). Insert a
+   * capsfilter after the decoder; the bin's src ghost-pad then sits on the
+   * capsfilter (else on the decoder). */
+  GstElement *tail = self->decoder;
+  if (d->force_caps) {
+    GstElement *cf = gst_element_factory_make ("capsfilter", "force");
+    if (cf) {
+      GstCaps *fc = gst_caps_from_string (d->force_caps);
+      g_object_set (cf, "caps", fc, NULL);
+      gst_caps_unref (fc);
+      gst_bin_add (GST_BIN (self), cf);
+      if (gst_element_link (self->decoder, cf)) {
+        tail = cf;
+      } else {
+        GST_ERROR_OBJECT (self, "failed to link decoder -> capsfilter");
+        gst_bin_remove (GST_BIN (self), cf);  /* don't strand it in the bin */
+      }
+    } else {
+      GST_ERROR_OBJECT (self, "cannot create capsfilter");
+    }
+  }
+
+  pad = gst_element_get_static_pad (tail, "src");
+  if (!pad) { GST_ERROR_OBJECT (self, "no tail src pad"); return; }
+  /* Crop the coded-height padding band: correct each output buffer's
+   * GstVideoMeta height to the visible height. */
+  gst_pad_add_probe (pad, GST_PAD_PROBE_TYPE_BUFFER, crop_probe, NULL, NULL);
+  self->srcpad = gst_ghost_pad_new ("src", pad);
+  gst_pad_set_active (self->srcpad, TRUE);
+  gst_element_add_pad (GST_ELEMENT (self), self->srcpad);
+  gst_object_unref (pad);
+}
+
+static void
+meta_bridge_class_init (gpointer g_class, gpointer class_data)
+{
+  GstElementClass    *ec = GST_ELEMENT_CLASS (g_class);
+  GstMetaBridgeClass *bc = (GstMetaBridgeClass *) g_class;
+  const BridgeDesc   *d  = (const BridgeDesc *) class_data;
+  GstCaps *caps;
+
+  bc->desc = d;
+
+  caps = gst_caps_from_string (d->sink_caps);
+  gst_element_class_add_pad_template (ec,
+      gst_pad_template_new ("sink", GST_PAD_SINK, GST_PAD_ALWAYS, caps));
+  gst_caps_unref (caps);
+
+  caps = gst_caps_from_string (SRC_CAPS);
+  gst_element_class_add_pad_template (ec,
+      gst_pad_template_new ("src", GST_PAD_SRC, GST_PAD_ALWAYS, caps));
+  gst_caps_unref (caps);
+
+  gst_element_class_set_static_metadata (ec,
+      d->long_name,
+      "Codec/Decoder/Video/Hardware",
+      "Wraps a v4l2codecs decoder; injects GstVideoMeta into the ALLOCATION "
+      "query so GstVideoMeta-omitting consumers (WebKit) can negotiate the HW dmabuf",
+      "VulkanVideo-RK3588 Project");
+}
+
+static GType
+meta_bridge_register_type (const BridgeDesc *desc)
+{
+  GTypeInfo info = { 0 };
+  info.class_size    = sizeof (GstMetaBridgeClass);
+  info.class_init    = meta_bridge_class_init;
+  info.class_data    = desc;
+  info.instance_size = sizeof (GstMetaBridge);
+  info.instance_init = meta_bridge_instance_init;
+  return g_type_register_static (GST_TYPE_BIN, desc->type_name, &info, 0);
+}
+
+static gboolean
+plugin_init (GstPlugin *plugin)
+{
+  /* A registry scan may load this plugin before indexing v4l2codecs.
+   * Verify the dependency on disk; Mocha only registers its H264 wrapper. */
+  const gchar *sys_path = g_getenv ("GST_PLUGIN_SYSTEM_PATH_1_0");
+  if (!sys_path || sys_path[0] == '\0')
+    sys_path = "/usr/lib/arm-linux-gnueabihf/gstreamer-1.0";
+  gchar *probe = g_build_filename (sys_path, "libgstv4l2codecs.so", NULL);
+  gboolean found = g_file_test (probe, G_FILE_TEST_EXISTS);
+  g_free (probe);
+  if (!found) {
+    GST_WARNING ("v4l2metabridge: libgstv4l2codecs.so not in %s — not registering", sys_path);
+    return FALSE;
+  }
+
+  gboolean ok = TRUE;
+  for (guint i = 0; i < N_CODECS; i++) {
+    /* Rank 258 (PRIMARY+2): beat the plain decoder (257) so decodebin
+     * auto-plugs the meta-injecting wrapper. */
+    ok &= gst_element_register (plugin, CODECS[i].elem_name, GST_RANK_PRIMARY + 2,
+                                meta_bridge_register_type (&CODECS[i]));
+  }
+  return ok;
+}
+
+GST_PLUGIN_DEFINE (
+  GST_VERSION_MAJOR,
+  GST_VERSION_MINOR,
+  v4l2metabridge,
+  "V4L2 stateless codec meta-bridge (GstVideoMeta ALLOCATION injection for Mocha H264)",
+  plugin_init,
+  PACKAGE_VERSION,
+  "LGPL",
+  "v4l2metabridge",
+  "https://github.com/dongioia/rock5bplus-rkvdec2"
+)

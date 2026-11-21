@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-01",
+  "install_recovery_tests": 7,
+  "data_capacity_tests": 7,
+  "windows_default_temp_environment": "pass",
+  "windows_powershell_argument_roundtrip": "pass; fake recorder, not ssh",
+  "linux_container": "14 tests pass",
+  "private_key_material_in_tests": "fake only",
+  "actual_fastboot_or_partition_write": false,
+  "windows_acl_verification": "pending",
+  "image_build": "not performed",
+  "source_review_corrections": [
+    "PowerShell literal quoting instead of cmd CRT quoting",
+    "POSIX script LF newlines",
+    "256MiB safety included in builder and PC arithmetic",
+    "extra hardlink names budget directory space",
+    "RAM no-space test verifies zero input reads"
+  ],
+  "evidence": [
+    "artifacts/reports/install-fixtures-linux-20261101.txt",
+    "artifacts/reports/install-capacity-linux-final-20261101.txt"
+  ]
+}

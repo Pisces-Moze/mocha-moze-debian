@@ -1,0 +1,21 @@
+output "DSI-1" { scale 1.0; transform "270"; }
+hotkey-overlay { skip-at-startup; }
+input {
+    touch { map-to-output "DSI-1"; }
+    disable-power-key-handling
+}
+environment { GTK_IM_MODULE "simple"; }
+// Native zero-copy welcome video first, WebKit form pages second. The launcher
+// keeps the two phases in separate processes (waylandsink teardown invalidates
+// the welcome process's Wayland connection).
+spawn-at-startup "/usr/local/libexec/mocha-oobe-flow"
+// The approved UI includes a keyboard; avoid a second keyboard process.
+window-rule {
+    match app-id="mocha-oobe-welcome.py"
+    open-fullscreen true
+}
+window-rule {
+    match app-id="mocha-oobe-ui.py"
+    open-fullscreen true
+}
+animations { off; }

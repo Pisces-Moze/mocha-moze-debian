@@ -17,3 +17,9 @@ id_ed25519*
 *host_key*
 authorized_keys
 known_hosts*
+# Personal artwork inputs and rendered media travel in audited image bundles,
+# not in source history. Keep render scripts, metadata and licenses tracked.
+/oobe/preview/assets/*.mp4
+/oobe/runtime-assets/*.mp4
+/oobe/runtime-assets/*.png
+/oobe/runtime-assets/*.jpg

@@ -1,10 +1,22 @@
 # Mocha Moze Debian
 
+## 当前入口（2026-11-05）
+
+OOBE 失败恢复与网络交接已有实机证据：apply 失败时 systemd `OnFailure` 重新打开设置页，保留用户名/主机名/语言/时区、清空密码，不会自动重放已完成设置；Wi-Fi（含 64 位十六进制 PSK）与已配对蓝牙鼠标连接通过。首次蓝牙配对、真实网站视频播放仍待实机验收。
+
+Firefox 153.5.1esr Request 候选已于 2026-11-01 安装为原型默认浏览器（随包 NSS、配套 FFmpeg 61，RDD 沙箱保持开启），本地受支持 Baseline H.264 可持续输出 VDE 硬件帧；但播放性能未通过验收，不能据此宣称所有网站已硬解。系统封装、默认账户与 Fastboot 安装工具见 [DISTRIBUTION](docs/DISTRIBUTION.md)；**当前仍没有可直接使用的正式系统镜像**。发布镜像不包含 LLM 或大模型，`ymcymcymc` 仅保留 GOP30 版本。历史阶段记录见 [STATUS](docs/STATUS.md)。
+
+LLM 工具独立维护：[mocha-moze-llm](https://github.com/Pisces-Moze/mocha-moze-llm)，当前统一安装入口为 v0.4.0，实验 Q4 GPU 的性能/稳定性限制单独说明。
+
 > 把 Debian armhf Linux 装到小米平板 1（A0101，代号 Mocha，NVIDIA Tegra124）上的五仓库工程总入口。
 
 [![License: GPL-2.0-only](https://img.shields.io/badge/License-GPL--2.0--only-blue.svg)](LICENSE)
 
-## 实机接续（2026-10-16）
+## 实机接续（2026-10-18）
+
+APP 已扩到 3 GiB，离线备份及扩容后的普通启动通过。VDE2 的两次 RAM 冷启动、硬解帧比较和壁纸生命周期检查通过，配套默认启动文件、驱动加载器、桌面修复与内存策略已带备份安装，普通启动确认已通过。蓝牙、扬声器、浏览器硬解及进一步降耗仍在适配；当前范围见 [STATUS.md](docs/STATUS.md)。
+
+## 历史接续（2026-10-16）
 
 `native-runtime` 已持久安装并确认普通启动。充电动画旋转、自动熄屏后拔插线唤醒、插电按住电源直接进入桌面已由用户和启动记录共同确认。下一步先做整盘离线备份，再把约 1.25 GiB 的 APP 扩到 3 GiB；尚未修改 GPT。新产物哈希、验收范围及剩余工作见 [10 月 16 日记录](docs/DIAGNOSTICS-2026-10-16.md)。
 
@@ -15,6 +27,8 @@
 `manifests/handoff-2026-10-16.lock.json` 固定当前配套源码；10 月 15 日锁保留 RAM 验收时的版本。`manifests/repos.lock.json` 保留历史安装基线，只更新最新开发锁的指向，单台实机持久安装不等于通用安装器端到端验收；可用 `tools/workspace.py --manifest …` 显式选择开发锁。
 
 ## 简介
+
+2026-10-18 进展：本机 APP 扩为 3 GiB 并通过普通启动；VDE2 配套默认启动文件已安装，普通启动确认已通过。桌面 CPU、壁纸重启恢复及其他外设仍在适配，当前状态见 [STATUS.md](docs/STATUS.md)；下文保留源码快照及默认安装布局的历史说明。
 
 项目源码、参数和第三方固件的边界见 [开源审计](docs/OPEN-SOURCE.md)，各组件配置入口见 [参数索引](docs/PARAMETERS.md)。项目自行编写或修改的驱动、引导与运行配置均公开；专有微码及 NVIDIA CUDA 库不冒称开源。
 
@@ -170,7 +184,7 @@ ssh -i artifacts/developer-key root@172.31.124.2 'sh /tmp/storage.sh write LNX /
 | 四核 | CPU 0–3 上线、逐核负载及冷启动通过 | 使用原厂 TLK SMC；CPU DVFS 尚未启用 |
 | 默认显示 | 冷启动、横屏、触控、亮度通过 | simpledrm 输出仍有同步/CPU 拷贝开销 |
 | 原生 Tegra 双 DSI 与左右链路 | 原始 native 内核＋native5 DTB＋手动分段校正下，GPU 色块 29.74 FPS 与候选 Mesa 的 Niri＋终端画面正常 | 新镜像自动方案黑屏；仍需手动校正；完整桌面、触控与长期稳定性未验收，默认路径未替换 |
-| GPU 与 CUDA | Nouveau NVEA / GK20A 硬件着色器通过；Gdev 实验 Driver API 的有限计算通过 | 固件需要自行提取；DVFS/热管理未完成；libcudart 6.5 error 35，完整 CUDA Runtime 未完成 |
+| GPU 与 CUDA | Nouveau NVEA / GK20A 着色器、开放 Runtime 的 NVCC 计算、共享内存、锁页／二维拷贝和串行流／事件通过 | Runtime 3020 / Driver 4000；PTX JIT、完整官方 ABI 与并发仍未完成 |
 | Wi-Fi | BCM4354 扫描、连接、自动连接通过 | 需要板级 NVRAM 和本机 MAC |
 | 触控 | 本机 Atmel maXTouch 1664T 点击、滑动、横屏坐标准确 | Mocha 有不同面板/触控批次，不要盲刷 Synaptics 固件 |
 | 充电 | 竖屏动画、按键进桌面、BC1.2 DCP 2 A 输入策略通过 | 最小 Linux 充电模式，并非 SoC 完全断电；电量计偶有跳变 |

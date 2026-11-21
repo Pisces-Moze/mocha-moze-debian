@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-11-01",
+  "environment": "Linux root, existing Debian build container",
+  "command": "python3 tools/test-distribution.py",
+  "tests_run": 4,
+  "result": "pass",
+  "sanitization_fixture": {
+    "confirmed_llm_runtime_families_removed": true,
+    "desktop_cuda_runtime_retained": true,
+    "original_wallpaper_removed_and_gop30_retained": true,
+    "source_hostname_and_machine_info_reset": true,
+    "ssh_service_and_socket_wants_removed": true,
+    "owner_identity_and_model_weights_removed": true,
+    "uses_private_media_assets": false,
+    "media_renderers": "stubbed-only-in-fixture"
+  },
+  "image_generated": false,
+  "real_offline_copy_audited": false,
+  "flash_acceptance": "pending",
+  "oobe_account_apply_acceptance": "pending"
+}

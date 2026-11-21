@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a1420">
+  <title>Mocha · 首次设置</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+    <symbol id="icon-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><ellipse cx="12" cy="12" rx="4.2" ry="9"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/>
+    </symbol>
+    <symbol id="icon-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2.6 8.7a15.5 15.5 0 0 1 18.8 0"/><path d="M5.7 12.2a10.5 10.5 0 0 1 12.6 0"/><path d="M8.9 15.7a5.6 5.6 0 0 1 6.2 0"/><circle cx="12" cy="19.2" r="1.1" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="icon-bluetooth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 8l10 8-5 4V4l5 4-10 8"/>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.5 3-6.2 7-6.2s7 2.7 7 6.2"/>
+    </symbol>
+    <symbol id="icon-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M9 20.5h6"/><path d="M12 16.5v4"/>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 12s3.6-6.2 10-6.2S22 12 22 12s-3.6 6.2-10 6.2S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/>
+    </symbol>
+    <symbol id="icon-keyboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2.5" y="6.5" width="19" height="11" rx="2.4"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M7 14h10"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.5 12.5l5 5L20 6.5"/>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9l6 6 6-6"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+    </symbol>
+  </svg>
+
+  <main class="stage">
+    <video class="bg-video" id="bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+      <source src="assets/background.mp4" type="video/mp4">
+    </video>
+    <div class="veil" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <span class="wordmark">MOCHA</span>
+      <div class="steps">
+        <span class="sr-only" id="step-label" aria-live="polite">第 1 步，欢迎</span>
+        <span class="progress-dots" id="progress-dots" aria-hidden="true">
+          <i class="current"></i><i></i><i></i><i></i>
+        </span>
+      </div>
+    </header>
+
+    <section class="card" id="card" aria-label="首次设置">
+      <form id="setup-form" autocomplete="off" novalidate>
+        <div class="page-stage" id="page-stage">
+
+          <section class="page" data-page="0" aria-labelledby="welcome-title">
+            <h1 id="welcome-title" tabindex="-1">你好</h1>
+            <div class="choices">
+              <div class="choice">
+                <button class="choice-trigger" id="locale-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="locale-menu" aria-label="系统语言">
+                  <span class="pref-icon" aria-hidden="true"><svg class="icon"><use href="#icon-globe"></use></svg></span>
+                  <span class="choice-value" id="locale-value">简体中文</span>
+                  <svg class="icon choice-chevron" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+                </button>
+                <div class="choice-menu" id="locale-menu" role="listbox" aria-label="系统语言" hidden></div>
+                <select id="locale" name="locale" class="native-select" tabindex="-1" aria-hidden="true">
+                  <option value="zh_CN.UTF-8">简体中文</option>
+                  <option value="en_US.UTF-8">English (United States)</option>
+                </select>
+              </div>
+              <div class="choice">
+                <button class="choice-trigger" id="timezone-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="timezone-menu" aria-label="时区">
+                  <span class="pref-icon" aria-hidden="true"><svg class="icon"><use href="#icon-clock"></use></svg></span>
+                  <span class="choice-value" id="timezone-value">上海 · UTC+8</span>
+                  <svg class="icon choice-chevron" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+                </button>
+                <div class="choice-menu" id="timezone-menu" role="listbox" aria-label="时区" hidden></div>
+                <select id="timezone" name="timezone" class="native-select" tabindex="-1" aria-hidden="true">
+                  <option value="Asia/Shanghai">上海 · UTC+8</option>
+                  <option value="UTC">UTC</option>
+                  <option value="Europe/London">London</option>
+                  <option value="America/New_York">New York</option>
+                  <option value="Asia/Tokyo">Tokyo</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="page" data-page="1" aria-labelledby="network-title" hidden>
+            <h1 id="network-title" tabindex="-1">连接</h1>
+            <div class="panels">
+              <section class="panel" aria-labelledby="wifi-title">
+                <header class="panel-head">
+                  <span class="panel-icon" aria-hidden="true"><svg class="icon"><use href="#icon-wifi"></use></svg></span>
+                  <div class="panel-titles">
+                    <h2 id="wifi-title">Wi-Fi</h2>
+                    <p class="panel-status" id="wifi-status" aria-live="polite">正在搜索附近的网络…</p>
+                  </div>
+                  <label class="switch" title="Wi-Fi 开关">
+                    <input type="checkbox" id="wifi-toggle" role="switch" aria-label="Wi-Fi 开关" checked>
+                    <i aria-hidden="true"></i>
+                  </label>
+                </header>
+                <ul class="device-list" id="wifi-list" aria-label="附近的 Wi-Fi 网络"></ul>
+              </section>
+
+              <section class="panel" aria-labelledby="bt-title">
+                <header class="panel-head">
+                  <span class="panel-icon" aria-hidden="true"><svg class="icon"><use href="#icon-bluetooth"></use></svg></span>
+                  <div class="panel-titles">
+                    <h2 id="bt-title">蓝牙</h2>
+                    <p class="panel-status" id="bt-status" aria-live="polite">正在搜索附近的设备…</p>
+                  </div>
+                  <label class="switch" title="蓝牙开关">
+                    <input type="checkbox" id="bt-toggle" role="switch" aria-label="蓝牙开关" checked>
+                    <i aria-hidden="true"></i>
+                  </label>
+                </header>
+                <ul class="device-list" id="bt-list" aria-label="附近的蓝牙设备"></ul>
+                <button class="device-row bt-more" id="bt-more" type="button"
+                        aria-expanded="false" aria-controls="bt-list" hidden></button>
+              </section>
+            </div>
+          </section>
+
+          <section class="page" data-page="2" aria-labelledby="account-title" hidden>
+            <h1 id="account-title" tabindex="-1">账户</h1>
+            <div class="fields account-fields">
+              <label class="field" for="username">
+                <span>用户名</span>
+                <input id="username" name="username" type="text" placeholder="moze" autocapitalize="none" spellcheck="false" maxlength="31" autocomplete="off">
+              </label>
+              <label class="field" for="hostname">
+                <span>计算机名称</span>
+                <input id="hostname" name="hostname" type="text" value="mocha" autocapitalize="none" spellcheck="false" maxlength="63" autocomplete="off">
+              </label>
+              <label class="field" for="password">
+                <span>密码</span>
+                <span class="password-wrap">
+                  <input id="password" name="password" type="password" placeholder="至少 8 位" maxlength="128" autocomplete="new-password">
+                  <button class="eye" id="show-password" type="button" title="显示密码" aria-label="显示密码" aria-pressed="false">
+                    <svg class="icon"><use href="#icon-eye"></use></svg>
+                  </button>
+                </span>
+              </label>
+              <label class="field" for="confirm">
+                <span>确认密码</span>
+                <input id="confirm" name="confirm" type="password" placeholder="再次输入" maxlength="128" autocomplete="new-password">
+              </label>
+            </div>
+          </section>
+
+          <section class="page" data-page="3" aria-labelledby="finish-title" hidden>
+            <h1 id="finish-title" tabindex="-1">确认</h1>
+            <dl class="summary" id="summary"></dl>
+          </section>
+
+          <section class="page centered" data-page="4" aria-labelledby="loading-title" hidden>
+            <div class="loading-ring" aria-hidden="true"></div>
+            <h1 id="loading-title" tabindex="-1">正在准备</h1>
+            <p class="sr-only" id="loading-status" aria-live="polite">正在准备你的桌面</p>
+          </section>
+
+          <section class="page centered" data-page="5" aria-labelledby="done-title" hidden>
+            <div class="done-symbol" aria-hidden="true"><svg class="icon"><use href="#icon-check"></use></svg></div>
+            <h1 id="done-title" tabindex="-1">欢迎回家</h1>
+            <div class="chips">
+              <span class="chip"><svg class="icon" aria-hidden="true"><use href="#icon-wifi"></use></svg><span id="done-wifi">未连接</span></span>
+              <span class="chip"><svg class="icon" aria-hidden="true"><use href="#icon-bluetooth"></use></svg><span id="done-bt">未连接</span></span>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+
+        <footer class="actions" id="actions">
+          <button class="keyboard-toggle" id="keyboard-toggle" type="button" title="触屏键盘" aria-label="触屏键盘" aria-expanded="false" aria-controls="keyboard" hidden><svg class="icon"><use href="#icon-keyboard"></use></svg></button>
+          <button type="button" id="back" class="ghost" disabled>上一步</button>
+          <button type="submit" id="next" class="primary">开始设置<span class="arrow" aria-hidden="true">→</span></button>
+        </footer>
+      </form>
+    </section>
+
+    <aside class="keyboard" id="keyboard" aria-label="触屏键盘" hidden>
+      <header class="keyboard-head">
+        <span class="grabber" aria-hidden="true"></span>
+        <button type="button" id="hide-keyboard" title="收起" aria-label="收起键盘"><svg class="icon"><use href="#icon-chevron-down"></use></svg></button>
+      </header>
+      <div class="keyboard-rows" id="keyboard-rows"></div>
+    </aside>
+  </main>
+
+  <div class="intro" id="intro">
+    <canvas class="intro-canvas" id="intro-canvas" aria-hidden="true"></canvas>
+    <div class="intro-greetings" id="intro-greetings" aria-hidden="true">
+      <span data-lat="58" data-lon="-40">Hello</span>
+      <span data-lat="34" data-lon="-48">안녕하세요</span>
+      <span data-lat="64" data-lon="-4">こんにちは</span>
+      <span class="intro-hello" data-lat="30" data-lon="4">你好</span>
+      <span data-lat="56" data-lon="40">Bonjour</span>
+      <span data-lat="30" data-lon="46">Hola</span>
+      <span data-lat="4" data-lon="-16">Ciao</span>
+    </div>
+    <button class="intro-enter" id="intro-enter" type="button" aria-label="开始设置"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+  </div>
+</body>
+</html>

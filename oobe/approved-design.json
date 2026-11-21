@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "artwork": {
+    "app.js": "d20aaf512c644adea0df73033df8dc7bc0074896a70066bec6f91655a9f2374a",
+    "assets/background.mp4": "d29e7607c8c6678fa81e1b7774535172ff4f0e7e2b9a44cf22b185b3eb7cfea5",
+    "index.html": "a91badad0c59a87e9ea83ece86ef6f074b3a57de0ccef10bdd2d26995619cc0a",
+    "style.css": "479a177942075550c7758913751b47503e9619d374bed231a133f2ad888679b4"
+  },
+  "runtime_background": {
+    "sha256": "ece94bd01f8ceaf2d89efbd1b55209ec521d6c7270897ebc8b8c32991c607c61",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "codec": "H264 constrained-baseline CAVLC",
+    "gop": 30
+  },
+  "rendering": {
+    "intro_backend": "pre-rendered H264 VDE video",
+    "intro_particle_count": 2200,
+    "intro_fps": 30,
+    "per_frame_particle_computation": false,
+    "per_frame_greeting_layout": false,
+    "loop_segment_seconds": [
+      3,
+      18
+    ],
+    "exit_segment_seconds": [
+      18,
+      19.5
+    ],
+    "dedicated_output_scale": 1,
+    "page_zoom": 1.5
+  },
+  "note": "Approved editable artwork retained; native hooks and hardware-compatible video built separately.",
+  "recorded_on": "2026-10-30"
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=Complete Mocha first-run account configuration
+ConditionPathExists=/var/lib/mocha-oobe/pending
+ConditionPathExists=/var/lib/mocha-oobe/request.json
+After=local-fs.target
+OnFailure=mocha-oobe-recover.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/libexec/mocha-oobe-apply.py
+UMask=0077
+LimitCORE=0

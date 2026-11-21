@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "date": "2026-10-30",
+  "status": "candidate-functional-only-performance-not-accepted",
+  "intro_sha256": "f37eb1eaff6c0ba453184131114d2450be11d86386db8970d7fe3fe5a6833e8b",
+  "browser": {
+    "canvas_count": 0,
+    "loop_seek_passed": true,
+    "exit_releases_intro": true,
+    "simulated_form_flow_passed": true
+  },
+  "tablet": {
+    "whole_clip_vde_decode_exit": 0,
+    "whole_clip_vde_decode_stderr": "",
+    "webkit_preview_exit": 0,
+    "welcome_renderer": "pre-rendered-vde",
+    "welcome_canvas": false,
+    "welcome_video_time_samples_seconds": [3.873683895, 8.861006251],
+    "welcome_video_ready_state": 4,
+    "media_error": null,
+    "intro_released_on_settings_page": true,
+    "settings_background_ready_state": 4,
+    "desktop_scale_restored": true,
+    "temporary_caffeine_disabled": true
+  },
+  "limitations": [
+    "User reported severe stutter during device demonstration. Functional playback is not performance acceptance.",
+    "Three-second process samples showed WebKit around 106-108 percent of one CPU core, with the compositor thread dominant and over 700 MiB available memory.",
+    "The initial demo inherited system Mesa rather than the desktop's repaired Mesa. The demo launcher and sandbox library paths were corrected, but high compositor CPU remained.",
+    "Diagnostic filter removal, video pause and alternate composition trials did not establish a sufficient performance fix; visual overrides were reverted.",
+    "WebKit playback-quality counters were unavailable; no dropped-frame or comparative CPU claim is made.",
+    "The native preview used simulated setup actions; no account, password or network settings were changed.",
+    "New-user first boot, sanitized image and actual Fastboot installation remain unverified."
+  ]
+}

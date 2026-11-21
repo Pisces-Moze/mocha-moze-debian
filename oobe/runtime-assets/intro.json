@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "file": "intro-landscape.mp4",
+  "poster": "intro-landscape.png",
+  "codedWidth": 1920,
+  "codedHeight": 1080,
+  "displayWidth": 2048,
+  "displayHeight": 1536,
+  "fps": 30,
+  "loopStart": 3,
+  "loopEnd": 18,
+  "exitStart": 18,
+  "exitDuration": 1.5,
+  "sha256": "f37eb1eaff6c0ba453184131114d2450be11d86386db8970d7fe3fe5a6833e8b",
+  "rendering": "approved-preview-offline",
+  "videoFit": "fill"
+}

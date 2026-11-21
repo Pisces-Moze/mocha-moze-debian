@@ -1,0 +1,15 @@
+[Unit]
+Description=Mocha first-run account configuration endpoint
+ConditionPathExists=/var/lib/mocha-oobe/pending
+After=local-fs.target
+Before=mocha-oobe-session.service
+
+[Service]
+ExecStart=/usr/local/libexec/mocha-oobe-backend.py
+UMask=0077
+LimitCORE=0
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

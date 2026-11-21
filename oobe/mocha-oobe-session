@@ -1,0 +1,15 @@
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+set -eu
+release=$(readlink -f /usr/local/libexec/mocha-tablet-current)
+test -x "$release/niri"
+export MOZ_ENABLE_WAYLAND=1
+export MESA_LOADER_DRIVER_OVERRIDE=tegra MESA_DRI_DRIVER_OVERRIDE=tegra
+export MOCHA_NATIVE_FENCE=1
+# GTK3 rounds a fractional output scale up to 2x. Render OOBE at native
+# pixels with 1.5x page zoom instead, avoiding oversized intermediate buffers.
+export GDK_SCALE=1 GDK_DPI_SCALE=1
+export LD_LIBRARY_PATH=$release/mesa/lib/arm-linux-gnueabihf
+export LIBGL_DRIVERS_PATH=$release/mesa/dri
+export GBM_BACKENDS_PATH=$release/mesa/lib/arm-linux-gnueabihf/gbm
+exec dbus-run-session -- "$release/niri" --config /etc/mocha/oobe.kdl

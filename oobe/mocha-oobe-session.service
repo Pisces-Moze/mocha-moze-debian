@@ -1,0 +1,28 @@
+[Unit]
+Description=Mocha touchscreen first-run setup
+ConditionPathExists=/var/lib/mocha-oobe/pending
+ConditionPathExists=!/var/lib/mocha-oobe/handoff-ready.json
+After=mocha-oobe-backend.service mocha-desktop-hardware.service systemd-user-sessions.service
+Wants=mocha-oobe-backend.service mocha-desktop-hardware.service
+
+[Service]
+User=mocha
+PAMName=login
+TTYPath=/dev/tty1
+StandardInput=tty
+TTYReset=yes
+TTYVHangup=yes
+Environment=XDG_SESSION_TYPE=wayland
+Environment=XDG_SESSION_CLASS=user
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+ExecStart=/usr/local/libexec/mocha-oobe-session
+# Root can inspect PAM's root-owned helper processes in the session scope.
+ExecStop=+/usr/local/libexec/mocha-oobe-stop.py %n
+KillMode=control-group
+TimeoutStopSec=20
+Restart=on-failure
+RestartSec=3
+LimitCORE=0
+
+[Install]
+WantedBy=multi-user.target
