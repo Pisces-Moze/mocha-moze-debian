@@ -1,3 +1,7 @@
+# 历史状态记录
+
+当前进度见 [实机状态](https://github.com/Pisces-Moze/mocha-moze-debian/blob/main/docs/STATUS.md)和 [剩余任务](https://github.com/Pisces-Moze/mocha-moze-debian/blob/main/docs/TODO.md)。以下保留各阶段当时的结果和未勾选项。
+
 ## 2026-11-09 默认桌面候选安装
 
 按用户要求，发行镜像不再包含 OOBE；默认账户 `mocha`、默认密码 `mocha`，首次启动自动登录桌面。应尽快运行 `passwd` 修改密码。实机完成 APP/UDA 备份后，使用候选命令行安装器完成 APP 3 GiB 写入与回读、数据恢复、引导写入及重启；用户确认桌面、触控、Wi-Fi、双扬声器、蓝牙设备、GOP30 壁纸及锁屏唤醒解锁正常。候选包文件已通过 SHA-256 检查；壁纸硬解路径未在本轮单独测量。Windows 入口尚未以正式包状态完成端到端测试，原始 2 GiB 布局向 3 GiB 的安装路径和密码修改后重启也未在本轮验证，不应发布为 verified。刷写前的私人备份保存在本机，不进入发行包。
