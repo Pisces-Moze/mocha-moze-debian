@@ -1,5 +1,7 @@
 # 已遇到的问题与实现思路
 
+本文归档早期故障及其诊断。扬声器、双摄和 H.264 VDE 已有实机结果，见 [实机状态](STATUS.md)及 [剩余任务](TODO.md)。
+
 ## 一核 → 四核
 默认主线安全复位注册接口与原厂 TLK 不匹配，CPU reset vector 被安全世界锁定。参考官方 reset/platsmp/tegra_sm_interface 后，对 `nvidia,mocha` 且显式 opt-in 的设备调用 SMC `0x82000001` 设置分发器，再使用 Tegra PMC/flow-controller 的 SMP 操作。四核冷启动和负载通过；这不意味着 CPU DVFS、热管理或 suspend 完成。
 
@@ -31,7 +33,7 @@ Mesa 25.0.7-2+deb13u1 Build ID fd7dcad10de8c89211ebe69ae8c8dda302f047d0，返回
 CONFIG_COREDUMP=y但CONFIG_ELF_CORE关闭，第一次core捕获没有生成文件；改用ARM gdbserver抓栈。
 后续需要修复缺失的驱动回调/缓冲区协作、验证真实native桌面，再测DMA-BUF、CPU_PREP和copy；当前不能标注Niri zero-copy完成。
 
-## 扬声器/麦克风：未解决
+## 扬声器与麦克风：早期声卡探测记录
 RT5671 0x1c在官方1.2V ldoen、PMIC32k门控、GPIO5mux、12.288MHz MCLK下NACK。
 分离I2C读写与100kHz速率测试仍NACK，两颗TFA9890同总线revision0080可读。MTP0000并不证明校准缺失，因为完整DSP时序未运行。
 官方TFA驱动和machine（I2S0→AIF1，AIF2→左右TFA、48k/16bit/stereo）已编译，不能据此称声卡可用。没有写MTP、绕过扬声器保护或播放未经校准的音频。

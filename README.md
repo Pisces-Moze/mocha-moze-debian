@@ -158,7 +158,9 @@ ssh -i artifacts/developer-key root@172.31.124.2 'sh /tmp/storage.sh write LNX /
 
 默认配置横屏，最小充电界面竖屏并直接画到 framebuffer；装好充电政策与界面后先跑一次限时、可回退的测试，确认按住电源 2 秒能直接进桌面，再启用 `/boot/mocha-charger.enabled`。Wi-Fi 用 `nmcli device wifi connect 'YOUR_SSID' --ask`，密码不写进脚本，固件从合法持有的设备或官方包私有提取后放进对应的 `/lib/firmware`。最后保存四个仓库的 commit、产物 SHA256、`uname`、设备树哈希、冷启动方式、四核是否上线、面板上的真实观察和 journal；历史日志出现时间顺序冲突时，以状态表和后期可复核证据为准。
 
-## 当前状态（2026-10-07）
+## 历史状态快照（2026-10-07）
+
+[r8 实机状态](docs/STATUS.md)记录扬声器、双摄和 VDE 的现状。下表保留早期诊断。
 
 | 子系统 | 实机状态 | 限制 |
 |---|---|---|
@@ -176,19 +178,9 @@ ssh -i artifacts/developer-key root@172.31.124.2 'sh /tmp/storage.sh write LNX /
 
 最近一轮暂停时，平板上跑的是临时 native6-order 内核。此次整理只发布源码和文档，不继续实机调试，也不把实验配置改成默认。
 
-## 未实现与计划
+## 当前待办
 
-| 条目 | 说明 | 出处 |
-|---|---|---|
-| RT5671 音频 | 0x1c 在官方 1.2 V ldoen、PMIC 32k 门控、GPIO5 mux、12.288 MHz MCLK 下仍 NACK；分离 I2C 读写与 100 kHz 速率测试仍 NACK；TFA9890 两颗 revision 0080 可读，MTP0000 不证明校准缺失，因为完整 DSP 时序未运行；官方 TFA 驱动与 machine（I2S0→AIF1，AIF2→左右 TFA，48k/16bit/stereo）已编译但声卡不可用，没有写 MTP 或绕过扬声器保护；旧 MIUI 内核的 RAM 实验白屏且无 USB，保留日志也没有得到成功的音频参考，用户反馈官方 MIUI 曾正常发声 | docs/STATUS.md、docs/ISSUES.md、docs/INSTALL.md |
-| 原生显示路径：双 DSI 最终画面与 Niri native 崩溃 | 寄存器读数正确，但用户仍报告日志从屏幕中间开始、右侧内容绕回左边和位置错误，画面坐标、stride、格式与控制台都未验证完。block-linear framebuffer 的 atomic TEST_ONLY 返回 EINVAL，随后 fallback 启动，Mesa/Gallium 内部跳到 PC=0，实测用 GDB 捕获 LR 并匹配库 Build ID。Mesa 25.0.7-2+deb13u1（Build ID `fd7dcad10de8c89211ebe69ae8c8dda302f047d0`）返回偏移 0xd645bc，匹配 Debian 调试符号 `tegra_fence_server_sync`、`src/gallium/drivers/tegra/tegra_context.c:834`，空函数指针来源待确认，不能把定位称为修复；`CONFIG_COREDUMP=y` 但 `CONFIG_ELF_CORE` 关闭，第一次 core 捕获没有生成文件，改用 ARM gdbserver 抓栈；缺失的驱动回调与缓冲协作待修，DMA-BUF、CPU_PREP 和 copy 未测完，不能标注 zero-copy 完成 | docs/STATUS.md、docs/ISSUES.md |
-| Tegra124 硬件编解码与完整 CUDA Runtime | VDE 非标准 tile 布局没有完整格式；libcudart 6.5 error 35（驱动版本不足），真实 NVIDIA 库依赖旧驱动 ABI | docs/STATUS.md、docs/ISSUES.md、SOURCES.md |
-| 蓝牙、摄像头 / OTG / 休眠 | 现代内核的 UART/固件/GPIO、配对与音频待完成；控制器、传感器、VBUS 与恢复链路待适配 | docs/STATUS.md |
-| 调频、热管理与挂起 | 四核上线不代表 CPU DVFS、热管理或 suspend 可用；CPU/GPU 调频与超频保持未启用，当前先处理原生显示和音频发现 | docs/STATUS.md、docs/ISSUES.md、CONTRIBUTING.md |
-| 完整桌面 rootfs 迁移、分区扩容与 32 GB / 其他 GPT | 新规范化脚本只覆盖核心 APP 路线，扩展方案没有重新验收过的自动教程，GPT 未重分区；其他容量需要先自行调整安装计划、initramfs 布局检查与引导根分区 | docs/INSTALL.md |
-| 充电电量计与关机充电 | 电量计偶有跳变；最小 Linux 充电模式不是 SoC 完全断电；完全关机充电状态机仍有改进空间 | docs/STATUS.md、docs/ISSUES.md |
-| 大文件与 U-Boot 尾块传输 | 限速与固定块减少了卡住，根因没有彻底确认 | docs/ISSUES.md |
-| 正式发布就绪度与上游依赖 | 没有提供声称「所有功能可用」的通用镜像；`new_brand_end_to_end_tested=false`，改名后没有重新刷机验收，静态与交叉编译验证不等于可一键刷入；GK20A 微码、BCM4354 无线固件、TFA DSP 参数需自行合法提取，上游下载仍需网络，产物哈希由开发者自己计算 | docs/INSTALL.md、docs/RELEASES.md、docs/VALIDATION.md、LICENSE-NOTES.md、manifests/repos.lock.json |
+见 [剩余任务表](docs/TODO.md)。内置双扬声器、前后摄 V4L2 连续预览、播放器与动态壁纸的 H.264 硬解已完成，具体测试范围见 [实机状态](docs/STATUS.md)。
 
 ## 已解决的问题
 

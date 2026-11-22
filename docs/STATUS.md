@@ -1,22 +1,15 @@
-# 当前状态：2026-10-07
+# Mocha Debian 实机状态
 
-| 子系统 | 实机状态 | 限制 |
-|---|---|---|
-| Debian armhf / eMMC | 已持久安装、systemd PID 1 | 仅一台 A0101 验证；GPT 没有重分区 |
-| 四核 | CPU 0–3 上线、逐核负载及冷启动通过 | 使用原厂 TLK SMC；CPU DVFS 尚未启用 |
-| 默认显示 | 冷启动、横屏、触控、亮度通过 | simpledrm 输出仍有同步/CPU 拷贝开销 |
-| 原生 Tegra 双 DSI | GPU 线性 DMA-BUF 色块实机可见，约 29.8 FPS | Niri 原生桌面 SIGSEGV；尚未替换默认路径 |
-| 左右链路 | native6 的起点 `[0,768]` 在桌面 modeset 后仍正确 | 仅寄存器读数通过；控制台位置/换行仍异常，桌面稳定性未完成 |
-| GPU | Nouveau NVEA / GK20A 硬件着色器通过 | 固件需要自行提取；DVFS/热管理未完成 |
-| Wi-Fi | BCM4354 扫描、连接、自动连接通过 | 需要板级 NVRAM 和本机 MAC |
-| 触控 | 本机 Atmel maXTouch 1664T 点击、滑动、横屏坐标准确 | Mocha 有不同面板/触控批次，不要盲刷 Synaptics 固件 |
-| 充电 | 竖屏动画、按键进桌面、BC1.2 DCP 2 A 输入策略通过 | 最小 Linux 充电模式，并非 SoC 完全断电；电量计偶有跳变 |
-| 扬声器/麦克风 | 未完成 | RT5671 0x1c NACK，ALSA 无卡；TFA9890 两颗 revision 可读 |
-| 蓝牙 | 旧内核 HCI 初始化通过；现代内核完整功能未验证 | UART/固件/GPIO及配对、音频待完成 |
-| 视频播放 | FFmpeg H.264 72 帧解码、Firefox HTML5 播放通过 | 软件解码可用；Tegra124 硬件编解码未完成 |
-| 壁纸预览 | 缩略图与专用壁纸目录修复通过 | 需正确安装 Noctalia 数据文件 |
-| CUDA | Gdev 实验 Driver API 的有限计算通过 | libcudart 6.5 error 35；完整 CUDA Runtime 未完成 |
-| 摄像头 / OTG / 休眠 | 未完成 | 控制器、传感器、VBUS 与恢复链路待适配 |
+以下是 r8 功能及其验证范围。系统下载见 [r8 整合包](https://github.com/Pisces-Moze/mocha-moze-flasher/releases/tag/source-candidate-20261121-r8)，剩余工作见 [任务表](TODO.md)。
 
-最近一轮暂停时平板运行临时 native6-order 内核。此次整理只发布源码和文档，不继续实机调试，也不把实验默认化。
-历史日志存在时间顺序冲突时，以本状态表和后期可复核证据为准。
+| 功能 | 结果 | 验证范围 |
+| --- | --- | --- |
+| 内置双扬声器 | **已完成** | 左右声道听音、PipeWire 输出、受保护 TFA9890 功放及空闲断电已验证。r8 默认数字增益为 0 dB。耳机和麦克风另行验收。 |
+| 前、后摄像头 | **已完成 V4L2 连续预览** | 两路均通过实机 RAM 取帧。前摄 640×360 约 15 fps、320×180 约 30 fps，后摄 1280×720 约 10 fps。一次使用一路，相机应用自行安装。详见 [双摄说明](https://github.com/Pisces-Moze/mocha-moze-drivers/blob/mocha-r8-sync-20261121/camera/README.md)。 |
+| VDE 视频硬件解码 | **已完成已支持的 H.264 路径** | FFmpeg、GStreamer 逐帧校验通过，MPV 与 GOP30 动态壁纸已实际运行。当前实测范围是逐行 CAVLC，壁纸生命周期也已验证。详见 [播放器说明](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/main/docs/VDE-PLAYER.md)。 |
+| Firefox 网页视频 | **开发构建已硬解出帧** | 原型的独立 Request 构建使用 RDD／VDE，真实网站的编码覆盖与播放性能继续跟踪。预览整合包的浏览器能力以实际打包版本为准。[Firefox 验证](https://github.com/Pisces-Moze/mocha-moze-desktop/blob/mocha-r8-sync-20261121/docs/FIREFOX-RUNTIME.md) |
+| 桌面、触控和充电 | **已有实机验收** | 原生 Tegra 双 DSI、Niri＋Noctalia、触控、充电动画及锁屏唤醒已在原型验证。 |
+| Wi-Fi、蓝牙 | **已有实机验收** | Wi-Fi 连接、S102 音频、ThinkBook／K480 连接及输入节点已验证。 |
+| 分区和安装 | **3 GiB APP 已验证** | 原型分区扩容、普通启动通过。r8 的 UDA 承载 /home。Windows 预览版的自动驱动绑定和较大容量实体机仍待单独验证。 |
+
+[2026-10-07 状态快照](https://github.com/Pisces-Moze/mocha-moze-debian/blob/7b2bd69a1f76bd248985b5cfd1d20555df951acc/docs/STATUS.md)保留当时的结果。
