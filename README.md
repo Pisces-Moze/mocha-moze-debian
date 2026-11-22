@@ -1,8 +1,14 @@
 # Mocha Moze Debian
 
-> 把 Debian armhf Linux 装到小米平板 1（A0101，代号 Mocha，NVIDIA Tegra124）上的五仓库工程总入口。
+> 把 Debian armhf Linux 装到小米平板 1（A0101，代号 Mocha，NVIDIA Tegra124）上的根文件系统、诊断与开发文档。
 
 [![License: GPL-2.0-only](https://img.shields.io/badge/License-GPL--2.0--only-blue.svg)](LICENSE)
+
+## 安装 r8
+
+下载 [r8 Windows x64 整合包](https://github.com/Pisces-Moze/mocha-moze-flasher/releases/tag/source-candidate-20261121-r8)。r8 候选版为 16 GB Mocha 提供预构建镜像和图形刷机器。APP 固定 3 GiB，UDA 挂载为 `/home`，首次启动直接进入桌面，默认账号和密码均为 `mocha`，登录后可用 `passwd` 修改。刷机会清除 APP、UDA 和 cache，请先备份个人文件。
+
+[Flasher 仓库](https://github.com/Pisces-Moze/mocha-moze-flasher)提供安装步骤、容量兼容说明和历史版本。开发者可从 [r8 源码同步分支](https://github.com/Pisces-Moze/mocha-moze-debian/tree/mocha-r8-sync-20261121)查阅此前的诊断记录。下方手工命令、布局和状态表保留的是 2026-10 的源码开发路线。
 
 ## 简介
 
@@ -10,7 +16,7 @@
 
 小米平板 1 出厂运行 Android，厂商没有为它提供 Linux 桌面发行版。这个工程整理出一条可复现的安装路线：源码从哪里来、按什么顺序构建、怎样先在内存里临时启动验证，确认无误后再写入内置存储，以及每一级失败之后怎么退回去。
 
-工程拆成五个仓库，本仓库是总入口，负责版本锁定、根文件系统、RAM 引导安装器、分区核对和全部文档，内核、U-Boot 与驱动的源码放在另外四个仓库。当前发布是 2026-10-07 的源码开发快照，不是所有外设都能用的成品安装盘；默认显示与原生显示实验是两条分开的路径。内核人类名称是 mocha moze linux 6.12.111-moze.1，`UTS_RELEASE` 与模块目录用 `6.12.111-moze.1`（空格只出现在项目名称里，不进入 uname），native 实验内核的 release 是 `6.12.111-moze.1-native`。`manifests/repos.lock.json` 里的 `new_brand_end_to_end_tested` 为 `false`：改名之后的完整安装还没有端到端实机验收过。完整安装路线见 [INSTALL.md](docs/INSTALL.md)，首次阅读请同时看 [状态表](docs/STATUS.md) 和 [回退](docs/RECOVERY.md)。
+工程拆成五个仓库，本仓库是总入口，负责版本锁定、根文件系统、RAM 引导安装器、分区核对和全部文档，内核、U-Boot 与驱动的源码放在另外四个仓库。下方手工流程基于 2026-10-07 的源码开发快照，不是所有外设都能用的成品安装盘；默认显示与原生显示实验是两条分开的路径。内核人类名称是 mocha moze linux 6.12.111-moze.1，`UTS_RELEASE` 与模块目录用 `6.12.111-moze.1`（空格只出现在项目名称里，不进入 uname），native 实验内核的 release 是 `6.12.111-moze.1-native`。`manifests/repos.lock.json` 里的 `new_brand_end_to_end_tested` 为 `false`：改名之后的完整安装还没有端到端实机验收过。完整安装路线见 [INSTALL.md](docs/INSTALL.md)，首次阅读请同时看 [状态表](docs/STATUS.md) 和 [回退](docs/RECOVERY.md)。
 
 ## 硬件背景与适用机型
 
@@ -29,7 +35,10 @@
 
 | 仓库 | 负责内容 |
 |---|---|
-| [mocha-moze-debian](https://github.com/Pisces-Moze/mocha-moze-debian) | 总入口、版本锁、rootfs、RAM 引导安装、分区核对和文档 |
+| [mocha-moze-flasher](https://github.com/Pisces-Moze/mocha-moze-flasher) | r8 镜像、Windows 图形安装器及源码构建入口 |
+| [mocha-moze-llm](https://github.com/Pisces-Moze/mocha-moze-llm) | 可选的本地模型工具和部署文档 |
+| [mocha-moze-firmware-private](https://github.com/Pisces-Moze/mocha-moze-firmware-private) | 固件参考档案及校验清单 |
+| [mocha-moze-debian](https://github.com/Pisces-Moze/mocha-moze-debian) | 版本锁、rootfs、RAM 引导安装、分区核对和文档 |
 | [mocha-moze-boot](https://github.com/Pisces-Moze/mocha-moze-boot) | U-Boot 2026.07 覆盖源码、Android 容器、双 DSI 冷启动交接 |
 | [mocha-moze-linux](https://github.com/Pisces-Moze/mocha-moze-linux) | Debian Linux 6.12.111 完整源码基线及 Mocha 修改、配置和 DTS |
 | [mocha-moze-drivers](https://github.com/Pisces-Moze/mocha-moze-drivers) | MIUI 背光/音频移植、固件提取说明、GPU/CUDA 诊断和驱动实验 |
